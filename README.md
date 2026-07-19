@@ -105,7 +105,7 @@ families require *all* spans (e.g. definition AND cross-file call site) in conte
 | grep + file ranking | 8,000 | 43.2% | 2 |
 | lsp (jedi symbol search) | 0 | 6.6% | 1 |
 | tf-idf vector retriever | 2,209 | 56.8% | 1 |
-| **slicegrep 0.2** | **2,015** | **63.9%** | **1** |
+| **slicegrep 0.3** | **2,024** | **63.9%** | **1** |
 
 The v2 benchmark drove the v0.2 release: retrieval objectives (guaranteed
 definition + cross-file caller + test slots in the budget), diversity-aware
@@ -113,18 +113,18 @@ packing, and a TF-IDF semantic rerank blended into lexical scoring. Measured
 effect: overall 60.8% → 63.9%, test+impl 30.0% → 47.5%, symbol 80.0% → 85.0%.
 
 Still not everywhere, and [RESULTS_V2.md](benchmarks/RESULTS_V2.md) says so
-plainly: grep+windows keeps cross-file call-chain (57.5% vs 40.0%) because giant
+plainly: grep+windows keeps cross-file call-chain (57.5% vs 35.0%) because giant
 windows are more likely to capture *two* required spans, and the TF-IDF retriever
-keeps docstring-concept queries (75.0% vs 60.0%). Those remain the open gaps. LSP
-is strong only on pure symbol lookups and structurally blind to string/concept
-queries; raw grep output alone almost never contains the definition.
+keeps docstring-concept queries (75.0% vs 67.5%). LSP is strong only on pure
+symbol lookups and structurally blind to string/concept queries; raw grep output
+alone almost never contains the definition.
 
 ```bash
 pip install jedi   # for the lsp baseline
 python benchmarks/bench2.py --clone --scale 240
 ```
 
-### Benchmark v3 — real sessions from git history (slicegrep loses this one)
+### Benchmark v3 — real sessions from git history (the one that beat us, then drove v0.3)
 
 v3 removes the "synthetic tasks favor your tool" objection entirely: 80 real
 changes mined from the corpora's own git history. The repo is reconstructed at
@@ -141,15 +141,18 @@ touched. **Session hit** = at least half of those regions retrieved under the ca
 | lsp (jedi) | 0 | 2.5% | 1.2% | 1 |
 | **tf-idf vector retriever** | 2,240 | **22.5%** | 20.4% | 1 |
 | slicegrep 0.2 | 2,115 | 16.2% | 18.8% | 1 |
+| **slicegrep 0.3 (hybrid recall)** | 2,104 | 21.2% | **22.6%** | 1 |
 
-slicegrep does **not** win here: the TF-IDF retriever (22.5%) and the
-file-ranking grep agent (20.0%) beat it (16.2%). The likely mechanism: commit
-messages are vague, and slicegrep requires a literal regex hit for a region to
-even be a *candidate* — regions the fix touched that don't contain any query
-word are invisible to it, while vocabulary-similarity retrieval can still land
-nearby. Semantic *ranking* (added in 0.2) isn't enough; real sessions need
-semantic *recall*. That's the top of the roadmap, and these numbers stay
-published until it's beaten fairly.
+v3 caught slicegrep 0.2 losing outright (16.2% vs TF-IDF's 22.5%): commit
+messages are vague, and 0.2 required a literal regex hit for a region to even be
+a *candidate* — regions the fix touched with no query word on any line were
+invisible regardless of ranking. That diagnosis became v0.3's **hybrid recall**:
+a TF-IDF pass over the corpus proposes candidates by window vocabulary, packed
+after the lexical chunks. Result: 21.2% session hit (within noise of TF-IDF's
+22.5%) and the **best mean coverage of any strategy (22.6%)** — while keeping
+the v2 lookup benchmark at 63.9% with no regression. The 0.2 row stays in the
+table because the before/after is the point. Cost: the corpus TF-IDF pass adds
+~0.3–0.5s per directory call.
 
 Everyone's numbers collapse versus the lookup benchmarks (best: 22.5% vs 63.9%)
 — retrieving what a real fix will touch, from a commit message alone, is simply

@@ -621,6 +621,98 @@ def _semantic_rerank(chunks: List[Chunk], patterns: List[str]) -> None:
                 chunk.rank_reason.append("semantic")
 
 
+def _semantic_candidates(
+    file_data: List[Tuple[str, List[str]]],
+    patterns: List[str],
+    max_chunks: int = 40,
+) -> List[Chunk]:
+    """TF-IDF recall pass: windows whose *vocabulary* matches the query.
+
+    Regex decides precision candidates; this decides RECALL. On vague queries
+    ("handle prompt suffix when default rejected") the code that matters often
+    contains none of the query words on any single line — but a 60-line window
+    around it usually shares vocabulary. Benchmark v3 (real sessions mined
+    from git history) showed pure TF-IDF retrieval beating regex-gated
+    slicegrep 22.5% to 16.2% for exactly this reason.
+    """
+    qtokens = Counter(
+        t for p in patterns for t in re.findall(r"[a-z0-9_]{3,}", p.lower())
+    )
+    if not qtokens or not file_data:
+        return []
+    windows: List[Tuple[str, int, int, Counter]] = []
+    df: Counter = Counter()
+    for fpath, lines in file_data:
+        for lo in range(0, max(1, len(lines)), 40):
+            hi = min(len(lines), lo + 60)
+            toks = Counter(
+                re.findall(r"[a-z0-9_]{3,}", "".join(lines[lo:hi]).lower())
+            )
+            if toks:
+                windows.append((fpath, lo, hi, toks))
+                df.update(toks.keys())
+            if hi >= len(lines):
+                break
+    n = len(windows)
+    if n < 2:
+        return []
+    idf = {t: math.log(1 + n / (1 + c)) for t, c in df.items()}
+    qvec = {t: c * idf.get(t, math.log(1 + n)) for t, c in qtokens.items()}
+    qnorm = math.sqrt(sum(v * v for v in qvec.values())) or 1.0
+    scored = []
+    for fpath, lo, hi, toks in windows:
+        dot = sum(qvec.get(t, 0.0) * c * idf.get(t, 0.0) for t, c in toks.items())
+        if dot <= 0:
+            continue
+        dnorm = math.sqrt(sum((c * idf.get(t, 0.0)) ** 2
+                              for t, c in toks.items())) or 1.0
+        scored.append((dot / (qnorm * dnorm), fpath, lo, hi))
+    scored.sort(reverse=True)
+    out = []
+    for cos, fpath, lo, hi in scored[:max_chunks]:
+        lines = next(ls for fp, ls in file_data if fp == fpath)
+        chunk = Chunk(
+            file=fpath,
+            line_start=lo + 1,
+            line_end=hi,
+            code="".join(lines[lo:hi]),
+            patterns=[],
+            matches=0,
+            symbol="",
+        )
+        chunk.score = 5 + int(30 * cos)
+        chunk.rank_reason = ["semantic-recall"]
+        out.append(chunk)
+    return out
+
+
+def _overlaps(c: Chunk, picked: List[Chunk]) -> bool:
+    for p in picked:
+        if p.file == c.file and c.line_start <= p.line_end and p.line_start <= c.line_end:
+            return True
+    return False
+
+
+def _pack_hybrid(lex: List[Chunk], sem: List[Chunk], budget: int,
+                 objective: str) -> List[Chunk]:
+    """Lexical chunks get first claim on ~65% of the budget; semantic-recall
+    chunks fill whatever remains without overlapping what's already in."""
+    if not sem:
+        return _apply_budget(lex, budget, objective)
+    if not lex:
+        return _apply_budget(sem, budget, "single")
+    picked = _apply_budget(lex, max(1, int(budget * 0.65)), objective)
+    used = sum(c.tokens for c in picked)
+    for c in sorted(sem, key=lambda c: c.score, reverse=True):
+        if _overlaps(c, picked):
+            continue
+        if used + c.tokens <= budget:
+            picked.append(c)
+            used += c.tokens
+    picked.sort(key=lambda c: c.score, reverse=True)
+    return picked
+
+
 def _is_test_path(file: str) -> bool:
     low = file.replace("\\", "/").lower()
     return "test" in Path(low).name or "/tests/" in low or low.startswith("tests/")
@@ -718,12 +810,13 @@ def _extract_file(
     after: int,
     boundary: str,
     dedupe_threshold: float,
+    text: Optional[str] = None,
 ) -> Tuple[List[Chunk], Optional[_NegativeEvidence], str]:
     path = Path(filepath)
-    if not path.is_file():
-        return [], None, ""
-
-    text = _read_text(path)
+    if text is None:
+        if not path.is_file():
+            return [], None, ""
+        text = _read_text(path)
     lines = text.splitlines(keepends=True)
 
     compiled = [_compile_or_escape(p) for p in patterns]
@@ -795,6 +888,7 @@ def focused_read(
     recursive: bool = False,
     dedupe: bool = True,
     objective: str = "auto",
+    semantic: bool = True,
 ) -> Result:
     """Grep ``path`` for ``pattern`` and return ranked, budget-capped slices.
 
@@ -845,22 +939,31 @@ def focused_read(
     if recursive or target.is_dir():
         root = target if target.is_dir() else target.parent
         all_chunks: List[Chunk] = []
+        file_data: List[Tuple[str, List[str]]] = []
         searched = 0
         matched = 0
         for f in _iter_files(root):
             searched += 1
             try:
+                text = _read_text(f)
                 chunks, _neg, _text = _extract_file(
-                    str(f), patterns, before, after, boundary, threshold
+                    str(f), patterns, before, after, boundary, threshold,
+                    text=text,
                 )
             except Exception:
                 continue
+            if semantic and budget > 0:
+                file_data.append((str(f), text.splitlines(keepends=True)))
             if chunks:
                 matched += 1
                 all_chunks.extend(chunks)
         _semantic_rerank(all_chunks, patterns)
         all_chunks.sort(key=lambda c: c.score, reverse=True)
-        all_chunks = _apply_budget(all_chunks, budget, objective)
+        if semantic and budget > 0:
+            sem = _semantic_candidates(file_data, patterns)
+            all_chunks = _pack_hybrid(all_chunks, sem, budget, objective)
+        else:
+            all_chunks = _apply_budget(all_chunks, budget, objective)
         return Result(
             query=patterns,
             chunks=all_chunks,

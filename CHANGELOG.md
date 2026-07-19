@@ -6,6 +6,27 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-07-19
+
+### Added
+- **Hybrid semantic recall** (`semantic=` param, on by default in directory
+  mode): alongside regex precision candidates, a TF-IDF pass over 60-line
+  windows of the whole corpus proposes candidates whose *vocabulary* matches
+  the query even when no line literally matches. Lexical chunks claim ~65%
+  of the budget first; non-overlapping `semantic-recall` chunks fill the
+  rest. Motivated by benchmark v3 (real sessions mined from git history),
+  where regex-gated candidacy lost to pure TF-IDF retrieval.
+- Benchmark v3 (`benchmarks/bench3.py`): 80 real changes mined from corpus
+  git history; query from the commit message only; ground truth = the
+  pre-image regions the real fix touched.
+
+### Measured
+- v3 session hit 16.2% -> 21.2%; mean coverage 18.8% -> 22.6% (best of all
+  7 strategies). TF-IDF alone still edges hit rate (22.5%) - recorded.
+- v2 overall held at 63.9% (no regression): comprehend +7.5, config-flow
+  +5.9, symbol -2.5, call-chain -5.0, test+impl -5.0.
+- Cost: ~0.3-0.5s per directory call for the corpus TF-IDF pass.
+
 ## [0.2.0] - 2026-07-19
 
 ### Added
