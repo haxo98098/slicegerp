@@ -34,6 +34,7 @@ dependencies = []  # core is standard-library only, on purpose
 [project.optional-dependencies]
 mcp = ["mcp>=1.2.0; python_version >= '3.10'"]
 dev = ["pytest>=7", "pytest-cov"]
+bench = ["jedi>=0.19"]
 
 [project.scripts]
 slicegrep = "slicegrep.cli:main"

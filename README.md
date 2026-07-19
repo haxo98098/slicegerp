@@ -84,13 +84,42 @@ python benchmarks/bench.py --clone                # 10 curated tasks
 python benchmarks/bench.py --clone --scale 300    # 300 generated tasks
 ```
 
-Honesty notes: this benchmark caught a real ranking bug at v0.1 (the definition
+Honesty note: this benchmark caught a real ranking bug at v0.1 (the definition
 signal never fired in default mode — hit rate was 71.7% before the fix; see
-CHANGELOG). And the current task set is definition-lookup-heavy, which plays to
-slicegrep's strengths; the planned v2 adds bug-localization, cross-file call-chain,
-and config/data-flow tasks plus stronger baselines (ripgrep + heuristic ranking,
-LSP definition/references, a lightweight embedding retriever). A benchmark that
-never embarrasses its own tool isn't measuring anything.
+CHANGELOG). A benchmark that never embarrasses its own tool isn't measuring
+anything.
+
+### Benchmark v2 — harder tasks, stronger baselines
+
+240 tasks across six families (symbol lookup, docstring-concept comprehension,
+cross-file call-chain, bug localization from error strings, config/data-flow,
+test+implementation) against seven strategies, including a file-ranking grep agent,
+a language-server baseline (jedi), and a TF-IDF vector retriever. Multi-span
+families require *all* spans (e.g. definition AND cross-file call site) in context.
+
+| strategy | tokens → model | hit rate | tool calls |
+|---|---|---|---|
+| raw ripgrep output | 271 | 0.0% | 1 |
+| whole-file reads | 8,000 | 36.6% | 6 |
+| grep + window reads | 6,345 | 57.3% | 7 |
+| grep + file ranking | 8,000 | 43.2% | 2 |
+| lsp (jedi symbol search) | 0 | 6.6% | 1 |
+| tf-idf vector retriever | 2,209 | 56.8% | 1 |
+| **slicegrep** | **1,995** | **60.8%** | **1** |
+
+slicegrep leads overall — but not everywhere, and the per-family table in
+[RESULTS_V2.md](benchmarks/RESULTS_V2.md) says so plainly: grep+windows wins
+cross-file call-chain (57.5% vs 37.5%) and test+impl retrieval (47.5% vs 30.0%)
+because giant windows are more likely to capture *two* required spans, and the
+TF-IDF retriever wins docstring-concept queries (75.0% vs 65.0%). Those are
+slicegrep's current weak spots and the v0.2 roadmap. LSP is strong only on pure
+symbol lookups and structurally blind to string/concept queries; raw grep output
+alone almost never contains the definition.
+
+```bash
+pip install jedi   # for the lsp baseline
+python benchmarks/bench2.py --clone --scale 240
+```
 
 ---
 

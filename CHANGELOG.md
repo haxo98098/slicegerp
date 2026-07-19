@@ -7,6 +7,14 @@ All notable changes to this project are documented here. The format follows
 ## [Unreleased]
 
 ### Added
+- Benchmark v2 (`benchmarks/bench2.py`): six task families (symbol,
+  docstring-concept comprehension, cross-file call-chain, bug localization,
+  config/data-flow, test+impl) × seven strategies (raw rg, whole-file,
+  rg+windows, rg+file-ranking, jedi/LSP symbol search, TF-IDF vector
+  retriever, slicegrep). 240 seeded tasks; multi-span ground truth. slicegrep
+  leads overall (60.8% hit rate at 1,995 median tokens, 1 call) but
+  rg+windows wins multi-span families and TF-IDF wins concept queries —
+  documented as the v0.2 roadmap. `bench` extra installs jedi.
 - Scaled benchmark mode (`--scale N`): generates up to N seeded, reproducible
   lookup tasks across four pinned corpora (click, flask, requests, rich) and
   measures tokens, success, irrelevance, tool calls, and latency per strategy.
