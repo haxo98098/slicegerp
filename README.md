@@ -12,7 +12,7 @@ That's the grep-then-read loop an LLM agent runs dozens of times per task — co
 into one call that returns a fraction of the tokens.
 
 ```bash
-pip install slicegrep
+pip install git+https://github.com/haxo98098/slicegerp
 ```
 
 - **Zero dependencies** for the core (standard library only). Python 3.8+ (the
@@ -167,7 +167,7 @@ Expose `focused_read` to any MCP client so the model can pull ranked code contex
 on its own:
 
 ```bash
-pip install "slicegrep[mcp]"
+pip install "slicegrep[mcp] @ git+https://github.com/haxo98098/slicegerp"
 ```
 
 **Claude Desktop / Claude Code** — add to your MCP config:

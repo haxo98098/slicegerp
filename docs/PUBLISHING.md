@@ -4,7 +4,17 @@ Steps that require the project owner's accounts (cannot be automated from a
 collaborator machine). Everything else — building, validating, tagging,
 GitHub release — is automated.
 
-## 1. PyPI (one-time setup, ~5 minutes)
+## 0. Current state: GitHub is the install path (no PyPI needed)
+
+The project is fully installable without PyPI:
+
+    pip install git+https://github.com/haxo98098/slicegerp
+
+Releases attach the wheel/sdist automatically. The PyPI steps below are
+OPTIONAL — they add `pip install slicegrep` and public download stats, and
+can be done any time later.
+
+## 1. PyPI (optional, one-time setup, ~5 minutes)
 
 1. Create/log into your account at https://pypi.org
 2. Since the `slicegrep` project doesn't exist yet, use a **pending
@@ -27,7 +37,9 @@ stats start counting (a Claude-for-OSS eligibility metric).
 ## 2. MCP registry (official)
 
 The official registry (https://registry.modelcontextprotocol.io) requires
-the repo owner to authenticate. After PyPI publish:
+the repo owner to authenticate AND a package on a supported registry (PyPI),
+so it stays parked until step 1 is done. The community directories in step 3
+work with GitHub alone — do those first.
 
 1. Install the publisher CLI: see
    https://github.com/modelcontextprotocol/registry/blob/main/docs/guides/publishing/publish-server.md

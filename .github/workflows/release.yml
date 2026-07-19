@@ -4,6 +4,9 @@ on:
   push:
     tags: ["v*"]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,24 +18,11 @@ jobs:
       - run: pip install build twine
       - run: python -m build
       - run: python -m twine check dist/*
-      - uses: actions/upload-artifact@v4
+      # Attach the built artifacts to the GitHub release for this tag.
+      # (PyPI publishing is optional; see docs/PUBLISHING.md to enable it
+      # later via trusted publishing.)
+      - uses: softprops/action-gh-release@v2
         with:
-          name: dist
-          path: dist/
-
-  publish-pypi:
-    needs: build
-    runs-on: ubuntu-latest
-    # Requires a PyPI "trusted publisher" configured for this repo:
-    # pypi.org -> project slicegrep -> Publishing -> add GitHub publisher
-    # (owner: haxo98098, repo: slicegerp, workflow: release.yml,
-    #  environment: pypi). No API token needed.
-    environment: pypi
-    permissions:
-      id-token: write
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist/
-      - uses: pypa/gh-action-pypi-publish@release/v1
+          files: dist/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
