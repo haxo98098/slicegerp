@@ -105,16 +105,19 @@ families require *all* spans (e.g. definition AND cross-file call site) in conte
 | grep + file ranking | 8,000 | 43.2% | 2 |
 | lsp (jedi symbol search) | 0 | 6.6% | 1 |
 | tf-idf vector retriever | 2,209 | 56.8% | 1 |
-| **slicegrep** | **1,995** | **60.8%** | **1** |
+| **slicegrep 0.2** | **2,015** | **63.9%** | **1** |
 
-slicegrep leads overall — but not everywhere, and the per-family table in
-[RESULTS_V2.md](benchmarks/RESULTS_V2.md) says so plainly: grep+windows wins
-cross-file call-chain (57.5% vs 37.5%) and test+impl retrieval (47.5% vs 30.0%)
-because giant windows are more likely to capture *two* required spans, and the
-TF-IDF retriever wins docstring-concept queries (75.0% vs 65.0%). Those are
-slicegrep's current weak spots and the v0.2 roadmap. LSP is strong only on pure
-symbol lookups and structurally blind to string/concept queries; raw grep output
-alone almost never contains the definition.
+The v2 benchmark drove the v0.2 release: retrieval objectives (guaranteed
+definition + cross-file caller + test slots in the budget), diversity-aware
+packing, and a TF-IDF semantic rerank blended into lexical scoring. Measured
+effect: overall 60.8% → 63.9%, test+impl 30.0% → 47.5%, symbol 80.0% → 85.0%.
+
+Still not everywhere, and [RESULTS_V2.md](benchmarks/RESULTS_V2.md) says so
+plainly: grep+windows keeps cross-file call-chain (57.5% vs 40.0%) because giant
+windows are more likely to capture *two* required spans, and the TF-IDF retriever
+keeps docstring-concept queries (75.0% vs 60.0%). Those remain the open gaps. LSP
+is strong only on pure symbol lookups and structurally blind to string/concept
+queries; raw grep output alone almost never contains the definition.
 
 ```bash
 pip install jedi   # for the lsp baseline

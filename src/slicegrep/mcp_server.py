@@ -51,6 +51,7 @@ def build_server() -> "FastMCP":
         after: int = 40,
         budget: int = 800,
         boundary: str = "auto",
+        objective: str = "auto",
         recursive: bool = False,
         dedupe: bool = True,
     ) -> str:
@@ -65,6 +66,10 @@ def build_server() -> "FastMCP":
             after: Context lines after each match (ignored when boundary='fn').
             budget: Keep only the top-ranked chunks fitting ~this many tokens.
                 Defaults to 800; raise for a broader survey, 0 for no cap.
+            objective: what the budget must cover: 'auto' (default)
+                guarantees definition + cross-file usage + test chunks when
+                present; 'def+caller', 'def+test', or 'single' (pure score
+                order).
             boundary: 'auto' (fixed window) or 'fn' (snap to the enclosing
                 function/class).
             recursive: Force a directory walk even for a file path.
@@ -81,6 +86,7 @@ def build_server() -> "FastMCP":
             after=after,
             budget=budget,
             boundary=boundary,
+            objective=objective,
             recursive=recursive,
             dedupe=dedupe,
         )

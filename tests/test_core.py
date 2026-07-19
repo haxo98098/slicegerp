@@ -1,4 +1,5 @@
 import textwrap
+from pathlib import Path
 
 import pytest
 
@@ -134,3 +135,65 @@ def test_render_and_to_dict_roundtrip(sample_file):
 def test_empty_pattern_raises(sample_file):
     with pytest.raises(ValueError):
         focused_read(str(sample_file), "   ")
+
+
+# --------------------------------------------------------------------------- #
+# v0.2: retrieval objectives, diversity packing, semantic rerank
+# --------------------------------------------------------------------------- #
+
+def _make_multifile_repo(tmp_path):
+    src = tmp_path / "src"
+    tests = tmp_path / "tests"
+    src.mkdir(); tests.mkdir()
+    (src / "widget.py").write_text(
+        "def make_widget(size):\n"
+        '    """Build a widget of the given size."""\n'
+        "    return {'size': size}\n" + "\n" * 2 +
+        "".join(f"# filler widget note {i}\n" for i in range(40)),
+        encoding="utf-8")
+    (src / "app.py").write_text(
+        "from widget import make_widget\n\n"
+        "def run():\n"
+        "    w = make_widget(3)\n"
+        "    return w\n" + "".join(f"# app filler {i}\n" for i in range(40)),
+        encoding="utf-8")
+    (tests / "test_widget.py").write_text(
+        "from widget import make_widget\n\n"
+        "def test_make_widget():\n"
+        "    assert make_widget(2)['size'] == 2\n"
+        + "".join(f"# test filler {i}\n" for i in range(40)),
+        encoding="utf-8")
+    return tmp_path
+
+
+def test_objective_auto_covers_def_caller_and_test(tmp_path):
+    repo = _make_multifile_repo(tmp_path)
+    result = focused_read(str(repo), "make_widget", budget=600)
+    files = {Path(c.file).name for c in result.chunks}
+    assert "widget.py" in files          # definition
+    assert "app.py" in files             # cross-file caller
+    assert "test_widget.py" in files     # test
+
+def test_objective_single_is_pure_score_order(tmp_path):
+    repo = _make_multifile_repo(tmp_path)
+    auto = focused_read(str(repo), "make_widget", budget=600)
+    single = focused_read(str(repo), "make_widget", budget=600,
+                          objective="single")
+    # single mode must not *reserve* slots; it may still include several
+    # files by score, but auto must cover at least as many
+    assert len({c.file for c in auto.chunks}) >= len({c.file for c in single.chunks})
+
+def test_semantic_rerank_favors_concept_vocabulary(tmp_path):
+    f = tmp_path / "m.py"
+    f.write_text(
+        "def refresh_cache(ttl):\n"
+        '    """Refresh the cache when the expiry ttl elapses."""\n'
+        "    expire = ttl\n"
+        "    return expire\n"
+        + "\n".join(f"x{i} = {i}  # cache" for i in range(80)) + "\n"
+        + "def other():\n    # cache mention only\n    return 1\n",
+        encoding="utf-8")
+    result = focused_read(str(f), "cache|expiry|refresh", budget=400)
+    assert result.chunks, "expected at least one chunk"
+    top = result.chunks[0]
+    assert "refresh_cache" in top.code

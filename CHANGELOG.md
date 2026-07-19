@@ -6,7 +6,21 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-07-19
+
 ### Added
+- **Retrieval objectives** (`objective=` / `--objective`): `auto` (default)
+  reserves guaranteed budget slots for the best definition chunk, the best
+  cross-file usage chunk, and the best test-file chunk when candidates exist;
+  `def+caller` / `def+test` reserve just that pair; `single` restores v0.1
+  score-order packing.
+- **Diversity-aware budget packing**: chunks from already-represented files
+  take a score discount during greedy fill, so one hot file cannot consume
+  the whole budget and related code from different files is selected together.
+- **Semantic rerank**: a TF-IDF cosine stage (computed over the candidate
+  set, zero dependencies) blends into lexical scores, improving ranking for
+  concept-style queries.
+
 - Benchmark v2 (`benchmarks/bench2.py`): six task families (symbol,
   docstring-concept comprehension, cross-file call-chain, bug localization,
   config/data-flow, test+impl) × seven strategies (raw rg, whole-file,
@@ -27,6 +41,14 @@ All notable changes to this project are documented here. The format follows
   directly (pattern match on a `def`/`class`/`fn`/... line, +25), and the best
   definition chunk is guaranteed a slot when packing the budget.
   300-task success rate: 71.7% → 84.7%.
+
+### Measured (benchmark v2, 240 tasks)
+- Overall ground-truth hit rate 60.8% -> 63.9% (best baseline: 57.3%).
+  test+impl 30.0% -> 47.5%; symbol 80.0% -> 85.0%; call-chain 37.5% -> 40.0%
+  (rg+windows still leads that family at 57.5%); comprehend 65.0% -> 60.0%
+  (small regression, TF-IDF retriever still leads at 75.0%). Recorded
+  honestly; call-chain and concept ranking remain the open gaps.
+
 
 ## [0.1.0] - 2026-07-19
 

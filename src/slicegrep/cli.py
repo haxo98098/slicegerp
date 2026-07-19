@@ -55,6 +55,11 @@ def build_parser() -> argparse.ArgumentParser:
                    help="'fn' snaps each chunk to its enclosing function/class")
     p.add_argument("--recursive", "-r", action="store_true",
                    help="force a directory walk even for a file path")
+    p.add_argument("--objective", choices=("auto", "single", "def+caller", "def+test"),
+                   default="auto",
+                   help="what the budget must cover: auto guarantees definition + "
+                        "cross-file usage + test chunks when present; single is "
+                        "pure score order (default: auto)")
     p.add_argument("--no-dedupe", action="store_true",
                    help="keep near-duplicate chunks (exact dups still collapse)")
     p.add_argument("--json", action="store_true",
@@ -75,6 +80,7 @@ def main(argv=None) -> int:
             after=args.after,
             budget=args.budget,
             boundary=args.boundary,
+            objective=args.objective,
             recursive=args.recursive,
             dedupe=not args.no_dedupe,
         )

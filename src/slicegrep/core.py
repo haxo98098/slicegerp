@@ -15,7 +15,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
+from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
@@ -582,22 +584,118 @@ class Result:
 # Extraction
 # --------------------------------------------------------------------------- #
 
-def _apply_budget(chunks: List[Chunk], budget: int) -> List[Chunk]:
+def _semantic_rerank(chunks: List[Chunk], patterns: List[str]) -> None:
+    """Blend a lightweight TF-IDF cosine signal into lexical scores.
+
+    Regex matching decides *candidacy*; this stage improves *ranking* for
+    concept-style queries ("cache expiry refresh") where the best chunk is the
+    one whose overall vocabulary matches the query, not the one with the most
+    literal hits. IDF is computed over the candidate set itself — no corpus
+    index, no dependencies, negligible cost.
+    """
+    if len(chunks) < 2:
+        return
+    qtokens = Counter(
+        t for p in patterns for t in re.findall(r"[a-z0-9_]{3,}", p.lower())
+    )
+    if not qtokens:
+        return
+    docs = [Counter(re.findall(r"[a-z0-9_]{3,}", c.code.lower())) for c in chunks]
+    df: Counter = Counter()
+    for d in docs:
+        df.update(d.keys())
+    n = len(docs)
+    idf = {t: math.log(1 + n / (1 + c)) for t, c in df.items()}
+    qvec = {t: c * idf.get(t, math.log(1 + n)) for t, c in qtokens.items()}
+    qnorm = math.sqrt(sum(v * v for v in qvec.values())) or 1.0
+    for chunk, d in zip(chunks, docs):
+        dot = sum(qvec.get(t, 0.0) * c * idf.get(t, 0.0) for t, c in d.items())
+        if dot <= 0:
+            continue
+        dnorm = math.sqrt(sum((c * idf.get(t, 0.0)) ** 2 for t, c in d.items())) or 1.0
+        cos = dot / (qnorm * dnorm)
+        bonus = int(round(12 * cos))
+        if bonus:
+            chunk.score += bonus
+            if bonus >= 4 and "semantic" not in chunk.rank_reason:
+                chunk.rank_reason.append("semantic")
+
+
+def _is_test_path(file: str) -> bool:
+    low = file.replace("\\", "/").lower()
+    return "test" in Path(low).name or "/tests/" in low or low.startswith("tests/")
+
+
+def _apply_budget(chunks: List[Chunk], budget: int,
+                  objective: str = "auto") -> List[Chunk]:
     if budget <= 0 or not chunks:
         return chunks
-    # The best definition chunk is packed FIRST: when the user greps a symbol
-    # they nearly always need its definition, and it must never be crowded out
-    # of the budget by a long tail of usage chunks.
-    best_def = next((c for c in chunks if "definition" in c.rank_reason), None)
-    if best_def is not None and chunks[0] is not best_def:
-        chunks = [best_def] + [c for c in chunks if c is not best_def]
+
+    # --- Retrieval objectives: reserve budget slots for span *kinds* -------
+    # A lookup rarely needs one span: understanding a symbol usually takes its
+    # definition PLUS how it's called elsewhere PLUS how it's tested. Greedy
+    # score-order packing floods the budget with same-file chunks. So before
+    # greedy filling, guarantee (when they exist among candidates):
+    #   definition    — best chunk ranked as a definition        (all modes)
+    #   cross-file    — best chunk from a different, non-test file ("auto",
+    #                   "def+caller")
+    #   test          — best chunk from a test file               ("auto",
+    #                   "def+test")
+    # "single" restores pure score-order packing (v0.1 behaviour).
+    guaranteed: List[Chunk] = []
+    if objective != "single":
+        best_def = next((c for c in chunks if "definition" in c.rank_reason), None)
+        if best_def is not None:
+            guaranteed.append(best_def)
+        anchor_file = guaranteed[0].file if guaranteed else chunks[0].file
+        if objective in ("auto", "def+caller"):
+            caller = next(
+                (c for c in chunks
+                 if c.file != anchor_file and not _is_test_path(c.file)
+                 and c not in guaranteed),
+                None,
+            )
+            if caller is not None:
+                guaranteed.append(caller)
+        if objective in ("auto", "def+test"):
+            test = next(
+                (c for c in chunks if _is_test_path(c.file)
+                 and c not in guaranteed),
+                None,
+            )
+            if test is not None:
+                guaranteed.append(test)
+
     fitted: List[Chunk] = []
     used = 0
-    for c in chunks:
+    for c in guaranteed:
         if used + c.tokens <= budget:
             fitted.append(c)
             used += c.tokens
-        # keep scanning: a smaller lower-ranked chunk may still fit
+
+    # --- Diversity-aware greedy fill ---------------------------------------
+    # Prefer the highest score, but discount chunks from files already
+    # represented so one hot file cannot consume the whole budget.
+    remaining = [c for c in chunks if c not in fitted]
+    while remaining:
+        file_counts: Dict[str, int] = {}
+        for c in fitted:
+            file_counts[c.file] = file_counts.get(c.file, 0) + 1
+        best, best_eff = None, None
+        for c in remaining:
+            if used + c.tokens > budget:
+                continue
+            eff = c.score - 6 * file_counts.get(c.file, 0)
+            if best_eff is None or eff > best_eff:
+                best, best_eff = c, eff
+        if best is None:
+            break
+        fitted.append(best)
+        used += best.tokens
+        remaining.remove(best)
+
+    # Render in rank order regardless of packing order.
+    fitted.sort(key=lambda c: c.score, reverse=True)
     if not fitted:
         # The best chunk alone exceeds the budget. Zero chunks is the worst
         # possible answer — truncate the best one to fit instead.
@@ -696,6 +794,7 @@ def focused_read(
     boundary: str = "auto",
     recursive: bool = False,
     dedupe: bool = True,
+    objective: str = "auto",
 ) -> Result:
     """Grep ``path`` for ``pattern`` and return ranked, budget-capped slices.
 
@@ -721,6 +820,13 @@ def focused_read(
         Force a directory walk even when ``path`` is a single file's directory.
     dedupe:
         Collapse near-duplicate chunks (exact duplicates always collapse).
+    objective:
+        What the budget must cover. ``"auto"`` (default) guarantees, when
+        candidates exist: the best definition chunk, the best cross-file
+        usage chunk, and the best test-file chunk — then fills the rest by
+        score with a same-file diversity discount. ``"def+caller"`` and
+        ``"def+test"`` guarantee only that pair; ``"single"`` restores pure
+        score-order packing.
 
     Returns
     -------
@@ -752,8 +858,9 @@ def focused_read(
             if chunks:
                 matched += 1
                 all_chunks.extend(chunks)
+        _semantic_rerank(all_chunks, patterns)
         all_chunks.sort(key=lambda c: c.score, reverse=True)
-        all_chunks = _apply_budget(all_chunks, budget)
+        all_chunks = _apply_budget(all_chunks, budget, objective)
         return Result(
             query=patterns,
             chunks=all_chunks,
@@ -767,7 +874,9 @@ def focused_read(
         str(target), patterns, before, after, boundary, threshold
     )
     pre_budget = len(chunks)
-    chunks = _apply_budget(chunks, budget)
+    _semantic_rerank(chunks, patterns)
+    chunks.sort(key=lambda c: c.score, reverse=True)
+    chunks = _apply_budget(chunks, budget, objective)
 
     absences: List[str] = []
     if neg is not None:
