@@ -32,7 +32,7 @@ classifiers = [
 dependencies = []  # core is standard-library only, on purpose
 
 [project.optional-dependencies]
-mcp = ["mcp>=1.2.0"]
+mcp = ["mcp>=1.2.0; python_version >= '3.10'"]
 dev = ["pytest>=7", "pytest-cov"]
 
 [project.scripts]

@@ -15,7 +15,8 @@ into one call that returns a fraction of the tokens.
 pip install slicegrep
 ```
 
-- **Zero dependencies** for the core (standard library only). Python 3.8+.
+- **Zero dependencies** for the core (standard library only). Python 3.8+ (the
+  optional MCP server needs 3.10+).
 - **CLI + library + MCP server.** Use it from a shell, import it, or plug it into
   Claude Desktop / Claude Code / Cursor / Windsurf over the Model Context Protocol.
 
