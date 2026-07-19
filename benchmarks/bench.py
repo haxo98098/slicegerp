@@ -424,11 +424,12 @@ def to_markdown(cells: List[Cell], rows: List[dict], repo_label: str,
                f"Context cap {CONTEXT_CAP} tokens/lookup; slicegrep budget "
                f"{SLICEGREP_BUDGET}; window strategy ±{WINDOW} lines. "
                f"Search engine for baselines: **{engine}**.\n")
-    out.append("**Task success** = the required definition site landed inside "
-               "the capped context (the necessary condition for the model to "
-               f"answer). Reproduce with `{reproduce_cmd}`.\n")
+    out.append("**Definition hit rate** = the required definition site landed "
+               "inside the capped context. This measures *retrieval* quality — "
+               "the necessary condition for a model to answer — not end-to-end "
+               f"agent task completion. Reproduce with `{reproduce_cmd}`.\n")
     out.append(f"## Summary (median over {n_tasks} tasks)\n")
-    out.append("| strategy | tokens → model | task success | irrelevant code "
+    out.append("| strategy | tokens → model | definition hit rate | irrelevant code "
                "| tool calls (med/mean) | latency/task | total time |")
     out.append("|---|---|---|---|---|---|---|")
     for r in rows:
@@ -439,6 +440,23 @@ def to_markdown(cells: List[Cell], rows: List[dict], repo_label: str,
             f"| {r['median_tool_calls']} / {r['mean_tool_calls']} "
             f"| {r['median_latency_ms']} ms "
             f"| {r['total_time_s']} s |")
+    out.append(
+        "\n## Tradeoff and limitations\n\n"
+        "slicegrep trades roughly 20 ms of extra local retrieval time per "
+        "lookup for a higher context hit rate, fewer tool calls, and "
+        "substantially fewer input tokens — trivial beside an LLM request "
+        "that takes seconds, but stated here rather than hidden.\n\n"
+        "Known limitations of this benchmark:\n\n"
+        "- Generated tasks are symbol-definition lookups, which plays to a "
+        "tool with explicit definition-ranking logic. Harder task families "
+        "(bug localization, cross-file call chains, config/data-flow tracing, "
+        "test+implementation retrieval) are planned.\n"
+        "- The whole-file and window baselines concatenate results in "
+        "search order and truncate at the cap, so ordering luck affects "
+        "them. This models a naive agent; a smarter baseline would rank "
+        "matching files first. Stronger baselines (ripgrep + heuristic "
+        "ranking, LSP definition/references, a lightweight embedding "
+        "retriever) are planned.\n")
     if detail:
         out.append("\n## Per-task detail\n")
         out.append("| task | strategy | tokens | def included | irrelevant | calls | latency |")

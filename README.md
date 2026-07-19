@@ -56,29 +56,41 @@ Multiply that by every file an agent reads per task.
 ([click](https://github.com/pallets/click) 8.1.7, [flask](https://github.com/pallets/flask) 3.0.0,
 [requests](https://github.com/psf/requests) 2.31.0, [rich](https://github.com/Textualize/rich) 13.7.0),
 three retrieval strategies, 8k-token context cap per lookup, seeded sampling so the
-run is reproducible. **Task success** = the required definition landed inside the
-delivered context. Median over tasks:
+run is reproducible.
 
-| strategy | tokens → model | task success | irrelevant code | tool calls | total time |
+> Across 300 reproducible lookups in four real Python projects, slicegrep delivered
+> the target definition **84.7%** of the time using a median **1,586 tokens** —
+> 8.7 points above grep+windows and 30.4 points above capped whole-file retrieval.
+
+**Definition hit rate** = the required definition landed inside the delivered
+context. This measures *retrieval* quality — the necessary condition for the model
+to answer — not end-to-end agent task completion. Median over tasks:
+
+| strategy | tokens → model | definition hit rate | irrelevant code | tool calls | total time |
 |---|---|---|---|---|---|
 | whole-file reads | 8,000 | 54.3% | 99.7% | 3 | 55.0 s |
 | grep + window reads | 2,384 | 76.0% | 97.9% | 3 | 52.6 s |
 | **slicegrep** | **1,586** | **84.7%** | **95.9%** | **1** | 68.8 s |
 
-Fewest tokens, highest hit-rate, one tool call instead of three. On the 10 curated
-click tasks the gap is wider still (90% vs 20/60%,
-[RESULTS.md](benchmarks/RESULTS.md)). Full scaled report:
-[RESULTS_SCALED.md](benchmarks/RESULTS_SCALED.md). Reproduce either:
+slicegrep trades roughly 20 ms of extra local retrieval time per lookup for a higher
+context hit rate, fewer tool calls, and substantially fewer input tokens — trivial
+beside an LLM request that takes seconds. On the 10 curated click tasks the gap is
+wider still (90% vs 20/60%, [RESULTS.md](benchmarks/RESULTS.md)). Full scaled
+report, including limitations: [RESULTS_SCALED.md](benchmarks/RESULTS_SCALED.md).
+Reproduce either:
 
 ```bash
 python benchmarks/bench.py --clone                # 10 curated tasks
 python benchmarks/bench.py --clone --scale 300    # 300 generated tasks
 ```
 
-Honesty note: this benchmark caught a real ranking bug at v0.1 (the definition
-signal never fired in default mode — success was 71.7% before the fix). Kept in the
-changelog because a benchmark that never embarrasses its own tool isn't measuring
-anything.
+Honesty notes: this benchmark caught a real ranking bug at v0.1 (the definition
+signal never fired in default mode — hit rate was 71.7% before the fix; see
+CHANGELOG). And the current task set is definition-lookup-heavy, which plays to
+slicegrep's strengths; the planned v2 adds bug-localization, cross-file call-chain,
+and config/data-flow tasks plus stronger baselines (ripgrep + heuristic ranking,
+LSP definition/references, a lightweight embedding retriever). A benchmark that
+never embarrasses its own tool isn't measuring anything.
 
 ---
 

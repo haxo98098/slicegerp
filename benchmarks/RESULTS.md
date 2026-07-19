@@ -2,15 +2,25 @@
 
 Corpus: **pallets/click @ 8.1.7** — 10 real code-lookup tasks. Context cap 8000 tokens/lookup; slicegrep budget 2000; window strategy ±60 lines. Search engine for baselines: **python-scan (rg not found)**.
 
-**Task success** = the required definition site landed inside the capped context (the necessary condition for the model to answer). Reproduce with `python benchmarks/bench.py --clone`.
+**Definition hit rate** = the required definition site landed inside the capped context. This measures *retrieval* quality — the necessary condition for a model to answer — not end-to-end agent task completion. Reproduce with `python benchmarks/bench.py --clone`.
 
 ## Summary (median over 10 tasks)
 
-| strategy | tokens → model | task success | irrelevant code | tool calls (med/mean) | latency/task | total time |
+| strategy | tokens → model | definition hit rate | irrelevant code | tool calls (med/mean) | latency/task | total time |
 |---|---|---|---|---|---|---|
 | whole-file | 8,000 | 20.0% | 100.0% | 5 / 9.3 | 124.0 ms | 1.6 s |
 | rg+windows | 6,047 | 60.0% | 99.2% | 7 / 13.2 | 120.4 ms | 1.2 s |
 | slicegrep | 1,983 | 90.0% | 93.6% | 1 / 1 | 113.6 ms | 1.3 s |
+
+## Tradeoff and limitations
+
+slicegrep trades roughly 20 ms of extra local retrieval time per lookup for a higher context hit rate, fewer tool calls, and substantially fewer input tokens — trivial beside an LLM request that takes seconds, but stated here rather than hidden.
+
+Known limitations of this benchmark:
+
+- Generated tasks are symbol-definition lookups, which plays to a tool with explicit definition-ranking logic. Harder task families (bug localization, cross-file call chains, config/data-flow tracing, test+implementation retrieval) are planned.
+- The whole-file and window baselines concatenate results in search order and truncate at the cap, so ordering luck affects them. This models a naive agent; a smarter baseline would rank matching files first. Stronger baselines (ripgrep + heuristic ranking, LSP definition/references, a lightweight embedding retriever) are planned.
+
 
 ## Per-task detail
 
