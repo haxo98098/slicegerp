@@ -52,20 +52,33 @@ Multiply that by every file an agent reads per task.
 
 ### Benchmark
 
-10 real code-lookup tasks against [pallets/click](https://github.com/pallets/click) @ 8.1.7,
-three retrieval strategies, 8k-token context cap per lookup. **Task success** = the
-required definition landed inside the delivered context. Median over tasks:
+**300 generated code-lookup tasks** across four real codebases
+([click](https://github.com/pallets/click) 8.1.7, [flask](https://github.com/pallets/flask) 3.0.0,
+[requests](https://github.com/psf/requests) 2.31.0, [rich](https://github.com/Textualize/rich) 13.7.0),
+three retrieval strategies, 8k-token context cap per lookup, seeded sampling so the
+run is reproducible. **Task success** = the required definition landed inside the
+delivered context. Median over tasks:
 
-| strategy | tokens → model | task success | irrelevant code | tool calls | latency |
+| strategy | tokens → model | task success | irrelevant code | tool calls | total time |
 |---|---|---|---|---|---|
-| whole-file reads | 8,000 | 20% | 100.0% | 5 | 125 ms |
-| grep + window reads | 6,047 | 60% | 99.2% | 7 | 123 ms |
-| **slicegrep** | **1,990** | **90%** | **93.6%** | **1** | **117 ms** |
+| whole-file reads | 8,000 | 54.3% | 99.7% | 3 | 55.0 s |
+| grep + window reads | 2,384 | 76.0% | 97.9% | 3 | 52.6 s |
+| **slicegrep** | **1,586** | **84.7%** | **95.9%** | **1** | 68.8 s |
 
-3× fewer tokens, 1 tool call instead of 5–7, and the definition you needed actually
-makes it into context. Full per-task detail in
-[benchmarks/RESULTS.md](benchmarks/RESULTS.md); reproduce with
-`python benchmarks/bench.py --clone`.
+Fewest tokens, highest hit-rate, one tool call instead of three. On the 10 curated
+click tasks the gap is wider still (90% vs 20/60%,
+[RESULTS.md](benchmarks/RESULTS.md)). Full scaled report:
+[RESULTS_SCALED.md](benchmarks/RESULTS_SCALED.md). Reproduce either:
+
+```bash
+python benchmarks/bench.py --clone                # 10 curated tasks
+python benchmarks/bench.py --clone --scale 300    # 300 generated tasks
+```
+
+Honesty note: this benchmark caught a real ranking bug at v0.1 (the definition
+signal never fired in default mode — success was 71.7% before the fix). Kept in the
+changelog because a benchmark that never embarrasses its own tool isn't measuring
+anything.
 
 ---
 

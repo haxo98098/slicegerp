@@ -4,6 +4,22 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+- Scaled benchmark mode (`--scale N`): generates up to N seeded, reproducible
+  lookup tasks across four pinned corpora (click, flask, requests, rich) and
+  measures tokens, success, irrelevance, tool calls, and latency per strategy.
+
+### Fixed
+- **Ranking bug found by the scaled benchmark:** the `definition` scoring
+  signal only fired in `--boundary fn` mode (it depended on `chunk.symbol`,
+  which the default mode never sets), so usage-heavy chunks could crowd the
+  actual definition out of the token budget. Definition lines are now detected
+  directly (pattern match on a `def`/`class`/`fn`/... line, +25), and the best
+  definition chunk is guaranteed a slot when packing the budget.
+  300-task success rate: 71.7% → 84.7%.
+
 ## [0.1.0] - 2026-07-19
 
 ### Added

@@ -334,6 +334,13 @@ class Chunk:
         }
 
 
+# A line that *defines* something (any supported language family).
+_DEF_LINE_RE = re.compile(
+    r"^\s*(?:export\s+)?(?:pub\s+)?(?:static\s+)?(?:async\s+)?"
+    r"(?:def|class|fn|func|function|impl|trait|interface|struct|enum|type)\b"
+)
+
+
 class _Scorer:
     def __init__(self, patterns: List[str]) -> None:
         self.compiled = [_compile_or_escape(p) for p in patterns]
@@ -372,15 +379,30 @@ class _Scorer:
             score += min(rare * 3, 15)
             reasons.append("rare_terms")
 
-        if chunk.symbol:
-            for line in lines:
-                if chunk.symbol in line and any(kw in line for kw in (
-                    "class", "struct", "def", "fn", "func", "function", "proc",
-                    "void", "int", "char", "bool", "auto", "impl", "trait",
-                )):
-                    score += 12
-                    reasons.append("definition")
-                    break
+        # A query pattern matching ON a definition line is the strongest
+        # possible signal: the user almost always wants the definition, and
+        # usage-heavy chunks must not be able to crowd it out of the budget.
+        # (This must not depend on chunk.symbol — that is only populated in
+        # boundary="fn" mode, and the definition signal has to fire in the
+        # default mode too.)
+        for line in lines:
+            if _DEF_LINE_RE.match(line) and any(
+                p.search(line) for p in self.compiled
+            ):
+                score += 25
+                reasons.append("definition")
+                break
+        else:
+            if chunk.symbol:
+                for line in lines:
+                    if chunk.symbol in line and any(kw in line for kw in (
+                        "class", "struct", "def", "fn", "func", "function",
+                        "proc", "void", "int", "char", "bool", "auto", "impl",
+                        "trait",
+                    )):
+                        score += 12
+                        reasons.append("definition")
+                        break
 
         if chunk.symbol:
             has_body = any(("{" in ln or ":" in ln) for ln in lines)
@@ -563,6 +585,12 @@ class Result:
 def _apply_budget(chunks: List[Chunk], budget: int) -> List[Chunk]:
     if budget <= 0 or not chunks:
         return chunks
+    # The best definition chunk is packed FIRST: when the user greps a symbol
+    # they nearly always need its definition, and it must never be crowded out
+    # of the budget by a long tail of usage chunks.
+    best_def = next((c for c in chunks if "definition" in c.rank_reason), None)
+    if best_def is not None and chunks[0] is not best_def:
+        chunks = [best_def] + [c for c in chunks if c is not best_def]
     fitted: List[Chunk] = []
     used = 0
     for c in chunks:

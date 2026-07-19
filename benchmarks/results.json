@@ -7,7 +7,9 @@
       "success_rate": 20.0,
       "median_irrelevant_pct": 100.0,
       "median_tool_calls": 5,
-      "median_latency_ms": 124.7
+      "mean_tool_calls": 9.3,
+      "median_latency_ms": 124.0,
+      "total_time_s": 1.6
     },
     {
       "strategy": "rg+windows",
@@ -16,16 +18,20 @@
       "success_rate": 60.0,
       "median_irrelevant_pct": 99.2,
       "median_tool_calls": 7,
-      "median_latency_ms": 122.9
+      "mean_tool_calls": 13.2,
+      "median_latency_ms": 120.4,
+      "total_time_s": 1.2
     },
     {
       "strategy": "slicegrep",
-      "median_tokens": 1990,
-      "mean_tokens": 1725,
+      "median_tokens": 1983,
+      "mean_tokens": 1726,
       "success_rate": 90.0,
       "median_irrelevant_pct": 93.6,
       "median_tool_calls": 1,
-      "median_latency_ms": 117.0
+      "mean_tool_calls": 1,
+      "median_latency_ms": 113.6,
+      "total_time_s": 1.3
     }
   ],
   "cells": [
@@ -37,7 +43,7 @@
       "included": true,
       "irrelevant_pct": 96.52499999999999,
       "tool_calls": 2,
-      "latency_ms": 522.8538999999728
+      "latency_ms": 502.80449999991106
     },
     {
       "task": "find Context class",
@@ -47,7 +53,7 @@
       "included": true,
       "irrelevant_pct": 80.14285714285714,
       "tool_calls": 2,
-      "latency_ms": 116.11289999973451
+      "latency_ms": 111.51239999981044
     },
     {
       "task": "find Context class",
@@ -57,7 +63,7 @@
       "included": true,
       "irrelevant_pct": 70.92050209205021,
       "tool_calls": 1,
-      "latency_ms": 108.16210000029969
+      "latency_ms": 105.23470000043744
     },
     {
       "task": "find Option class",
@@ -67,7 +73,7 @@
       "included": false,
       "irrelevant_pct": 100.0,
       "tool_calls": 4,
-      "latency_ms": 119.04420000018945
+      "latency_ms": 113.30180000004475
     },
     {
       "task": "find Option class",
@@ -77,7 +83,7 @@
       "included": true,
       "irrelevant_pct": 92.37909135319981,
       "tool_calls": 4,
-      "latency_ms": 118.8348999999107
+      "latency_ms": 119.323699999768
     },
     {
       "task": "find Option class",
@@ -87,7 +93,7 @@
       "included": true,
       "irrelevant_pct": 80.87063151440834,
       "tool_calls": 1,
-      "latency_ms": 115.43299999993906
+      "latency_ms": 107.44230000000243
     },
     {
       "task": "find ParamType base",
@@ -97,7 +103,7 @@
       "included": true,
       "irrelevant_pct": 97.225,
       "tool_calls": 2,
-      "latency_ms": 117.57949999991979
+      "latency_ms": 112.04839999936667
     },
     {
       "task": "find ParamType base",
@@ -107,7 +113,7 @@
       "included": true,
       "irrelevant_pct": 68.0115273775216,
       "tool_calls": 2,
-      "latency_ms": 119.77600000000166
+      "latency_ms": 111.15530000006402
     },
     {
       "task": "find ParamType base",
@@ -117,7 +123,7 @@
       "included": true,
       "irrelevant_pct": 61.79001721170396,
       "tool_calls": 1,
-      "latency_ms": 110.66209999989951
+      "latency_ms": 105.22010000022419
     },
     {
       "task": "find echo implementation",
@@ -127,7 +133,7 @@
       "included": false,
       "irrelevant_pct": 100.0,
       "tool_calls": 5,
-      "latency_ms": 120.33580000024813
+      "latency_ms": 113.80969999936497
     },
     {
       "task": "find echo implementation",
@@ -137,17 +143,17 @@
       "included": true,
       "irrelevant_pct": 99.079754601227,
       "tool_calls": 5,
-      "latency_ms": 118.33539999997811
+      "latency_ms": 117.63280000013765
     },
     {
       "task": "find echo implementation",
       "strategy": "slicegrep",
-      "tokens": 2062,
-      "raw_tokens": 2062,
+      "tokens": 2068,
+      "raw_tokens": 2068,
       "included": true,
-      "irrelevant_pct": 98.25412221144519,
+      "irrelevant_pct": 98.25918762088975,
       "tool_calls": 1,
-      "latency_ms": 110.27239999975791
+      "latency_ms": 109.980700000051
     },
     {
       "task": "find prompt implementation",
@@ -157,7 +163,7 @@
       "included": false,
       "irrelevant_pct": 100.0,
       "tool_calls": 10,
-      "latency_ms": 126.04650000002948
+      "latency_ms": 125.5261000005703
     },
     {
       "task": "find prompt implementation",
@@ -167,17 +173,17 @@
       "included": false,
       "irrelevant_pct": 99.7,
       "tool_calls": 12,
-      "latency_ms": 134.9233999999342
+      "latency_ms": 126.66810000064288
     },
     {
       "task": "find prompt implementation",
       "strategy": "slicegrep",
-      "tokens": 1735,
-      "raw_tokens": 1735,
+      "tokens": 1741,
+      "raw_tokens": 1741,
       "included": true,
-      "irrelevant_pct": 95.27377521613832,
+      "irrelevant_pct": 95.29006318207927,
       "tool_calls": 1,
-      "latency_ms": 121.21460000025763
+      "latency_ms": 119.64279999938299
     },
     {
       "task": "find UsageError",
@@ -187,7 +193,7 @@
       "included": false,
       "irrelevant_pct": 100.0,
       "tool_calls": 35,
-      "latency_ms": 137.42980000006355
+      "latency_ms": 134.31089999994583
     },
     {
       "task": "find UsageError",
@@ -197,17 +203,17 @@
       "included": false,
       "irrelevant_pct": 100.0,
       "tool_calls": 57,
-      "latency_ms": 138.63880000008066
+      "latency_ms": 132.889299999988
     },
     {
       "task": "find UsageError",
       "strategy": "slicegrep",
-      "tokens": 2020,
-      "raw_tokens": 2020,
+      "tokens": 2029,
+      "raw_tokens": 2029,
       "included": true,
-      "irrelevant_pct": 90.5940594059406,
+      "irrelevant_pct": 90.63578117299163,
       "tool_calls": 1,
-      "latency_ms": 193.56120000020383
+      "latency_ms": 213.30269999998563
     },
     {
       "task": "find HelpFormatter",
@@ -217,7 +223,7 @@
       "included": false,
       "irrelevant_pct": 99.91250000000001,
       "tool_calls": 3,
-      "latency_ms": 124.15009999995164
+      "latency_ms": 122.45859999984532
     },
     {
       "task": "find HelpFormatter",
@@ -227,17 +233,17 @@
       "included": true,
       "irrelevant_pct": 93.08099308099308,
       "tool_calls": 3,
-      "latency_ms": 126.0231000001113
+      "latency_ms": 121.39159999969706
     },
     {
       "task": "find HelpFormatter",
       "strategy": "slicegrep",
-      "tokens": 2098,
-      "raw_tokens": 2098,
+      "tokens": 2101,
+      "raw_tokens": 2101,
       "included": true,
-      "irrelevant_pct": 91.89704480457578,
+      "irrelevant_pct": 91.90861494526416,
       "tool_calls": 1,
-      "latency_ms": 118.66340000005948
+      "latency_ms": 116.44000000069354
     },
     {
       "task": "how does command decorator work",
@@ -247,7 +253,7 @@
       "included": false,
       "irrelevant_pct": 100.0,
       "tool_calls": 6,
-      "latency_ms": 116.8774999996458
+      "latency_ms": 114.99230000026728
     },
     {
       "task": "how does command decorator work",
@@ -257,17 +263,17 @@
       "included": true,
       "irrelevant_pct": 99.375,
       "tool_calls": 9,
-      "latency_ms": 114.64630000000398
+      "latency_ms": 114.86280000008264
     },
     {
       "task": "how does command decorator work",
       "strategy": "slicegrep",
-      "tokens": 2141,
-      "raw_tokens": 2141,
+      "tokens": 2150,
+      "raw_tokens": 2150,
       "included": true,
-      "irrelevant_pct": 97.66464269033162,
+      "irrelevant_pct": 97.67441860465115,
       "tool_calls": 1,
-      "latency_ms": 114.37119999982315
+      "latency_ms": 110.75509999955102
     },
     {
       "task": "how are envvars resolved",
@@ -277,7 +283,7 @@
       "included": false,
       "irrelevant_pct": 100.0,
       "tool_calls": 17,
-      "latency_ms": 132.95019999986835
+      "latency_ms": 127.94969999958994
     },
     {
       "task": "how are envvars resolved",
@@ -287,17 +293,17 @@
       "included": false,
       "irrelevant_pct": 100.0,
       "tool_calls": 26,
-      "latency_ms": 132.5160000001233
+      "latency_ms": 132.8192000000854
     },
     {
       "task": "how are envvars resolved",
       "strategy": "slicegrep",
-      "tokens": 2065,
-      "raw_tokens": 2065,
+      "tokens": 2074,
+      "raw_tokens": 2074,
       "included": true,
-      "irrelevant_pct": 96.85230024213075,
+      "irrelevant_pct": 96.86595949855352,
       "tool_calls": 1,
-      "latency_ms": 143.65640000005442
+      "latency_ms": 150.17640000041865
     },
     {
       "task": "how does progress bar render",
@@ -307,7 +313,7 @@
       "included": false,
       "irrelevant_pct": 100.0,
       "tool_calls": 9,
-      "latency_ms": 125.21119999973962
+      "latency_ms": 127.57740000051854
     },
     {
       "task": "how does progress bar render",
@@ -317,17 +323,17 @@
       "included": false,
       "irrelevant_pct": 100.0,
       "tool_calls": 12,
-      "latency_ms": 130.07269999980053
+      "latency_ms": 124.87969999983761
     },
     {
       "task": "how does progress bar render",
       "strategy": "slicegrep",
-      "tokens": 1961,
-      "raw_tokens": 1961,
+      "tokens": 1937,
+      "raw_tokens": 1937,
       "included": false,
       "irrelevant_pct": 100.0,
       "tool_calls": 1,
-      "latency_ms": 166.73169999967286
+      "latency_ms": 126.5320000002248
     }
   ]
 }

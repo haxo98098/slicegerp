@@ -66,6 +66,16 @@ GT_HEAD_LINES = 25          # definition site = def line + this many body lines
 CLICK_REPO = "https://github.com/pallets/click"
 CLICK_TAG = "8.1.7"
 
+# Corpora for the scaled run (--scale N): pinned tags of real, widely-used
+# Python projects with different sizes and layouts.
+CORPORA = [
+    ("pallets/click", "8.1.7"),
+    ("pallets/flask", "3.0.0"),
+    ("psf/requests", "v2.31.0"),
+    ("Textualize/rich", "v13.7.0"),
+]
+SEED = 20260719  # deterministic task sampling
+
 
 # --------------------------------------------------------------------------- #
 # Tasks: (name, agent query, ground-truth file, ground-truth def-line regex)
@@ -103,6 +113,68 @@ TASKS = [
 
 
 # --------------------------------------------------------------------------- #
+# Scaled task generation (--scale N)
+#
+# Samples real public symbols (top-level and method defs/classes) from each
+# corpus and asks "find/understand this symbol" with query styles of varying
+# difficulty, mimicking what an agent actually types:
+#   exact  — "def name" / "class name"
+#   bare   — "name" (matches usages too; the definition must still win)
+#   fuzzy  — "part1|part2|name" for snake_case names (concept-style query)
+# Sampling is seeded, so runs are reproducible.
+# --------------------------------------------------------------------------- #
+
+_DEF_RE = re.compile(r"^(\s*)(def|class)\s+([A-Za-z][A-Za-z0-9_]*)")
+
+
+def collect_symbols(repo: Path) -> List[Tuple[str, int, str, str]]:
+    """(rel_file, lineno, kind, name) for public defs/classes, deduped by name."""
+    out = []
+    seen = set()
+    for f in sorted(repo.rglob("*.py")):
+        rel = f.relative_to(repo).as_posix()
+        if any(part in SKIP_DIRS for part in f.parts):
+            continue
+        low = rel.lower()
+        if "test" in low or low.startswith(("docs/", "examples/")):
+            continue
+        try:
+            lines = f.read_text(encoding="utf-8", errors="replace").splitlines()
+        except OSError:
+            continue
+        for i, line in enumerate(lines):
+            m = _DEF_RE.match(line)
+            if not m:
+                continue
+            name = m.group(3)
+            if name.startswith("_") or len(name) < 4:
+                continue
+            if name in seen:      # ambiguous names skew ground truth; keep first
+                continue
+            seen.add(name)
+            out.append((rel, i, m.group(2), name))
+    return out
+
+
+def generate_tasks(repo: Path, label: str, count: int, rng) -> list:
+    """Return [(task_name, query, rel_file, lineno)] sampled from the corpus."""
+    cands = collect_symbols(repo)
+    rng.shuffle(cands)
+    tasks = []
+    for rel, lineno, kind, name in cands[:count]:
+        style = rng.random()
+        if style < 0.4:
+            query = f"{kind} {name}"
+        elif style < 0.8 or "_" not in name:
+            query = name
+        else:
+            parts = [p for p in name.split("_") if len(p) >= 4][:2]
+            query = "|".join(parts + [name]) if parts else name
+        tasks.append((f"{label}: {kind} {name}", query, rel, lineno))
+    return tasks
+
+
+# --------------------------------------------------------------------------- #
 # Ground truth
 # --------------------------------------------------------------------------- #
 
@@ -135,6 +207,20 @@ def resolve_ground_truth(repo: Path, rel_file: str, def_regex: str) -> GroundTru
             text = "".join(lines[start:end])
             return GroundTruth(path, start, end, text, estimate_tokens(text))
     raise SystemExit(f"ground truth not found: {def_regex!r} in {rel_file}")
+
+
+def gt_at_line(repo: Path, rel_file: str, lineno: int) -> GroundTruth:
+    """Ground truth (definition site) for a known def/class line number."""
+    path = repo / rel_file
+    lines = path.read_text(encoding="utf-8", errors="replace").splitlines(keepends=True)
+    block = _python_enclosing_block(lines, lineno)
+    if block is None:
+        start, end = lineno, min(len(lines), lineno + GT_HEAD_LINES)
+    else:
+        start, end, _sym = block
+    end = min(end, start + 1 + GT_HEAD_LINES)
+    text = "".join(lines[start:end])
+    return GroundTruth(path, start, end, text, estimate_tokens(text))
 
 
 # --------------------------------------------------------------------------- #
@@ -280,10 +366,12 @@ class Cell:
     latency_ms: float
 
 
-def run(repo: Path) -> List[Cell]:
+def run(prepared: List[tuple], verbose: bool = True) -> List[Cell]:
+    """prepared: [(task_name, query, repo_path, GroundTruth)]"""
     cells: List[Cell] = []
-    for name, query, gt_file, gt_regex in TASKS:
-        gt = resolve_ground_truth(repo, gt_file, gt_regex)
+    for idx, (name, query, repo, gt) in enumerate(prepared, 1):
+        if not verbose and idx % 25 == 0:
+            print(f"  ... {idx}/{len(prepared)} tasks")
         for sname, fn in STRATEGIES:
             t0 = time.perf_counter()
             context, calls = fn(repo, query)
@@ -296,9 +384,10 @@ def run(repo: Path) -> List[Cell]:
             irr = 100.0 * (1 - rel / tokens) if tokens else 100.0
             cells.append(Cell(name, sname, tokens, raw_tokens, included,
                               irr, calls, latency))
-            print(f"  {name:34s} {sname:11s} tok={tokens:>6d} "
-                  f"def={'Y' if included else 'N'} irr={irr:5.1f}% "
-                  f"calls={calls:>3d} {latency:7.1f}ms")
+            if verbose:
+                print(f"  {name:34s} {sname:11s} tok={tokens:>6d} "
+                      f"def={'Y' if included else 'N'} irr={irr:5.1f}% "
+                      f"calls={calls:>3d} {latency:7.1f}ms")
     return cells
 
 
@@ -318,88 +407,129 @@ def summarize(cells: List[Cell]) -> List[dict]:
             "median_irrelevant_pct": round(
                 statistics.median(c.irrelevant_pct for c in sub), 1),
             "median_tool_calls": int(statistics.median(c.tool_calls for c in sub)),
+            "mean_tool_calls": round(statistics.mean(c.tool_calls for c in sub), 1),
             "median_latency_ms": round(
                 statistics.median(c.latency_ms for c in sub), 1),
+            "total_time_s": round(sum(c.latency_ms for c in sub) / 1000, 1),
         })
     return rows
 
 
 def to_markdown(cells: List[Cell], rows: List[dict], repo_label: str,
-                engine: str) -> str:
+                engine: str, reproduce_cmd: str, detail: bool = True) -> str:
+    n_tasks = len(cells) // len(STRATEGIES)
     out = []
     out.append("# slicegrep retrieval benchmark\n")
-    out.append(f"Corpus: **{repo_label}** — 10 real code-lookup tasks. "
+    out.append(f"Corpus: **{repo_label}** — {n_tasks} real code-lookup tasks. "
                f"Context cap {CONTEXT_CAP} tokens/lookup; slicegrep budget "
                f"{SLICEGREP_BUDGET}; window strategy ±{WINDOW} lines. "
                f"Search engine for baselines: **{engine}**.\n")
-    out.append("**Task success** = the full ground-truth definition block "
-               "landed inside the capped context (the necessary condition for "
-               "the model to answer). Reproduce with "
-               "`python benchmarks/bench.py --clone`.\n")
-    out.append("## Summary (median over 10 tasks)\n")
-    out.append("| strategy | tokens → model | task success | irrelevant code | tool calls | latency |")
-    out.append("|---|---|---|---|---|---|")
+    out.append("**Task success** = the required definition site landed inside "
+               "the capped context (the necessary condition for the model to "
+               f"answer). Reproduce with `{reproduce_cmd}`.\n")
+    out.append(f"## Summary (median over {n_tasks} tasks)\n")
+    out.append("| strategy | tokens → model | task success | irrelevant code "
+               "| tool calls (med/mean) | latency/task | total time |")
+    out.append("|---|---|---|---|---|---|---|")
     for r in rows:
         out.append(
             f"| {r['strategy']} | {r['median_tokens']:,} "
-            f"| {r['success_rate']:.0f}% "
+            f"| {r['success_rate']:.1f}% "
             f"| {r['median_irrelevant_pct']}% "
-            f"| {r['median_tool_calls']} "
-            f"| {r['median_latency_ms']} ms |")
-    out.append("\n## Per-task detail\n")
-    out.append("| task | strategy | tokens | def included | irrelevant | calls | latency |")
-    out.append("|---|---|---|---|---|---|---|")
-    for c in cells:
-        out.append(
-            f"| {c.task} | {c.strategy} | {c.tokens:,} "
-            f"| {'✅' if c.included else '❌'} | {c.irrelevant_pct:.1f}% "
-            f"| {c.tool_calls} | {c.latency_ms:.0f} ms |")
+            f"| {r['median_tool_calls']} / {r['mean_tool_calls']} "
+            f"| {r['median_latency_ms']} ms "
+            f"| {r['total_time_s']} s |")
+    if detail:
+        out.append("\n## Per-task detail\n")
+        out.append("| task | strategy | tokens | def included | irrelevant | calls | latency |")
+        out.append("|---|---|---|---|---|---|---|")
+        for c in cells:
+            out.append(
+                f"| {c.task} | {c.strategy} | {c.tokens:,} "
+                f"| {'✅' if c.included else '❌'} | {c.irrelevant_pct:.1f}% "
+                f"| {c.tool_calls} | {c.latency_ms:.0f} ms |")
     out.append("")
     return "\n".join(out)
 
 
+def _clone(url: str, tag: str, dest: Path) -> None:
+    print(f"cloning {url}@{tag} ...")
+    subprocess.run(
+        ["git", "clone", "--depth", "1", "--branch", tag, "--quiet",
+         url, str(dest)],
+        check=True,
+    )
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--repo", help="path to an existing clone of the corpus")
+    ap.add_argument("--repo", help="path to an existing clone of the corpus (curated mode)")
     ap.add_argument("--clone", action="store_true",
-                    help=f"clone {CLICK_REPO}@{CLICK_TAG} into a temp dir")
+                    help="clone the corpora into a temp dir")
+    ap.add_argument("--scale", type=int, metavar="N",
+                    help=f"scaled mode: generate N tasks across {len(CORPORA)} corpora "
+                         "(seeded, reproducible) instead of the 10 curated tasks")
     ap.add_argument("--json", help="write raw per-cell results to this path")
     ap.add_argument("--md", help="write a markdown report to this path")
     args = ap.parse_args()
 
-    tmp = None
-    if args.repo:
-        repo = Path(args.repo)
-    elif args.clone:
-        tmp = tempfile.mkdtemp(prefix="slicegrep-bench-")
-        repo = Path(tmp) / "click"
-        print(f"cloning {CLICK_REPO}@{CLICK_TAG} ...")
-        subprocess.run(
-            ["git", "clone", "--depth", "1", "--branch", CLICK_TAG,
-             "--quiet", CLICK_REPO, str(repo)],
-            check=True,
-        )
-    else:
-        ap.error("pass --repo PATH or --clone")
-
     engine = "ripgrep" if _rg_path() else "python-scan (rg not found)"
-    print(f"corpus: {repo}   baseline search engine: {engine}\n")
+    tmp = None
+    prepared: List[tuple] = []
 
-    cells = run(repo)
+    if args.scale:
+        import random
+        if not args.clone:
+            ap.error("--scale requires --clone")
+        tmp = tempfile.mkdtemp(prefix="slicegrep-bench-")
+        rng = random.Random(SEED)
+        per_corpus = -(-args.scale // len(CORPORA))  # ceil division
+        for full, tag in CORPORA:
+            dest = Path(tmp) / full.split("/")[1]
+            _clone(f"https://github.com/{full}", tag, dest)
+            for name, query, rel, lineno in generate_tasks(
+                    dest, f"{full}@{tag}", per_corpus, rng):
+                prepared.append((name, query, dest, gt_at_line(dest, rel, lineno)))
+        rng.shuffle(prepared)
+        prepared = prepared[: args.scale]
+        label = ", ".join(f"{f}@{t}" for f, t in CORPORA)
+        reproduce = f"python benchmarks/bench.py --clone --scale {args.scale}"
+        print(f"\n{len(prepared)} generated tasks   baseline search engine: {engine}\n")
+        cells = run(prepared, verbose=False)
+    else:
+        if args.repo:
+            repo = Path(args.repo)
+        elif args.clone:
+            tmp = tempfile.mkdtemp(prefix="slicegrep-bench-")
+            repo = Path(tmp) / "click"
+            _clone(CLICK_REPO, CLICK_TAG, repo)
+        else:
+            ap.error("pass --repo PATH, --clone, or --clone --scale N")
+        print(f"corpus: {repo}   baseline search engine: {engine}\n")
+        prepared = [
+            (name, query, repo, resolve_ground_truth(repo, gt_file, gt_regex))
+            for name, query, gt_file, gt_regex in TASKS
+        ]
+        label = f"pallets/click @ {CLICK_TAG}"
+        reproduce = "python benchmarks/bench.py --clone"
+        cells = run(prepared, verbose=True)
+
     rows = summarize(cells)
 
     print("\n=== SUMMARY (median over tasks) ===")
-    hdr = f"{'strategy':12s} {'tokens':>8s} {'success':>8s} {'irrelev':>8s} {'calls':>6s} {'latency':>9s}"
-    print(hdr)
+    print(f"{'strategy':12s} {'tokens':>8s} {'success':>8s} {'irrelev':>8s} "
+          f"{'calls':>6s} {'latency':>9s} {'total':>8s}")
     for r in rows:
         print(f"{r['strategy']:12s} {r['median_tokens']:>8,d} "
-              f"{r['success_rate']:>7.0f}% {r['median_irrelevant_pct']:>7.1f}% "
-              f"{r['median_tool_calls']:>6d} {r['median_latency_ms']:>7.1f}ms")
+              f"{r['success_rate']:>7.1f}% {r['median_irrelevant_pct']:>7.1f}% "
+              f"{r['median_tool_calls']:>6d} {r['median_latency_ms']:>7.1f}ms "
+              f"{r['total_time_s']:>7.1f}s")
 
-    label = f"pallets/click @ {CLICK_TAG}" if (args.clone or "click" in str(repo).lower()) else str(repo)
     if args.md:
-        Path(args.md).write_text(to_markdown(cells, rows, label, engine),
-                                 encoding="utf-8")
+        Path(args.md).write_text(
+            to_markdown(cells, rows, label, engine, reproduce,
+                        detail=len(prepared) <= 30),
+            encoding="utf-8")
         print(f"\nwrote {args.md}")
     if args.json:
         Path(args.json).write_text(json.dumps(
