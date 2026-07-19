@@ -42,9 +42,9 @@ fr = "slicegrep.cli:main"
 slicegrep-mcp = "slicegrep.mcp_server:main"
 
 [project.urls]
-Homepage = "https://github.com/haxo98098/slicegrep"
-Repository = "https://github.com/haxo98098/slicegrep"
-Issues = "https://github.com/haxo98098/slicegrep/issues"
+Homepage = "https://github.com/haxo98098/slicegerp"
+Repository = "https://github.com/haxo98098/slicegerp"
+Issues = "https://github.com/haxo98098/slicegerp/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/slicegrep"]

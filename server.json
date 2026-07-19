@@ -1,0 +1,22 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.haxo98098/slicegrep",
+  "description": "grep that returns ranked, token-budgeted code slices — focused_read tool for LLM coding agents",
+  "repository": {
+    "url": "https://github.com/haxo98098/slicegerp",
+    "source": "github"
+  },
+  "version": "0.2.0",
+  "packages": [
+    {
+      "registry_type": "pypi",
+      "identifier": "slicegrep",
+      "version": "0.2.0",
+      "transport": { "type": "stdio" },
+      "runtime_hint": "uvx",
+      "runtime_arguments": [
+        { "type": "positional", "value": "slicegrep-mcp" }
+      ]
+    }
+  ]
+}
