@@ -50,87 +50,22 @@ slicegrep src/core.py "class Scorer|def score|dedupe|rare" --budget 600
 
 Multiply that by every file an agent reads per task.
 
-### Benchmark
+## Benchmarks
 
-**300 generated code-lookup tasks** across four real codebases
-([click](https://github.com/pallets/click) 8.1.7, [flask](https://github.com/pallets/flask) 3.0.0,
-[requests](https://github.com/psf/requests) 2.31.0, [rich](https://github.com/Textualize/rich) 13.7.0),
-three retrieval strategies, 8k-token context cap per lookup, seeded sampling so the
-run is reproducible.
+Three generations, each harder and more realistic than the last. Newest first:
+the primary benchmark is real-world git-history retrieval; the earlier suites
+remain as controlled and historical results.
 
-> Across 300 reproducible lookups in four real Python projects, slicegrep delivered
-> the target definition **84.7%** of the time using a median **1,586 tokens** —
-> 8.7 points above grep+windows and 30.4 points above capped whole-file retrieval.
+### Primary: real sessions from git history (v3)
 
-**Definition hit rate** = the required definition landed inside the delivered
-context. This measures *retrieval* quality — the necessary condition for the model
-to answer — not end-to-end agent task completion. Median over tasks:
-
-| strategy | tokens → model | definition hit rate | irrelevant code | tool calls | total time |
-|---|---|---|---|---|---|
-| whole-file reads | 8,000 | 54.3% | 99.7% | 3 | 55.0 s |
-| grep + window reads | 2,384 | 76.0% | 97.9% | 3 | 52.6 s |
-| **slicegrep** | **1,586** | **84.7%** | **95.9%** | **1** | 68.8 s |
-
-slicegrep trades roughly 20 ms of extra local retrieval time per lookup for a higher
-context hit rate, fewer tool calls, and substantially fewer input tokens — trivial
-beside an LLM request that takes seconds. On the 10 curated click tasks the gap is
-wider still (90% vs 20/60%, [RESULTS.md](benchmarks/RESULTS.md)). Full scaled
-report, including limitations: [RESULTS_SCALED.md](benchmarks/RESULTS_SCALED.md).
-Reproduce either:
-
-```bash
-python benchmarks/bench.py --clone                # 10 curated tasks
-python benchmarks/bench.py --clone --scale 300    # 300 generated tasks
-```
-
-Honesty note: this benchmark caught a real ranking bug at v0.1 (the definition
-signal never fired in default mode — hit rate was 71.7% before the fix; see
-CHANGELOG). A benchmark that never embarrasses its own tool isn't measuring
-anything.
-
-### Benchmark v2 — harder tasks, stronger baselines
-
-240 tasks across six families (symbol lookup, docstring-concept comprehension,
-cross-file call-chain, bug localization from error strings, config/data-flow,
-test+implementation) against seven strategies, including a file-ranking grep agent,
-a language-server baseline (jedi), and a TF-IDF vector retriever. Multi-span
-families require *all* spans (e.g. definition AND cross-file call site) in context.
-
-| strategy | tokens → model | hit rate | tool calls |
-|---|---|---|---|
-| raw ripgrep output | 271 | 0.0% | 1 |
-| whole-file reads | 8,000 | 36.6% | 6 |
-| grep + window reads | 6,345 | 57.3% | 7 |
-| grep + file ranking | 8,000 | 43.2% | 2 |
-| lsp (jedi symbol search) | 0 | 6.6% | 1 |
-| tf-idf vector retriever | 2,209 | 56.8% | 1 |
-| **slicegrep 0.3** | **2,024** | **63.9%** | **1** |
-
-The v2 benchmark drove the v0.2 release: retrieval objectives (guaranteed
-definition + cross-file caller + test slots in the budget), diversity-aware
-packing, and a TF-IDF semantic rerank blended into lexical scoring. Measured
-effect: overall 60.8% → 63.9%, test+impl 30.0% → 47.5%, symbol 80.0% → 85.0%.
-
-Still not everywhere, and [RESULTS_V2.md](benchmarks/RESULTS_V2.md) says so
-plainly: grep+windows keeps cross-file call-chain (57.5% vs 35.0%) because giant
-windows are more likely to capture *two* required spans, and the TF-IDF retriever
-keeps docstring-concept queries (75.0% vs 67.5%). LSP is strong only on pure
-symbol lookups and structurally blind to string/concept queries; raw grep output
-alone almost never contains the definition.
-
-```bash
-pip install jedi   # for the lsp baseline
-python benchmarks/bench2.py --clone --scale 240
-```
-
-### Benchmark v3 — real sessions from git history (the one that beat us, then drove v0.3)
-
-v3 removes the "synthetic tasks favor your tool" objection entirely: 80 real
-changes mined from the corpora's own git history. The repo is reconstructed at
-the parent commit, the query comes only from the commit message (what you'd know
-*before* finding the code), and ground truth is the exact regions the real fix
-touched. **Session hit** = at least half of those regions retrieved under the cap.
+The benchmark that matters most, because the tasks aren't invented: 80 real
+changes mined from the corpora's own git history
+([click](https://github.com/pallets/click), [flask](https://github.com/pallets/flask),
+[requests](https://github.com/psf/requests), [rich](https://github.com/Textualize/rich)).
+For each one the repo is reconstructed at the parent commit, the query comes only
+from the commit message (what you'd know *before* finding the code), and ground
+truth is the exact regions the real fix touched. **Session hit** = at least half
+of those regions retrieved under an 8k-token cap.
 
 | strategy | tokens → model | session hit | mean coverage | tool calls |
 |---|---|---|---|---|
@@ -150,14 +85,57 @@ invisible regardless of ranking. That diagnosis became v0.3's **hybrid recall**:
 a TF-IDF pass over the corpus proposes candidates by window vocabulary, packed
 after the lexical chunks. Result: 21.2% session hit (within noise of TF-IDF's
 22.5%) and the **best mean coverage of any strategy (22.6%)** — while keeping
-the v2 lookup benchmark at 63.9% with no regression. The 0.2 row stays in the
-table because the before/after is the point. Cost: the corpus TF-IDF pass adds
-~0.3–0.5s per directory call.
+the controlled benchmark below at 63.9% with no regression. The 0.2 row stays in
+the table because the before/after is the point. Cost: the corpus TF-IDF pass
+adds ~0.3–0.5s per directory call.
 
-Everyone's numbers collapse versus the lookup benchmarks (best: 22.5% vs 63.9%)
-— retrieving what a real fix will touch, from a commit message alone, is simply
-a much harder problem. Reproduce: full clones + `python benchmarks/bench3.py
---corpora-dir <dir>`.
+Two honest caveats. Nobody is close to solving this benchmark — the best score
+is 22.5%, because retrieving what a real fix will touch from a commit message
+alone is simply hard. And all scores here measure *retrieval* (the needed code
+landing in context), not end-to-end task completion. Reproduce: full clones +
+`python benchmarks/bench3.py --corpora-dir <dir>`.
+
+### Controlled: six task families × seven strategies (v2)
+
+240 seeded tasks across six families (symbol lookup, docstring-concept
+comprehension, cross-file call-chain, bug localization from error strings,
+config/data-flow, test+implementation) against seven strategies. Multi-span
+families require *all* spans (e.g. definition AND cross-file call site) in
+context, under the same 8k cap.
+
+| strategy | tokens → model | hit rate | tool calls |
+|---|---|---|---|
+| raw ripgrep output | 271 | 0.0% | 1 |
+| whole-file reads | 8,000 | 36.6% | 6 |
+| grep + window reads | 6,345 | 57.3% | 7 |
+| grep + file ranking | 8,000 | 43.2% | 2 |
+| lsp (jedi symbol search) | 0 | 6.6% | 1 |
+| tf-idf vector retriever | 2,209 | 56.8% | 1 |
+| **slicegrep 0.3** | **2,024** | **63.9%** | **1** |
+
+This suite drove the v0.2 release (retrieval objectives, diversity-aware
+packing, semantic rerank: overall 60.8% → 63.9%, test+impl 30.0% → 47.5%). Per-
+family results in [RESULTS_V2.md](benchmarks/RESULTS_V2.md), including where
+slicegrep still loses: grep+windows keeps cross-file call-chain (57.5% vs
+35.0%), the TF-IDF retriever keeps docstring-concept queries (75.0% vs 67.5%).
+
+```bash
+pip install jedi   # for the lsp baseline
+python benchmarks/bench2.py --clone --scale 240
+```
+
+### Historical: definition-lookup benchmark (v1)
+
+The original suite: 300 generated definition lookups, three strategies.
+slicegrep delivered the target definition **84.7%** of the time at a median
+**1,586 tokens** and 1 call, vs 76.0% @ 2,384 / 3 calls (grep+windows) and
+54.3% @ 8,000 / 3 calls (whole-file). Kept for the record mostly because this
+suite caught a real ranking bug at v0.1 (the definition signal never fired in
+default mode; 71.7% before the fix — see CHANGELOG). A benchmark that never
+embarrasses its own tool isn't measuring anything. Details:
+[RESULTS_SCALED.md](benchmarks/RESULTS_SCALED.md) /
+[RESULTS.md](benchmarks/RESULTS.md); reproduce with
+`python benchmarks/bench.py --clone --scale 300`.
 
 ---
 
