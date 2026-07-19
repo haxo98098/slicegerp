@@ -50,6 +50,23 @@ slicegrep src/core.py "class Scorer|def score|dedupe|rare" --budget 600
 
 Multiply that by every file an agent reads per task.
 
+### Benchmark
+
+10 real code-lookup tasks against [pallets/click](https://github.com/pallets/click) @ 8.1.7,
+three retrieval strategies, 8k-token context cap per lookup. **Task success** = the
+required definition landed inside the delivered context. Median over tasks:
+
+| strategy | tokens → model | task success | irrelevant code | tool calls | latency |
+|---|---|---|---|---|---|
+| whole-file reads | 8,000 | 20% | 100.0% | 5 | 125 ms |
+| grep + window reads | 6,047 | 60% | 99.2% | 7 | 123 ms |
+| **slicegrep** | **1,990** | **90%** | **93.6%** | **1** | **117 ms** |
+
+3× fewer tokens, 1 tool call instead of 5–7, and the definition you needed actually
+makes it into context. Full per-task detail in
+[benchmarks/RESULTS.md](benchmarks/RESULTS.md); reproduce with
+`python benchmarks/bench.py --clone`.
+
 ---
 
 ## Quick start
