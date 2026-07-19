@@ -171,7 +171,7 @@ scripts and CI can branch on it.
 ## Development
 
 ```bash
-git clone https://github.com/CHANGEME/slicegrep
+git clone https://github.com/haxo98098/slicegrep
 cd slicegrep
 pip install -e ".[dev,mcp]"
 pytest
