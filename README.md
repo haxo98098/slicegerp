@@ -124,6 +124,38 @@ pip install jedi   # for the lsp baseline
 python benchmarks/bench2.py --clone --scale 240
 ```
 
+### Benchmark v3 — real sessions from git history (slicegrep loses this one)
+
+v3 removes the "synthetic tasks favor your tool" objection entirely: 80 real
+changes mined from the corpora's own git history. The repo is reconstructed at
+the parent commit, the query comes only from the commit message (what you'd know
+*before* finding the code), and ground truth is the exact regions the real fix
+touched. **Session hit** = at least half of those regions retrieved under the cap.
+
+| strategy | tokens → model | session hit | mean coverage | tool calls |
+|---|---|---|---|---|
+| raw ripgrep output | 5,535 | 0.0% | 0.0% | 1 |
+| whole-file reads | 8,000 | 6.2% | 6.8% | 37 |
+| grep + window reads | 8,000 | 7.5% | 8.8% | 47 |
+| grep + file ranking | 8,000 | 20.0% | 20.8% | 2 |
+| lsp (jedi) | 0 | 2.5% | 1.2% | 1 |
+| **tf-idf vector retriever** | 2,240 | **22.5%** | 20.4% | 1 |
+| slicegrep 0.2 | 2,115 | 16.2% | 18.8% | 1 |
+
+slicegrep does **not** win here: the TF-IDF retriever (22.5%) and the
+file-ranking grep agent (20.0%) beat it (16.2%). The likely mechanism: commit
+messages are vague, and slicegrep requires a literal regex hit for a region to
+even be a *candidate* — regions the fix touched that don't contain any query
+word are invisible to it, while vocabulary-similarity retrieval can still land
+nearby. Semantic *ranking* (added in 0.2) isn't enough; real sessions need
+semantic *recall*. That's the top of the roadmap, and these numbers stay
+published until it's beaten fairly.
+
+Everyone's numbers collapse versus the lookup benchmarks (best: 22.5% vs 63.9%)
+— retrieving what a real fix will touch, from a commit message alone, is simply
+a much harder problem. Reproduce: full clones + `python benchmarks/bench3.py
+--corpora-dir <dir>`.
+
 ---
 
 ## Quick start
