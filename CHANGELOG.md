@@ -6,6 +6,32 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-07-19
+
+### Added
+- **Natural-language queries**: a spaced phrase with 3+ content words
+  ("how does budget packing guarantee definitions") auto-expands into
+  content-word patterns plus synthesized snake_case bigrams for the lexical
+  pass; the semantic passes see the full phrase. Two-word queries
+  ("class Context") stay exact - expanding them measurably hurt precision.
+- **Subword semantic recall**: the TF-IDF recall pass now tokenizes into
+  snake_case/camelCase subwords with light suffix stemming
+  (invalidation/invalidate -> one stem), closing the morphology gap where
+  embedding retrievers beat lexical tools. Whole-word matches get 3x weight
+  over fragment matches. The precision rerank keeps exact vocabulary -
+  using subwords there regressed the controlled benchmark 63.9% -> 57.7%.
+
+### Measured (full tuning path, failures included)
+- v3 real sessions: 21.2% -> 23.8% session hit, 22.6% -> 23.8% coverage -
+  now first on BOTH metrics (tfidf 22.5/20.4, semble 20.0/17.6, rg+rank
+  20.0/20.8). v2 controlled: 63.9% -> 62.6%, still first (rg+windows 57.3%),
+  call-chain improved 35.0 -> 37.5.
+- Rejected variants (recorded to prevent re-treading): subwords in both
+  passes (v2 57.7%), subwords recall-only without whole-word weighting
+  (v2 58.6%), NL expansion of 2-word queries (symbol family 82.5 -> 72.5).
+- semble (MinishLab, embeddings+BM25) added as a baseline by community
+  request: v2 38.3% overall, v3 20.0% hit / 17.6% coverage.
+
 ## [0.3.0] - 2026-07-19
 
 ### Added

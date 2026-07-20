@@ -19,6 +19,10 @@ pip install git+https://github.com/haxo98098/slicegerp
   optional MCP server needs 3.10+).
 - **CLI + library + MCP server.** Use it from a shell, import it, or plug it into
   Claude Desktop / Claude Code / Cursor / Windsurf over the Model Context Protocol.
+- **Regex or natural language.** `"def score|budget"` works; so does
+  `"how does budget packing guarantee definitions"` — phrases with 3+ content
+  words expand automatically (subword + stemmed matching closes the
+  vocabulary gap on vague queries).
 
 ---
 
@@ -77,18 +81,21 @@ of those regions retrieved under an 8k-token cap.
 | **tf-idf vector retriever** | 2,240 | **22.5%** | 20.4% | 1 |
 | semble (embeddings+BM25) | 2,090 | 20.0% | 17.6% | 1 |
 | slicegrep 0.2 | 2,115 | 16.2% | 18.8% | 1 |
-| **slicegrep 0.3 (hybrid recall)** | 2,104 | 21.2% | **22.6%** | 1 |
+| slicegrep 0.3 (hybrid recall) | 2,104 | 21.2% | 22.6% | 1 |
+| **slicegrep 0.4 (subword recall)** | 2,110 | **23.8%** | **23.8%** | 1 |
 
 v3 caught slicegrep 0.2 losing outright (16.2% vs TF-IDF's 22.5%): commit
 messages are vague, and 0.2 required a literal regex hit for a region to even be
 a *candidate* — regions the fix touched with no query word on any line were
-invisible regardless of ranking. That diagnosis became v0.3's **hybrid recall**:
-a TF-IDF pass over the corpus proposes candidates by window vocabulary, packed
-after the lexical chunks. Result: 21.2% session hit (within noise of TF-IDF's
-22.5%) and the **best mean coverage of any strategy (22.6%)** — while keeping
-the controlled benchmark below at 63.9% with no regression. The 0.2 row stays in
-the table because the before/after is the point. Cost: the corpus TF-IDF pass
-adds ~0.3–0.5s per directory call.
+invisible regardless of ranking. That diagnosis became v0.3's **hybrid recall**
+(a TF-IDF pass proposes candidates by window vocabulary), and v0.4 closed the
+remaining gap with **subword recall**: snake_case/camelCase splitting plus
+light suffix stemming in the recall pass, with whole-word matches weighted 3×
+over fragments. Result: **first place on both metrics** (23.8% hit, 23.8%
+coverage). The version rows stay in the table because the progression is the
+point. Cost: ~0.5s per directory call for the corpus pass. The changelog also
+records the tuning variants that FAILED (subwords in the precision rerank
+regressed the controlled suite to 57.7% and were reverted).
 
 Two honest caveats. Nobody is close to solving this benchmark — the best score
 is 22.5%, because retrieving what a real fix will touch from a commit message
@@ -113,7 +120,7 @@ context, under the same 8k cap.
 | lsp (jedi symbol search) | 0 | 6.6% | 1 |
 | tf-idf vector retriever | 2,209 | 56.8% | 1 |
 | semble (embeddings+BM25) | 2,085 | 38.3% | 1 |
-| **slicegrep 0.3** | **2,024** | **63.9%** | **1** |
+| **slicegrep 0.4** | **2,089** | **62.6%** | **1** |
 
 Note on semble ([MinishLab/semble](https://github.com/MinishLab/semble),
 static embeddings + BM25 + RRF): a genuinely fast, well-built retriever, added
@@ -124,10 +131,12 @@ family (2.5%) that our task set explicitly rewards. Its per-family results are
 in [RESULTS_V2.md](benchmarks/RESULTS_V2.md).
 
 This suite drove the v0.2 release (retrieval objectives, diversity-aware
-packing, semantic rerank: overall 60.8% → 63.9%, test+impl 30.0% → 47.5%). Per-
-family results in [RESULTS_V2.md](benchmarks/RESULTS_V2.md), including where
-slicegrep still loses: grep+windows keeps cross-file call-chain (57.5% vs
-35.0%), the TF-IDF retriever keeps docstring-concept queries (75.0% vs 67.5%).
+packing, semantic rerank). v0.4's subword recall traded 1.3 points here
+(63.9% → 62.6%, still first) for the outright lead on the real-sessions
+benchmark above — a trade we took knowingly and record. Per-family results in
+[RESULTS_V2.md](benchmarks/RESULTS_V2.md), including where slicegrep still
+loses: grep+windows keeps cross-file call-chain (57.5% vs 37.5%), the TF-IDF
+retriever keeps docstring-concept queries (75.0% vs 62.5%).
 
 ```bash
 pip install jedi   # for the lsp baseline

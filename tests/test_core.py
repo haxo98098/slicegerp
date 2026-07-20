@@ -197,3 +197,20 @@ def test_semantic_rerank_favors_concept_vocabulary(tmp_path):
     assert result.chunks, "expected at least one chunk"
     top = result.chunks[0]
     assert "refresh_cache" in top.code
+
+
+def test_nl_query_expands_three_plus_words(tmp_path):
+    f = tmp_path / "m.py"
+    f.write_text(
+        "def guarantee_definition_slot(budget):\n"
+        '    """Reserve budget for the definition chunk."""\n'
+        "    return budget\n",
+        encoding="utf-8")
+    r = focused_read(str(tmp_path), "how does budget guarantee definition slots",
+                     budget=400)
+    assert r.chunks and "guarantee_definition_slot" in r.chunks[0].code
+
+def test_two_word_query_stays_exact(tmp_path):
+    from slicegrep.core import _expand_nl_query
+    # "class Context" must NOT shatter into bare common words
+    assert _expand_nl_query("class Context", ["class Context"]) == ["class Context"]

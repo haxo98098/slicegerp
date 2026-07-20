@@ -336,6 +336,69 @@ class Chunk:
         }
 
 
+# --- v0.4: NL-query + subword semantic matching ---------------------------
+
+_STEM_SUFFIXES = ("ation", "izing", "ized", "ing", "ies", "ion", "ers",
+                  "ed", "es", "er", "s")
+_CAMEL_RE = re.compile(r"(?<=[a-z0-9])(?=[A-Z])")
+_NL_STOP = frozenset("""
+    the a an and or of to in for with when where how why what which does do
+    did is are was were be been should could would can will my our this that
+    these those it its on at by from into over under not no if then than so
+    make makes made use uses using get gets sets set
+""".split())
+
+
+def _stem(t: str) -> str:
+    """Tiny suffix stemmer: maps invalidation/invalidate/invalidating to one
+    stem so query vocabulary meets code vocabulary despite morphology."""
+    for suf in _STEM_SUFFIXES:
+        if t.endswith(suf) and len(t) - len(suf) >= 4:
+            return t[: -len(suf)]
+    return t
+
+
+def _sem_tokens(text: str) -> List[str]:
+    """Tokens for the semantic passes: words plus snake_case/camelCase
+    subwords, stemmed. 'CacheInvalidator' yields cache + invalid (+ itself),
+    which is where lexical matching usually loses to embeddings."""
+    out: List[str] = []
+    for w in re.findall(r"[A-Za-z0-9_]{3,}", text):
+        subs: List[str] = []
+        for part in w.split("_"):
+            subs.extend(_CAMEL_RE.split(part))
+        kept = 0
+        for s in subs:
+            s = s.lower()
+            if len(s) >= 3:
+                out.append(_stem(s))
+                kept += 1
+        if kept > 1:
+            out.append(w.lower())
+    return out
+
+
+def _expand_nl_query(pattern: str, patterns: List[str]) -> List[str]:
+    """If the query reads as a natural-language phrase (spaces, no regex
+    syntax), expand it into content-word patterns for the lexical pass, plus
+    synthesized snake_case bigrams ('cache invalidation' also tries
+    'cache_invalidation'). The semantic passes see the full phrase anyway."""
+    if len(patterns) != 1 or " " not in pattern.strip():
+        return patterns
+    if re.search(r"[|\\^$()\[\]?*+{]", pattern):
+        return patterns
+    words = [w for w in re.findall(r"[A-Za-z0-9_]+", pattern)
+             if len(w) >= 3 and w.lower() not in _NL_STOP]
+    # Two-word queries ("class Context", "def score") are exact lookups, not
+    # prose — shattering them into single common words floods the corpus with
+    # noise (measured: v2 symbol family 82.5% -> 72.5%). Only expand real
+    # sentences: three or more content words.
+    if len(words) < 3:
+        return patterns
+    bigrams = [f"{words[i]}_{words[i+1]}" for i in range(len(words) - 1)]
+    return words + bigrams
+
+
 # A line that *defines* something (any supported language family).
 _DEF_LINE_RE = re.compile(
     r"^\s*(?:export\s+)?(?:pub\s+)?(?:static\s+)?(?:async\s+)?"
@@ -584,7 +647,8 @@ class Result:
 # Extraction
 # --------------------------------------------------------------------------- #
 
-def _semantic_rerank(chunks: List[Chunk], patterns: List[str]) -> None:
+def _semantic_rerank(chunks: List[Chunk], patterns: List[str],
+                     query_text: str = "") -> None:
     """Blend a lightweight TF-IDF cosine signal into lexical scores.
 
     Regex matching decides *candidacy*; this stage improves *ranking* for
@@ -593,11 +657,14 @@ def _semantic_rerank(chunks: List[Chunk], patterns: List[str]) -> None:
     literal hits. IDF is computed over the candidate set itself — no corpus
     index, no dependencies, negligible cost.
     """
+    # PRECISION pass: exact vocabulary only. Subword/stemmed tokens (see
+    # _sem_tokens) measurably hurt here — common stems inflate similarity for
+    # wrong chunks (v2 benchmark: 63.9% -> 57.7% when this pass used them).
+    # The aggressive tokenizer belongs in the RECALL pass only.
     if len(chunks) < 2:
         return
-    qtokens = Counter(
-        t for p in patterns for t in re.findall(r"[a-z0-9_]{3,}", p.lower())
-    )
+    src_text = query_text or " ".join(patterns)
+    qtokens = Counter(re.findall(r"[a-z0-9_]{3,}", src_text.lower()))
     if not qtokens:
         return
     docs = [Counter(re.findall(r"[a-z0-9_]{3,}", c.code.lower())) for c in chunks]
@@ -625,6 +692,7 @@ def _semantic_candidates(
     file_data: List[Tuple[str, List[str]]],
     patterns: List[str],
     max_chunks: int = 40,
+    query_text: str = "",
 ) -> List[Chunk]:
     """TF-IDF recall pass: windows whose *vocabulary* matches the query.
 
@@ -635,9 +703,15 @@ def _semantic_candidates(
     from git history) showed pure TF-IDF retrieval beating regex-gated
     slicegrep 22.5% to 16.2% for exactly this reason.
     """
-    qtokens = Counter(
-        t for p in patterns for t in re.findall(r"[a-z0-9_]{3,}", p.lower())
-    )
+    src_text = query_text or " ".join(patterns)
+    qtokens = Counter(_sem_tokens(src_text))
+    # Whole-word matches outrank fragment matches: subword stems are the
+    # recall floor (they close the morphology gap on vague queries), but a
+    # window sharing the query's exact vocabulary should win over one that
+    # merely shares stems (measured: without this, multi-span families pay
+    # for the subword dilution).
+    for t in re.findall(r"[a-z0-9_]{3,}", src_text.lower()):
+        qtokens[_stem(t)] += 2
     if not qtokens or not file_data:
         return []
     windows: List[Tuple[str, int, int, Counter]] = []
@@ -645,9 +719,7 @@ def _semantic_candidates(
     for fpath, lines in file_data:
         for lo in range(0, max(1, len(lines)), 40):
             hi = min(len(lines), lo + 60)
-            toks = Counter(
-                re.findall(r"[a-z0-9_]{3,}", "".join(lines[lo:hi]).lower())
-            )
+            toks = Counter(_sem_tokens("".join(lines[lo:hi])))
             if toks:
                 windows.append((fpath, lo, hi, toks))
                 df.update(toks.keys())
@@ -932,6 +1004,7 @@ def focused_read(
     patterns = _split_pattern_top_level(pattern)
     if not patterns:
         raise ValueError("pattern is empty after parsing")
+    patterns = _expand_nl_query(pattern, patterns)
 
     target = Path(path)
     threshold = 2.0 if not dedupe else 0.7
@@ -957,10 +1030,10 @@ def focused_read(
             if chunks:
                 matched += 1
                 all_chunks.extend(chunks)
-        _semantic_rerank(all_chunks, patterns)
+        _semantic_rerank(all_chunks, patterns, query_text=pattern)
         all_chunks.sort(key=lambda c: c.score, reverse=True)
         if semantic and budget > 0:
-            sem = _semantic_candidates(file_data, patterns)
+            sem = _semantic_candidates(file_data, patterns, query_text=pattern)
             all_chunks = _pack_hybrid(all_chunks, sem, budget, objective)
         else:
             all_chunks = _apply_budget(all_chunks, budget, objective)
@@ -977,7 +1050,7 @@ def focused_read(
         str(target), patterns, before, after, boundary, threshold
     )
     pre_budget = len(chunks)
-    _semantic_rerank(chunks, patterns)
+    _semantic_rerank(chunks, patterns, query_text=pattern)
     chunks.sort(key=lambda c: c.score, reverse=True)
     chunks = _apply_budget(chunks, budget, objective)
 
