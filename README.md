@@ -56,20 +56,16 @@ Multiply that by every file an agent reads per task.
 
 ## Benchmarks
 
-Three generations, each harder and more realistic than the last. Newest first:
-the primary benchmark is real-world git-history retrieval; the earlier suites
-remain as controlled and historical results.
+Three suites, all seeded and reproducible from this repo. Scores measure
+retrieval quality (the required code landing in the delivered context under an
+8k-token cap), not end-to-end task completion.
 
-### Primary: real sessions from git history (v3)
+### v3: retrieval for real changes (primary)
 
-The benchmark that matters most, because the tasks aren't invented: 80 real
-changes mined from the corpora's own git history
-([click](https://github.com/pallets/click), [flask](https://github.com/pallets/flask),
-[requests](https://github.com/psf/requests), [rich](https://github.com/Textualize/rich)).
-For each one the repo is reconstructed at the parent commit, the query comes only
-from the commit message (what you'd know *before* finding the code), and ground
-truth is the exact regions the real fix touched. **Session hit** = at least half
-of those regions retrieved under an 8k-token cap.
+80 commits mined from the git history of click, flask, requests, and rich.
+Setup per task: repo reconstructed at the parent commit; query built from the
+commit message only; ground truth = the pre-image regions the commit modified
+(diff hunks ±2 lines). Session hit = ≥50% of those regions retrieved.
 
 | strategy | tokens → model | session hit | mean coverage | tool calls |
 |---|---|---|---|---|
@@ -78,38 +74,24 @@ of those regions retrieved under an 8k-token cap.
 | grep + window reads | 8,000 | 7.5% | 8.8% | 47 |
 | grep + file ranking | 8,000 | 20.0% | 20.8% | 2 |
 | lsp (jedi) | 0 | 2.5% | 1.2% | 1 |
-| **tf-idf vector retriever** | 2,240 | **22.5%** | 20.4% | 1 |
+| tf-idf vector retriever | 2,240 | 22.5% | 20.4% | 1 |
 | semble (embeddings+BM25) | 2,090 | 20.0% | 17.6% | 1 |
-| slicegrep 0.2 | 2,115 | 16.2% | 18.8% | 1 |
-| slicegrep 0.3 (hybrid recall) | 2,104 | 21.2% | 22.6% | 1 |
-| **slicegrep 0.4 (subword recall)** | 2,110 | **23.8%** | **23.8%** | 1 |
+| **slicegrep 0.4** | 2,110 | **23.8%** | **23.8%** | 1 |
 
-v3 caught slicegrep 0.2 losing outright (16.2% vs TF-IDF's 22.5%): commit
-messages are vague, and 0.2 required a literal regex hit for a region to even be
-a *candidate* — regions the fix touched with no query word on any line were
-invisible regardless of ranking. That diagnosis became v0.3's **hybrid recall**
-(a TF-IDF pass proposes candidates by window vocabulary), and v0.4 closed the
-remaining gap with **subword recall**: snake_case/camelCase splitting plus
-light suffix stemming in the recall pass, with whole-word matches weighted 3×
-over fragments. Result: **first place on both metrics** (23.8% hit, 23.8%
-coverage). The version rows stay in the table because the progression is the
-point. Cost: ~0.5s per directory call for the corpus pass. The changelog also
-records the tuning variants that FAILED (subwords in the precision rerank
-regressed the controlled suite to 57.7% and were reverted).
+Notes:
 
-Two honest caveats. Nobody is close to solving this benchmark — the best score
-is 22.5%, because retrieving what a real fix will touch from a commit message
-alone is simply hard. And all scores here measure *retrieval* (the needed code
-landing in context), not end-to-end task completion. Reproduce: full clones +
-`python benchmarks/bench3.py --corpora-dir <dir>`.
+- Low absolute scores are inherent to the task: predicting the regions a fix
+  will touch from the commit message alone. No tested method exceeds 23.8%.
+- Margins over tf-idf are a few points on an 80-session sample.
+- Earlier slicegrep versions scored 16.2% (0.2) and 21.2% (0.3) here; the
+  changes between versions were driven by these results. See CHANGELOG.
+- Reproduce: full clones + `python benchmarks/bench3.py --corpora-dir <dir>`.
 
-### Controlled: six task families × seven strategies (v2)
+### v2: controlled retrieval suite
 
-240 seeded tasks across six families (symbol lookup, docstring-concept
-comprehension, cross-file call-chain, bug localization from error strings,
-config/data-flow, test+implementation) against seven strategies. Multi-span
-families require *all* spans (e.g. definition AND cross-file call site) in
-context, under the same 8k cap.
+240 seeded tasks, six families (symbol lookup, docstring-concept queries,
+cross-file call-chain, bug localization from error strings, config/data-flow,
+test+implementation). Multi-span families require all spans in context.
 
 | strategy | tokens → model | hit rate | tool calls |
 |---|---|---|---|
@@ -120,40 +102,26 @@ context, under the same 8k cap.
 | lsp (jedi symbol search) | 0 | 6.6% | 1 |
 | tf-idf vector retriever | 2,209 | 56.8% | 1 |
 | semble (embeddings+BM25) | 2,085 | 38.3% | 1 |
-| **slicegrep 0.4** | **2,089** | **62.6%** | **1** |
+| **slicegrep 0.4** | 2,089 | **62.6%** | 1 |
 
-Note on semble ([MinishLab/semble](https://github.com/MinishLab/semble),
-static embeddings + BM25 + RRF): a genuinely fast, well-built retriever, added
-as a baseline by community request. Two fairness caveats cut in its favor:
-this suite's queries are keyword-shaped (semble is built for natural-language
-queries), and its deliberate noise-penalty on test files tanks the test+impl
-family (2.5%) that our task set explicitly rewards. Its per-family results are
-in [RESULTS_V2.md](benchmarks/RESULTS_V2.md).
+Notes:
 
-This suite drove the v0.2 release (retrieval objectives, diversity-aware
-packing, semantic rerank). v0.4's subword recall traded 1.3 points here
-(63.9% → 62.6%, still first) for the outright lead on the real-sessions
-benchmark above — a trade we took knowingly and record. Per-family results in
-[RESULTS_V2.md](benchmarks/RESULTS_V2.md), including where slicegrep still
-loses: grep+windows keeps cross-file call-chain (57.5% vs 37.5%), the TF-IDF
-retriever keeps docstring-concept queries (75.0% vs 62.5%).
+- Per-family results in [RESULTS_V2.md](benchmarks/RESULTS_V2.md). slicegrep
+  loses two families: cross-file call-chain (grep+windows 57.5% vs 37.5%) and
+  docstring-concept queries (tf-idf 75.0% vs 62.5%).
+- semble caveats, both in its favor: these queries are keyword-shaped (semble
+  targets natural-language queries), and its test-file down-ranking floors the
+  test+impl family (2.5%) that this suite rewards.
+- slicegrep 0.3 scored 63.9% here; 0.4 traded 1.3 points for the v3 gains.
+- Reproduce: `pip install jedi && python benchmarks/bench2.py --clone --scale 240`.
 
-```bash
-pip install jedi   # for the lsp baseline
-python benchmarks/bench2.py --clone --scale 240
-```
+### v1: definition lookups
 
-### Historical: definition-lookup benchmark (v1)
-
-The original suite: 300 generated definition lookups, three strategies.
-slicegrep delivered the target definition **84.7%** of the time at a median
-**1,586 tokens** and 1 call, vs 76.0% @ 2,384 / 3 calls (grep+windows) and
-54.3% @ 8,000 / 3 calls (whole-file). Kept for the record mostly because this
-suite caught a real ranking bug at v0.1 (the definition signal never fired in
-default mode; 71.7% before the fix — see CHANGELOG). A benchmark that never
-embarrasses its own tool isn't measuring anything. Details:
-[RESULTS_SCALED.md](benchmarks/RESULTS_SCALED.md) /
-[RESULTS.md](benchmarks/RESULTS.md); reproduce with
+300 generated definition lookups, three strategies. slicegrep 84.7% hit at
+1,586 median tokens / 1 call, vs grep+windows 76.0% (2,384 / 3) and whole-file
+54.3% (8,000 / 3). This suite exposed a v0.1 ranking bug (definition signal
+inactive in default mode; 71.7% before the fix). Details:
+[RESULTS_SCALED.md](benchmarks/RESULTS_SCALED.md); reproduce with
 `python benchmarks/bench.py --clone --scale 300`.
 
 ---
