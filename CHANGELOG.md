@@ -6,6 +6,18 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+- **Region-level history scoring**: candidate chunks whose enclosing
+  definition is lift-coupled (symbol co-change graph) to the query's anchor
+  symbols get a scaled boost (`region-history` rank reason). Measured
+  neutral at n=300 dev (28.0% vs 28.0% baseline; v2 unchanged); retained
+  default-on for the mechanism and ablation infrastructure.
+- **Learned query router** (`SLICEGREP_ROUTER=learned`, opt-in): logistic
+  regression over query-shape features, trained on 519 burned benchmark
+  outcomes (92.3% train accuracy; `benchmarks/train_router.py` retrains on
+  any corpus). Dev: matches the hand rule (v2 68.7 = 68.7; v3 27.0 vs
+  28.0) — the hand rule remains default.
+
 ## [0.5.0] - 2026-07-20
 
 ### Added

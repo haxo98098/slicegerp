@@ -1648,9 +1648,27 @@ def focused_read(
             import os as _os
             def _plain_word_q(p):
                 return bool(re.fullmatch(r"[a-z][a-z0-9]{3,}", p))
-            vague_q = (len(patterns) >= 3
-                       and all(_plain_word_q(p) for p in patterns)
-                       and _os.environ.get("SLICEGREP_ROUTER", "on") != "off")
+            _router_mode = _os.environ.get("SLICEGREP_ROUTER", "on")
+            if _router_mode == "learned":
+                # logistic router trained on 519 burned benchmark outcomes
+                # (train acc 92.3%; see benchmarks/train_router.py)
+                _W = [-2.0264, 1.4161, 0.3591, -1.2606, -1.2075, -0.0575,
+                      -0.8742]
+                _n = len(patterns)
+                _fx = [1.0, float(_n),
+                       (sum(1 for p in patterns if _plain_word_q(p)) / _n)
+                       if _n else 0.0,
+                       1.0 if any("_" in p for p in patterns) else 0.0,
+                       1.0 if any(re.search(r"[A-Z]", p) for p in patterns)
+                       else 0.0,
+                       1.0 if any("\\" in p for p in patterns) else 0.0,
+                       (sum(len(p) for p in patterns) / (4.0 * _n))
+                       if _n else 0.0]
+                vague_q = sum(w * x for w, x in zip(_W, _fx)) > 0
+            else:
+                vague_q = (len(patterns) >= 3
+                           and all(_plain_word_q(p) for p in patterns)
+                           and _router_mode != "off")
             # dense participates ONLY on the vague route: on precise queries
             # it measurably dilutes packing in every configuration tested
             # (v2 confirmation ablation: router-off 62.6 < router-on 63.4,
@@ -1670,7 +1688,27 @@ def focused_read(
                             sym = _extract_symbol(line)
                             if sym and len(sym) >= 4:
                                 anchor_syms.append(sym)
-                exps = _symbol_expansions(priors, list(dict.fromkeys(anchor_syms)))
+                anchor_list = list(dict.fromkeys(anchor_syms))
+                # REGION-LEVEL history scoring: candidate chunks whose
+                # enclosing definition is historically coupled to the query's
+                # anchor symbols get a lift-scaled boost. This is the
+                # symbol-granularity version of the co-change prior — the
+                # level at which changes actually cluster.
+                sym_lift = dict(_symbol_expansions(priors, anchor_list, k=16))
+                if sym_lift:
+                    for c in all_chunks + sem:
+                        first = c.code.split("\n", 1)[0] if c.code else ""
+                        if not _DEF_LINE_RE.match(first):
+                            continue
+                        csym = _extract_symbol(first)
+                        w = sym_lift.get(csym or "")
+                        if w:
+                            c.score += int(round(8 * w))
+                            if "region-history" not in c.rank_reason:
+                                c.rank_reason.append("region-history")
+                exps = [(sy, w) for sy, w in
+                        sorted(sym_lift.items(), key=lambda kv: kv[1],
+                               reverse=True)[:4]]
                 if exps:
                     have = {(c.file, c.line_start) for c in all_chunks + sem}
                     for sym, w in exps:
