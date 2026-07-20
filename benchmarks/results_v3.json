@@ -5,49 +5,56 @@
       "session_hit_rate": 0.0,
       "mean_coverage": 0.0,
       "median_tool_calls": 1,
-      "median_latency_ms": 43.8
+      "median_latency_ms": 33.3
     },
     "whole-file": {
       "median_tokens": 8000,
       "session_hit_rate": 6.2,
       "mean_coverage": 6.8,
       "median_tool_calls": 37,
-      "median_latency_ms": 44.4
+      "median_latency_ms": 32.7
     },
     "rg+windows": {
       "median_tokens": 8000,
       "session_hit_rate": 7.5,
       "mean_coverage": 8.8,
       "median_tool_calls": 47,
-      "median_latency_ms": 43.9
+      "median_latency_ms": 31.5
     },
     "rg+rank": {
       "median_tokens": 8000,
       "session_hit_rate": 20.0,
       "mean_coverage": 20.8,
       "median_tool_calls": 2,
-      "median_latency_ms": 40.8
+      "median_latency_ms": 32.4
     },
     "lsp(jedi)": {
       "median_tokens": 0,
       "session_hit_rate": 2.5,
       "mean_coverage": 1.2,
       "median_tool_calls": 1,
-      "median_latency_ms": 219.8
+      "median_latency_ms": 108.3
     },
     "tfidf-vec": {
       "median_tokens": 2240,
       "session_hit_rate": 22.5,
       "mean_coverage": 20.4,
       "median_tool_calls": 1,
-      "median_latency_ms": 87.5
+      "median_latency_ms": 72.1
+    },
+    "semble": {
+      "median_tokens": 2090,
+      "session_hit_rate": 20.0,
+      "mean_coverage": 17.6,
+      "median_tool_calls": 1,
+      "median_latency_ms": 956.3
     },
     "slicegrep": {
       "median_tokens": 2104,
       "session_hit_rate": 21.2,
       "mean_coverage": 22.6,
       "median_tool_calls": 1,
-      "median_latency_ms": 494.1
+      "median_latency_ms": 341.8
     }
   },
   "cells": [
@@ -60,7 +67,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 21.1,
+      "latency_ms": 22.2,
       "n_hunks": 2
     },
     {
@@ -72,7 +79,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 51,
-      "latency_ms": 24.8,
+      "latency_ms": 18.0,
       "n_hunks": 2
     },
     {
@@ -84,7 +91,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 59,
-      "latency_ms": 18.9,
+      "latency_ms": 18.8,
       "n_hunks": 2
     },
     {
@@ -96,7 +103,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 23.6,
+      "latency_ms": 15.5,
       "n_hunks": 2
     },
     {
@@ -108,7 +115,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 842.5,
+      "latency_ms": 754.2,
       "n_hunks": 2
     },
     {
@@ -120,7 +127,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 32.9,
+      "latency_ms": 27.8,
+      "n_hunks": 2
+    },
+    {
+      "session": "Fixed an incorrectly formatted help text for count options.",
+      "corpus": "click",
+      "sha": "bb7b2df4d6",
+      "strategy": "semble",
+      "tokens": 2046,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1899.8,
       "n_hunks": 2
     },
     {
@@ -132,7 +151,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 483.8,
+      "latency_ms": 428.9,
       "n_hunks": 2
     },
     {
@@ -144,7 +163,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 3.2,
+      "latency_ms": 4.9,
       "n_hunks": 9
     },
     {
@@ -156,7 +175,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 4,
-      "latency_ms": 3.9,
+      "latency_ms": 4.2,
       "n_hunks": 9
     },
     {
@@ -168,7 +187,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 4,
-      "latency_ms": 3.5,
+      "latency_ms": 3.0,
       "n_hunks": 9
     },
     {
@@ -180,7 +199,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 4,
-      "latency_ms": 4.0,
+      "latency_ms": 3.2,
       "n_hunks": 9
     },
     {
@@ -192,7 +211,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 389.3,
+      "latency_ms": 386.3,
       "n_hunks": 9
     },
     {
@@ -204,7 +223,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 28.1,
+      "latency_ms": 17.4,
+      "n_hunks": 9
+    },
+    {
+      "session": "Docs: docstring fixes",
+      "corpus": "click",
+      "sha": "9659523177",
+      "strategy": "semble",
+      "tokens": 2133,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 275.6,
       "n_hunks": 9
     },
     {
@@ -216,7 +247,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 79.2,
+      "latency_ms": 59.8,
       "n_hunks": 9
     },
     {
@@ -228,7 +259,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 30.9,
+      "latency_ms": 23.9,
       "n_hunks": 9
     },
     {
@@ -240,7 +271,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 17,
-      "latency_ms": 23.0,
+      "latency_ms": 23.3,
       "n_hunks": 9
     },
     {
@@ -252,7 +283,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 21,
-      "latency_ms": 24.7,
+      "latency_ms": 22.5,
       "n_hunks": 9
     },
     {
@@ -264,7 +295,7 @@
       "coverage": 0.556,
       "hit": true,
       "tool_calls": 4,
-      "latency_ms": 28.2,
+      "latency_ms": 21.7,
       "n_hunks": 9
     },
     {
@@ -276,7 +307,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 64.7,
+      "latency_ms": 55.2,
       "n_hunks": 9
     },
     {
@@ -288,7 +319,19 @@
       "coverage": 0.222,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 81.2,
+      "latency_ms": 63.0,
+      "n_hunks": 9
+    },
+    {
+      "session": "Test and perfection for cookie handling.",
+      "corpus": "requests",
+      "sha": "2e31696156",
+      "strategy": "semble",
+      "tokens": 2080,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1066.5,
       "n_hunks": 9
     },
     {
@@ -300,7 +343,7 @@
       "coverage": 0.222,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 312.5,
+      "latency_ms": 269.5,
       "n_hunks": 9
     },
     {
@@ -312,7 +355,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 45.4,
+      "latency_ms": 41.5,
       "n_hunks": 18
     },
     {
@@ -324,7 +367,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 69,
-      "latency_ms": 32.1,
+      "latency_ms": 35.5,
       "n_hunks": 18
     },
     {
@@ -336,7 +379,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 83,
-      "latency_ms": 44.5,
+      "latency_ms": 34.2,
       "n_hunks": 18
     },
     {
@@ -348,7 +391,7 @@
       "coverage": 0.278,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 34.6,
+      "latency_ms": 29.1,
       "n_hunks": 18
     },
     {
@@ -360,7 +403,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 750.7,
+      "latency_ms": 648.1,
       "n_hunks": 18
     },
     {
@@ -372,7 +415,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 90.5,
+      "latency_ms": 73.3,
+      "n_hunks": 18
+    },
+    {
+      "session": "added highlight bool",
+      "corpus": "rich",
+      "sha": "865fe7ca9f",
+      "strategy": "semble",
+      "tokens": 2079,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1458.3,
       "n_hunks": 18
     },
     {
@@ -384,7 +439,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 648.4,
+      "latency_ms": 559.3,
       "n_hunks": 18
     },
     {
@@ -396,7 +451,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 177.3,
+      "latency_ms": 127.1,
       "n_hunks": 7
     },
     {
@@ -408,7 +463,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 47,
-      "latency_ms": 167.2,
+      "latency_ms": 122.1,
       "n_hunks": 7
     },
     {
@@ -420,7 +475,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 70,
-      "latency_ms": 172.5,
+      "latency_ms": 118.7,
       "n_hunks": 7
     },
     {
@@ -432,7 +487,7 @@
       "coverage": 0.857,
       "hit": true,
       "tool_calls": 2,
-      "latency_ms": 154.4,
+      "latency_ms": 115.0,
       "n_hunks": 7
     },
     {
@@ -444,7 +499,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 340.7,
+      "latency_ms": 299.9,
       "n_hunks": 7
     },
     {
@@ -456,7 +511,19 @@
       "coverage": 0.571,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 217.5,
+      "latency_ms": 178.2,
+      "n_hunks": 7
+    },
+    {
+      "session": "tabs to space changes",
+      "corpus": "rich",
+      "sha": "f25cb164aa",
+      "strategy": "semble",
+      "tokens": 2076,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 2240.2,
       "n_hunks": 7
     },
     {
@@ -468,7 +535,7 @@
       "coverage": 0.571,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 897.1,
+      "latency_ms": 778.9,
       "n_hunks": 7
     },
     {
@@ -480,7 +547,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 90.9,
+      "latency_ms": 74.2,
       "n_hunks": 8
     },
     {
@@ -492,7 +559,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 50,
-      "latency_ms": 97.2,
+      "latency_ms": 81.3,
       "n_hunks": 8
     },
     {
@@ -504,7 +571,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 65,
-      "latency_ms": 97.0,
+      "latency_ms": 76.5,
       "n_hunks": 8
     },
     {
@@ -516,7 +583,7 @@
       "coverage": 0.625,
       "hit": true,
       "tool_calls": 3,
-      "latency_ms": 104.2,
+      "latency_ms": 79.6,
       "n_hunks": 8
     },
     {
@@ -528,7 +595,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 301.4,
+      "latency_ms": 339.5,
       "n_hunks": 8
     },
     {
@@ -540,7 +607,19 @@
       "coverage": 0.5,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 134.9,
+      "latency_ms": 117.8,
+      "n_hunks": 8
+    },
+    {
+      "session": "Allow override of lexer in Syntax.from_path",
+      "corpus": "rich",
+      "sha": "9247705bd8",
+      "strategy": "semble",
+      "tokens": 2115,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1804.0,
       "n_hunks": 8
     },
     {
@@ -552,7 +631,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 767.8,
+      "latency_ms": 788.5,
       "n_hunks": 8
     },
     {
@@ -564,7 +643,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 68.2,
+      "latency_ms": 56.8,
       "n_hunks": 1
     },
     {
@@ -576,7 +655,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 60,
-      "latency_ms": 75.5,
+      "latency_ms": 57.3,
       "n_hunks": 1
     },
     {
@@ -588,7 +667,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 114,
-      "latency_ms": 73.6,
+      "latency_ms": 57.4,
       "n_hunks": 1
     },
     {
@@ -600,7 +679,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 73.7,
+      "latency_ms": 53.5,
       "n_hunks": 1
     },
     {
@@ -612,7 +691,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1375.5,
+      "latency_ms": 1297.5,
       "n_hunks": 1
     },
     {
@@ -624,7 +703,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 88.7,
+      "latency_ms": 88.4,
+      "n_hunks": 1
+    },
+    {
+      "session": "Check for warning exception with idiomatic context manager",
+      "corpus": "click",
+      "sha": "1557e26522",
+      "strategy": "semble",
+      "tokens": 2054,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1334.8,
       "n_hunks": 1
     },
     {
@@ -636,7 +727,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 654.5,
+      "latency_ms": 571.2,
       "n_hunks": 1
     },
     {
@@ -648,7 +739,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 7.1,
+      "latency_ms": 5.4,
       "n_hunks": 8
     },
     {
@@ -660,7 +751,7 @@
       "coverage": 0.5,
       "hit": true,
       "tool_calls": 14,
-      "latency_ms": 7.4,
+      "latency_ms": 4.0,
       "n_hunks": 8
     },
     {
@@ -672,7 +763,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 15,
-      "latency_ms": 5.0,
+      "latency_ms": 3.8,
       "n_hunks": 8
     },
     {
@@ -684,7 +775,7 @@
       "coverage": 0.25,
       "hit": false,
       "tool_calls": 7,
-      "latency_ms": 9.2,
+      "latency_ms": 3.9,
       "n_hunks": 8
     },
     {
@@ -696,7 +787,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 34.3,
+      "latency_ms": 18.5,
       "n_hunks": 8
     },
     {
@@ -708,7 +799,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 13.0,
+      "latency_ms": 8.7,
+      "n_hunks": 8
+    },
+    {
+      "session": "Clean up unicode handling",
+      "corpus": "click",
+      "sha": "535a8358ee",
+      "strategy": "semble",
+      "tokens": 2159,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 1,
+      "latency_ms": 164.7,
       "n_hunks": 8
     },
     {
@@ -720,7 +823,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 61.2,
+      "latency_ms": 54.2,
       "n_hunks": 8
     },
     {
@@ -732,7 +835,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 9.6,
+      "latency_ms": 7.8,
       "n_hunks": 6
     },
     {
@@ -744,7 +847,7 @@
       "coverage": 0.333,
       "hit": false,
       "tool_calls": 13,
-      "latency_ms": 8.3,
+      "latency_ms": 6.3,
       "n_hunks": 6
     },
     {
@@ -756,7 +859,7 @@
       "coverage": 0.333,
       "hit": false,
       "tool_calls": 14,
-      "latency_ms": 5.8,
+      "latency_ms": 7.7,
       "n_hunks": 6
     },
     {
@@ -768,7 +871,7 @@
       "coverage": 0.333,
       "hit": false,
       "tool_calls": 4,
-      "latency_ms": 9.4,
+      "latency_ms": 6.0,
       "n_hunks": 6
     },
     {
@@ -780,7 +883,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 40.9,
+      "latency_ms": 35.4,
       "n_hunks": 6
     },
     {
@@ -792,7 +895,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 14.2,
+      "latency_ms": 14.5,
+      "n_hunks": 6
+    },
+    {
+      "session": "ultra cookie compatibility",
+      "corpus": "requests",
+      "sha": "7a1a40e445",
+      "strategy": "semble",
+      "tokens": 2018,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 288.7,
       "n_hunks": 6
     },
     {
@@ -804,7 +919,7 @@
       "coverage": 0.667,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 125.5,
+      "latency_ms": 113.3,
       "n_hunks": 6
     },
     {
@@ -816,7 +931,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 102.3,
+      "latency_ms": 49.0,
       "n_hunks": 3
     },
     {
@@ -828,7 +943,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 67,
-      "latency_ms": 65.3,
+      "latency_ms": 44.9,
       "n_hunks": 3
     },
     {
@@ -840,7 +955,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 86,
-      "latency_ms": 55.7,
+      "latency_ms": 42.3,
       "n_hunks": 3
     },
     {
@@ -852,7 +967,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 55.2,
+      "latency_ms": 41.8,
       "n_hunks": 3
     },
     {
@@ -864,7 +979,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 107.4,
+      "latency_ms": 99.0,
       "n_hunks": 3
     },
     {
@@ -876,7 +991,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 90.9,
+      "latency_ms": 85.0,
+      "n_hunks": 3
+    },
+    {
+      "session": "Fix registering partials as view functions",
+      "corpus": "flask",
+      "sha": "6663bf1f7d",
+      "strategy": "semble",
+      "tokens": 2066,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1484.5,
       "n_hunks": 3
     },
     {
@@ -888,7 +1015,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 845.5,
+      "latency_ms": 580.3,
       "n_hunks": 3
     },
     {
@@ -900,7 +1027,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 77.6,
+      "latency_ms": 35.6,
       "n_hunks": 7
     },
     {
@@ -912,7 +1039,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 20,
-      "latency_ms": 66.2,
+      "latency_ms": 36.2,
       "n_hunks": 7
     },
     {
@@ -924,7 +1051,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 25,
-      "latency_ms": 60.1,
+      "latency_ms": 31.3,
       "n_hunks": 7
     },
     {
@@ -936,7 +1063,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 3,
-      "latency_ms": 64.5,
+      "latency_ms": 30.2,
       "n_hunks": 7
     },
     {
@@ -948,7 +1075,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 165.8,
+      "latency_ms": 72.0,
       "n_hunks": 7
     },
     {
@@ -960,7 +1087,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 128.8,
+      "latency_ms": 48.5,
+      "n_hunks": 7
+    },
+    {
+      "session": "attempt at supporting emoji",
+      "corpus": "rich",
+      "sha": "f7ab2afa1f",
+      "strategy": "semble",
+      "tokens": 2177,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1051.2,
       "n_hunks": 7
     },
     {
@@ -972,7 +1111,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 504.4,
+      "latency_ms": 245.2,
       "n_hunks": 7
     },
     {
@@ -984,7 +1123,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 15.3,
+      "latency_ms": 6.8,
       "n_hunks": 8
     },
     {
@@ -996,7 +1135,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 11.7,
+      "latency_ms": 6.1,
       "n_hunks": 8
     },
     {
@@ -1008,7 +1147,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 10.0,
+      "latency_ms": 6.5,
       "n_hunks": 8
     },
     {
@@ -1020,7 +1159,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 10.4,
+      "latency_ms": 4.8,
       "n_hunks": 8
     },
     {
@@ -1032,7 +1171,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 51.1,
+      "latency_ms": 36.6,
       "n_hunks": 8
     },
     {
@@ -1044,7 +1183,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 36.5,
+      "latency_ms": 19.4,
+      "n_hunks": 8
+    },
+    {
+      "session": "added save_text and save_html",
+      "corpus": "rich",
+      "sha": "3d405a06bd",
+      "strategy": "semble",
+      "tokens": 2124,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 480.7,
       "n_hunks": 8
     },
     {
@@ -1056,7 +1207,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 89.2,
+      "latency_ms": 45.8,
       "n_hunks": 8
     },
     {
@@ -1068,7 +1219,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 40.9,
+      "latency_ms": 33.9,
       "n_hunks": 3
     },
     {
@@ -1080,7 +1231,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 19,
-      "latency_ms": 42.9,
+      "latency_ms": 29.9,
       "n_hunks": 3
     },
     {
@@ -1092,7 +1243,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 21,
-      "latency_ms": 34.4,
+      "latency_ms": 31.6,
       "n_hunks": 3
     },
     {
@@ -1104,7 +1255,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 4,
-      "latency_ms": 37.3,
+      "latency_ms": 27.3,
       "n_hunks": 3
     },
     {
@@ -1116,7 +1267,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 81.1,
+      "latency_ms": 65.4,
       "n_hunks": 3
     },
     {
@@ -1128,7 +1279,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 96.7,
+      "latency_ms": 87.5,
+      "n_hunks": 3
+    },
+    {
+      "session": "Enhance documentation for clarity.",
+      "corpus": "requests",
+      "sha": "101425ebfc",
+      "strategy": "semble",
+      "tokens": 2109,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1276.7,
       "n_hunks": 3
     },
     {
@@ -1140,7 +1303,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 262.2,
+      "latency_ms": 218.8,
       "n_hunks": 3
     },
     {
@@ -1152,7 +1315,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 27.6,
+      "latency_ms": 30.3,
       "n_hunks": 11
     },
     {
@@ -1164,7 +1327,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 25,
-      "latency_ms": 32.9,
+      "latency_ms": 26.4,
       "n_hunks": 11
     },
     {
@@ -1176,7 +1339,7 @@
       "coverage": 0.182,
       "hit": false,
       "tool_calls": 30,
-      "latency_ms": 34.9,
+      "latency_ms": 25.7,
       "n_hunks": 11
     },
     {
@@ -1188,7 +1351,7 @@
       "coverage": 0.182,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 35.5,
+      "latency_ms": 26.5,
       "n_hunks": 11
     },
     {
@@ -1200,7 +1363,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 381.6,
+      "latency_ms": 172.9,
       "n_hunks": 11
     },
     {
@@ -1212,7 +1375,19 @@
       "coverage": 0.545,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 49.1,
+      "latency_ms": 38.8,
+      "n_hunks": 11
+    },
+    {
+      "session": "Added documentation on how to use get_parameter_source. Adde",
+      "corpus": "click",
+      "sha": "73f470ef23",
+      "strategy": "semble",
+      "tokens": 2030,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 646.9,
       "n_hunks": 11
     },
     {
@@ -1224,7 +1399,7 @@
       "coverage": 0.545,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 239.2,
+      "latency_ms": 185.9,
       "n_hunks": 11
     },
     {
@@ -1236,7 +1411,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 62.9,
+      "latency_ms": 55.2,
       "n_hunks": 2
     },
     {
@@ -1248,7 +1423,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 83,
-      "latency_ms": 64.9,
+      "latency_ms": 53.0,
       "n_hunks": 2
     },
     {
@@ -1260,7 +1435,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 96,
-      "latency_ms": 68.9,
+      "latency_ms": 48.3,
       "n_hunks": 2
     },
     {
@@ -1272,7 +1447,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 74.2,
+      "latency_ms": 54.2,
       "n_hunks": 2
     },
     {
@@ -1284,7 +1459,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 171.5,
+      "latency_ms": 143.8,
       "n_hunks": 2
     },
     {
@@ -1296,7 +1471,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 138.6,
+      "latency_ms": 121.0,
+      "n_hunks": 2
+    },
+    {
+      "session": "Unable unicode in basic http auth",
+      "corpus": "requests",
+      "sha": "e514920e19",
+      "strategy": "semble",
+      "tokens": 2033,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 2241.4,
       "n_hunks": 2
     },
     {
@@ -1308,7 +1495,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 2512.2,
+      "latency_ms": 1071.3,
       "n_hunks": 2
     },
     {
@@ -1320,7 +1507,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 75.9,
+      "latency_ms": 29.8,
       "n_hunks": 3
     },
     {
@@ -1332,7 +1519,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 45,
-      "latency_ms": 74.6,
+      "latency_ms": 29.6,
       "n_hunks": 3
     },
     {
@@ -1344,7 +1531,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 50,
-      "latency_ms": 66.3,
+      "latency_ms": 30.5,
       "n_hunks": 3
     },
     {
@@ -1356,7 +1543,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 4,
-      "latency_ms": 83.0,
+      "latency_ms": 29.3,
       "n_hunks": 3
     },
     {
@@ -1368,7 +1555,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 162.0,
+      "latency_ms": 53.1,
       "n_hunks": 3
     },
     {
@@ -1380,7 +1567,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 183.2,
+      "latency_ms": 69.4,
+      "n_hunks": 3
+    },
+    {
+      "session": "Resolves the parts of #1096 in requests proper.",
+      "corpus": "requests",
+      "sha": "628e393b9a",
+      "strategy": "semble",
+      "tokens": 2092,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1032.1,
       "n_hunks": 3
     },
     {
@@ -1392,7 +1591,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 886.1,
+      "latency_ms": 387.7,
       "n_hunks": 3
     },
     {
@@ -1404,7 +1603,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 269.2,
+      "latency_ms": 66.7,
       "n_hunks": 11
     },
     {
@@ -1416,7 +1615,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 17,
-      "latency_ms": 414.1,
+      "latency_ms": 68.1,
       "n_hunks": 11
     },
     {
@@ -1428,7 +1627,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 22,
-      "latency_ms": 292.5,
+      "latency_ms": 63.0,
       "n_hunks": 11
     },
     {
@@ -1440,7 +1639,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 291.5,
+      "latency_ms": 68.7,
       "n_hunks": 11
     },
     {
@@ -1452,7 +1651,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 249.1,
+      "latency_ms": 91.2,
       "n_hunks": 11
     },
     {
@@ -1464,7 +1663,19 @@
       "coverage": 0.545,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 323.1,
+      "latency_ms": 135.4,
+      "n_hunks": 11
+    },
+    {
+      "session": "rename footer -> subtitle",
+      "corpus": "rich",
+      "sha": "58af52576e",
+      "strategy": "semble",
+      "tokens": 2165,
+      "coverage": 0.273,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1677.3,
       "n_hunks": 11
     },
     {
@@ -1476,7 +1687,7 @@
       "coverage": 0.364,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1943.8,
+      "latency_ms": 415.0,
       "n_hunks": 11
     },
     {
@@ -1488,7 +1699,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 128.4,
+      "latency_ms": 38.5,
       "n_hunks": 2
     },
     {
@@ -1500,7 +1711,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 11,
-      "latency_ms": 165.6,
+      "latency_ms": 36.0,
       "n_hunks": 2
     },
     {
@@ -1512,7 +1723,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 11,
-      "latency_ms": 139.6,
+      "latency_ms": 39.7,
       "n_hunks": 2
     },
     {
@@ -1524,7 +1735,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 3,
-      "latency_ms": 141.9,
+      "latency_ms": 33.6,
       "n_hunks": 2
     },
     {
@@ -1536,7 +1747,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 883.8,
+      "latency_ms": 485.2,
       "n_hunks": 2
     },
     {
@@ -1548,7 +1759,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 508.0,
+      "latency_ms": 136.0,
+      "n_hunks": 2
+    },
+    {
+      "session": "Removed testing artifacts",
+      "corpus": "requests",
+      "sha": "17aee31940",
+      "strategy": "semble",
+      "tokens": 2039,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 1,
+      "latency_ms": 1810.0,
       "n_hunks": 2
     },
     {
@@ -1560,7 +1783,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1263.8,
+      "latency_ms": 266.3,
       "n_hunks": 2
     },
     {
@@ -1572,7 +1795,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 15.5,
+      "latency_ms": 8.7,
       "n_hunks": 10
     },
     {
@@ -1584,7 +1807,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 22,
-      "latency_ms": 24.7,
+      "latency_ms": 7.2,
       "n_hunks": 10
     },
     {
@@ -1596,7 +1819,7 @@
       "coverage": 0.3,
       "hit": false,
       "tool_calls": 25,
-      "latency_ms": 26.7,
+      "latency_ms": 6.7,
       "n_hunks": 10
     },
     {
@@ -1608,7 +1831,7 @@
       "coverage": 0.7,
       "hit": true,
       "tool_calls": 5,
-      "latency_ms": 17.9,
+      "latency_ms": 9.0,
       "n_hunks": 10
     },
     {
@@ -1620,7 +1843,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 293.1,
+      "latency_ms": 64.3,
       "n_hunks": 10
     },
     {
@@ -1632,7 +1855,19 @@
       "coverage": 0.2,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 38.6,
+      "latency_ms": 12.3,
+      "n_hunks": 10
+    },
+    {
+      "session": "keep-alive as config option only",
+      "corpus": "requests",
+      "sha": "02408973c6",
+      "strategy": "semble",
+      "tokens": 2114,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 1,
+      "latency_ms": 262.0,
       "n_hunks": 10
     },
     {
@@ -1644,7 +1879,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 395.8,
+      "latency_ms": 128.4,
       "n_hunks": 10
     },
     {
@@ -1656,7 +1891,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 100.9,
+      "latency_ms": 26.2,
       "n_hunks": 5
     },
     {
@@ -1668,7 +1903,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 25,
-      "latency_ms": 258.3,
+      "latency_ms": 26.6,
       "n_hunks": 5
     },
     {
@@ -1680,7 +1915,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 31,
-      "latency_ms": 55.5,
+      "latency_ms": 28.6,
       "n_hunks": 5
     },
     {
@@ -1692,7 +1927,7 @@
       "coverage": 0.2,
       "hit": false,
       "tool_calls": 5,
-      "latency_ms": 205.0,
+      "latency_ms": 21.4,
       "n_hunks": 5
     },
     {
@@ -1704,7 +1939,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1133.3,
+      "latency_ms": 163.9,
       "n_hunks": 5
     },
     {
@@ -1716,7 +1951,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 441.0,
+      "latency_ms": 70.9,
+      "n_hunks": 5
+    },
+    {
+      "session": "Only call the hook once.",
+      "corpus": "requests",
+      "sha": "1cfe59299b",
+      "strategy": "semble",
+      "tokens": 2064,
+      "coverage": 0.2,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1029.8,
       "n_hunks": 5
     },
     {
@@ -1728,7 +1975,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 13564.2,
+      "latency_ms": 249.7,
       "n_hunks": 5
     },
     {
@@ -1740,7 +1987,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 132.4,
+      "latency_ms": 28.0,
       "n_hunks": 1
     },
     {
@@ -1752,7 +1999,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 17,
-      "latency_ms": 184.9,
+      "latency_ms": 26.7,
       "n_hunks": 1
     },
     {
@@ -1764,7 +2011,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 20,
-      "latency_ms": 183.5,
+      "latency_ms": 27.7,
       "n_hunks": 1
     },
     {
@@ -1776,7 +2023,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 3,
-      "latency_ms": 506.2,
+      "latency_ms": 25.1,
       "n_hunks": 1
     },
     {
@@ -1788,7 +2035,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1102.7,
+      "latency_ms": 75.1,
       "n_hunks": 1
     },
     {
@@ -1800,7 +2047,19 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 259.1,
+      "latency_ms": 56.9,
+      "n_hunks": 1
+    },
+    {
+      "session": "Mention register_error_handler in errorhandler doc",
+      "corpus": "flask",
+      "sha": "b9355a7d5f",
+      "strategy": "semble",
+      "tokens": 2101,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 1,
+      "latency_ms": 818.0,
       "n_hunks": 1
     },
     {
@@ -1812,7 +2071,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 1500.0,
+      "latency_ms": 247.0,
       "n_hunks": 1
     },
     {
@@ -1824,7 +2083,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 239.7,
+      "latency_ms": 94.7,
       "n_hunks": 1
     },
     {
@@ -1836,7 +2095,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 308,
-      "latency_ms": 376.4,
+      "latency_ms": 87.5,
       "n_hunks": 1
     },
     {
@@ -1848,7 +2107,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 340,
-      "latency_ms": 411.3,
+      "latency_ms": 96.9,
       "n_hunks": 1
     },
     {
@@ -1860,7 +2119,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 3,
-      "latency_ms": 312.4,
+      "latency_ms": 92.6,
       "n_hunks": 1
     },
     {
@@ -1872,7 +2131,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 2274.8,
+      "latency_ms": 871.9,
       "n_hunks": 1
     },
     {
@@ -1884,7 +2143,19 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 457.1,
+      "latency_ms": 194.6,
+      "n_hunks": 1
+    },
+    {
+      "session": "fix traceback for missing frame file",
+      "corpus": "rich",
+      "sha": "3469674b52",
+      "strategy": "semble",
+      "tokens": 2132,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 2157.6,
       "n_hunks": 1
     },
     {
@@ -1896,7 +2167,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 7260.6,
+      "latency_ms": 1553.9,
       "n_hunks": 1
     },
     {
@@ -1908,7 +2179,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 126.2,
+      "latency_ms": 27.0,
       "n_hunks": 5
     },
     {
@@ -1920,7 +2191,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 84,
-      "latency_ms": 126.7,
+      "latency_ms": 24.5,
       "n_hunks": 5
     },
     {
@@ -1932,7 +2203,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 88,
-      "latency_ms": 90.4,
+      "latency_ms": 25.2,
       "n_hunks": 5
     },
     {
@@ -1944,7 +2215,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 134.7,
+      "latency_ms": 24.7,
       "n_hunks": 5
     },
     {
@@ -1956,7 +2227,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 691.6,
+      "latency_ms": 200.8,
       "n_hunks": 5
     },
     {
@@ -1968,7 +2239,19 @@
       "coverage": 0.2,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 137.9,
+      "latency_ms": 47.7,
+      "n_hunks": 5
+    },
+    {
+      "session": "Use formatter width and max command name width to autotrim s",
+      "corpus": "click",
+      "sha": "37233e2564",
+      "strategy": "semble",
+      "tokens": 2114,
+      "coverage": 0.4,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 742.3,
       "n_hunks": 5
     },
     {
@@ -1980,7 +2263,7 @@
       "coverage": 0.2,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 4082.3,
+      "latency_ms": 1050.5,
       "n_hunks": 5
     },
     {
@@ -1992,7 +2275,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 225.7,
+      "latency_ms": 14.8,
       "n_hunks": 13
     },
     {
@@ -2004,7 +2287,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 6,
-      "latency_ms": 89.5,
+      "latency_ms": 11.4,
       "n_hunks": 13
     },
     {
@@ -2016,7 +2299,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 6,
-      "latency_ms": 170.8,
+      "latency_ms": 12.0,
       "n_hunks": 13
     },
     {
@@ -2028,7 +2311,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 6,
-      "latency_ms": 40.4,
+      "latency_ms": 10.5,
       "n_hunks": 13
     },
     {
@@ -2040,7 +2323,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 328.3,
+      "latency_ms": 67.5,
       "n_hunks": 13
     },
     {
@@ -2052,7 +2335,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 206.1,
+      "latency_ms": 32.0,
+      "n_hunks": 13
+    },
+    {
+      "session": "Various pyflakes fixes",
+      "corpus": "flask",
+      "sha": "c9002569c9",
+      "strategy": "semble",
+      "tokens": 2151,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 361.1,
       "n_hunks": 13
     },
     {
@@ -2064,7 +2359,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 707.5,
+      "latency_ms": 122.7,
       "n_hunks": 13
     },
     {
@@ -2076,7 +2371,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 92.0,
+      "latency_ms": 51.6,
       "n_hunks": 9
     },
     {
@@ -2088,7 +2383,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 34,
-      "latency_ms": 82.1,
+      "latency_ms": 49.1,
       "n_hunks": 9
     },
     {
@@ -2100,7 +2395,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 52,
-      "latency_ms": 87.7,
+      "latency_ms": 48.1,
       "n_hunks": 9
     },
     {
@@ -2112,7 +2407,7 @@
       "coverage": 0.444,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 93.1,
+      "latency_ms": 46.8,
       "n_hunks": 9
     },
     {
@@ -2124,7 +2419,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 886.0,
+      "latency_ms": 698.5,
       "n_hunks": 9
     },
     {
@@ -2136,7 +2431,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 87.7,
+      "latency_ms": 80.6,
+      "n_hunks": 9
+    },
+    {
+      "session": "pager doesn't close std streams",
+      "corpus": "click",
+      "sha": "becbde5cf4",
+      "strategy": "semble",
+      "tokens": 2066,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1304.3,
       "n_hunks": 9
     },
     {
@@ -2148,7 +2455,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 536.7,
+      "latency_ms": 483.1,
       "n_hunks": 9
     },
     {
@@ -2160,7 +2467,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 44.5,
+      "latency_ms": 31.0,
       "n_hunks": 4
     },
     {
@@ -2172,7 +2479,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 14,
-      "latency_ms": 45.7,
+      "latency_ms": 28.4,
       "n_hunks": 4
     },
     {
@@ -2184,7 +2491,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 17,
-      "latency_ms": 45.5,
+      "latency_ms": 29.3,
       "n_hunks": 4
     },
     {
@@ -2196,7 +2503,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 3,
-      "latency_ms": 43.4,
+      "latency_ms": 32.7,
       "n_hunks": 4
     },
     {
@@ -2208,7 +2515,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 265.3,
+      "latency_ms": 231.0,
       "n_hunks": 4
     },
     {
@@ -2220,7 +2527,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 100.1,
+      "latency_ms": 95.5,
+      "n_hunks": 4
+    },
+    {
+      "session": "Remove unused loggers.",
+      "corpus": "requests",
+      "sha": "488b90f5ac",
+      "strategy": "semble",
+      "tokens": 2106,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1228.5,
       "n_hunks": 4
     },
     {
@@ -2232,7 +2551,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 242.9,
+      "latency_ms": 207.4,
       "n_hunks": 4
     },
     {
@@ -2244,7 +2563,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 19.4,
+      "latency_ms": 22.6,
       "n_hunks": 1
     },
     {
@@ -2256,7 +2575,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 38,
-      "latency_ms": 21.9,
+      "latency_ms": 18.4,
       "n_hunks": 1
     },
     {
@@ -2268,7 +2587,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 45,
-      "latency_ms": 20.0,
+      "latency_ms": 17.9,
       "n_hunks": 1
     },
     {
@@ -2280,7 +2599,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 6,
-      "latency_ms": 19.0,
+      "latency_ms": 17.4,
       "n_hunks": 1
     },
     {
@@ -2292,7 +2611,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 63.9,
+      "latency_ms": 48.9,
       "n_hunks": 1
     },
     {
@@ -2304,7 +2623,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 40.3,
+      "latency_ms": 36.1,
+      "n_hunks": 1
+    },
+    {
+      "session": "Don't suggest to run application under Python 2",
+      "corpus": "click",
+      "sha": "9545ae04f8",
+      "strategy": "semble",
+      "tokens": 2120,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 1,
+      "latency_ms": 594.4,
       "n_hunks": 1
     },
     {
@@ -2316,7 +2647,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 256.0,
+      "latency_ms": 216.0,
       "n_hunks": 1
     },
     {
@@ -2328,7 +2659,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 38.4,
+      "latency_ms": 36.5,
       "n_hunks": 2
     },
     {
@@ -2340,7 +2671,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 140,
-      "latency_ms": 44.6,
+      "latency_ms": 38.2,
       "n_hunks": 2
     },
     {
@@ -2352,7 +2683,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 147,
-      "latency_ms": 40.4,
+      "latency_ms": 35.2,
       "n_hunks": 2
     },
     {
@@ -2364,7 +2695,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 40.7,
+      "latency_ms": 37.6,
       "n_hunks": 2
     },
     {
@@ -2376,7 +2707,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 75.3,
+      "latency_ms": 72.5,
       "n_hunks": 2
     },
     {
@@ -2388,7 +2719,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 85.3,
+      "latency_ms": 86.6,
+      "n_hunks": 2
+    },
+    {
+      "session": "Clarify the python versions that flask supports",
+      "corpus": "flask",
+      "sha": "7368a164c7",
+      "strategy": "semble",
+      "tokens": 2038,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 912.2,
       "n_hunks": 2
     },
     {
@@ -2400,7 +2743,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1661.4,
+      "latency_ms": 1533.6,
       "n_hunks": 2
     },
     {
@@ -2412,7 +2755,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 33.0,
+      "latency_ms": 30.3,
       "n_hunks": 7
     },
     {
@@ -2424,7 +2767,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 77,
-      "latency_ms": 31.2,
+      "latency_ms": 30.5,
       "n_hunks": 7
     },
     {
@@ -2436,7 +2779,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 88,
-      "latency_ms": 30.6,
+      "latency_ms": 26.0,
       "n_hunks": 7
     },
     {
@@ -2448,7 +2791,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 4,
-      "latency_ms": 34.6,
+      "latency_ms": 32.1,
       "n_hunks": 7
     },
     {
@@ -2460,7 +2803,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 76.8,
+      "latency_ms": 56.7,
       "n_hunks": 7
     },
     {
@@ -2472,7 +2815,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 87.0,
+      "latency_ms": 88.5,
+      "n_hunks": 7
+    },
+    {
+      "session": "test: restore Python 3.2 compatibility",
+      "corpus": "requests",
+      "sha": "c8916a08de",
+      "strategy": "semble",
+      "tokens": 2063,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1196.4,
       "n_hunks": 7
     },
     {
@@ -2484,7 +2839,7 @@
       "coverage": 0.286,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 340.4,
+      "latency_ms": 290.6,
       "n_hunks": 7
     },
     {
@@ -2496,7 +2851,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 28.6,
+      "latency_ms": 28.2,
       "n_hunks": 1
     },
     {
@@ -2508,7 +2863,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 3,
-      "latency_ms": 24.7,
+      "latency_ms": 22.6,
       "n_hunks": 1
     },
     {
@@ -2520,7 +2875,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 4,
-      "latency_ms": 26.1,
+      "latency_ms": 20.4,
       "n_hunks": 1
     },
     {
@@ -2532,7 +2887,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 28.1,
+      "latency_ms": 23.3,
       "n_hunks": 1
     },
     {
@@ -2544,7 +2899,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 62.6,
+      "latency_ms": 58.4,
       "n_hunks": 1
     },
     {
@@ -2556,7 +2911,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 77.0,
+      "latency_ms": 61.8,
+      "n_hunks": 1
+    },
+    {
+      "session": "Add explanation for the casting",
+      "corpus": "click",
+      "sha": "96e4c75990",
+      "strategy": "semble",
+      "tokens": 2100,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1063.2,
       "n_hunks": 1
     },
     {
@@ -2568,7 +2935,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 224.6,
+      "latency_ms": 182.7,
       "n_hunks": 1
     },
     {
@@ -2580,7 +2947,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 19.4,
+      "latency_ms": 15.9,
       "n_hunks": 2
     },
     {
@@ -2592,7 +2959,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 37,
-      "latency_ms": 17.5,
+      "latency_ms": 14.8,
       "n_hunks": 2
     },
     {
@@ -2604,7 +2971,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 44,
-      "latency_ms": 17.5,
+      "latency_ms": 14.5,
       "n_hunks": 2
     },
     {
@@ -2616,7 +2983,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 15.4,
+      "latency_ms": 13.2,
       "n_hunks": 2
     },
     {
@@ -2628,7 +2995,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 45.7,
+      "latency_ms": 39.6,
       "n_hunks": 2
     },
     {
@@ -2640,7 +3007,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 30.2,
+      "latency_ms": 25.4,
+      "n_hunks": 2
+    },
+    {
+      "session": "setting a default for arguments now implicitly makes it non ",
+      "corpus": "click",
+      "sha": "71da0b4f56",
+      "strategy": "semble",
+      "tokens": 2057,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 404.8,
       "n_hunks": 2
     },
     {
@@ -2652,7 +3031,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 359.1,
+      "latency_ms": 310.3,
       "n_hunks": 2
     },
     {
@@ -2664,7 +3043,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 121.1,
+      "latency_ms": 106.4,
       "n_hunks": 3
     },
     {
@@ -2676,7 +3055,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 110,
-      "latency_ms": 138.2,
+      "latency_ms": 116.2,
       "n_hunks": 3
     },
     {
@@ -2688,7 +3067,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 125,
-      "latency_ms": 128.6,
+      "latency_ms": 111.1,
       "n_hunks": 3
     },
     {
@@ -2700,7 +3079,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 124.1,
+      "latency_ms": 104.8,
       "n_hunks": 3
     },
     {
@@ -2712,7 +3091,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1357.0,
+      "latency_ms": 1260.3,
       "n_hunks": 3
     },
     {
@@ -2724,7 +3103,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 256.2,
+      "latency_ms": 224.9,
+      "n_hunks": 3
+    },
+    {
+      "session": "typing issue for 3.8",
+      "corpus": "rich",
+      "sha": "84716e7462",
+      "strategy": "semble",
+      "tokens": 2030,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 2475.2,
       "n_hunks": 3
     },
     {
@@ -2736,7 +3127,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 895.2,
+      "latency_ms": 776.8,
       "n_hunks": 3
     },
     {
@@ -2748,7 +3139,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 116.6,
+      "latency_ms": 102.9,
       "n_hunks": 4
     },
     {
@@ -2760,7 +3151,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 194,
-      "latency_ms": 125.4,
+      "latency_ms": 94.6,
       "n_hunks": 4
     },
     {
@@ -2772,7 +3163,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 226,
-      "latency_ms": 123.1,
+      "latency_ms": 107.6,
       "n_hunks": 4
     },
     {
@@ -2784,7 +3175,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 161.3,
+      "latency_ms": 101.1,
       "n_hunks": 4
     },
     {
@@ -2796,7 +3187,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1267.9,
+      "latency_ms": 1132.9,
       "n_hunks": 4
     },
     {
@@ -2808,7 +3199,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 184.6,
+      "latency_ms": 168.4,
+      "n_hunks": 4
+    },
+    {
+      "session": "[syntax] another round of PR feedback addressing for stylize",
+      "corpus": "rich",
+      "sha": "b6a4cfab5a",
+      "strategy": "semble",
+      "tokens": 2062,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1945.4,
       "n_hunks": 4
     },
     {
@@ -2820,7 +3223,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 2027.9,
+      "latency_ms": 1710.4,
       "n_hunks": 4
     },
     {
@@ -2832,7 +3235,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 30.4,
+      "latency_ms": 27.8,
       "n_hunks": 2
     },
     {
@@ -2844,7 +3247,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 14,
-      "latency_ms": 31.7,
+      "latency_ms": 26.3,
       "n_hunks": 2
     },
     {
@@ -2856,7 +3259,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 22,
-      "latency_ms": 28.2,
+      "latency_ms": 22.6,
       "n_hunks": 2
     },
     {
@@ -2868,7 +3271,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 31.3,
+      "latency_ms": 24.0,
       "n_hunks": 2
     },
     {
@@ -2880,7 +3283,7 @@
       "coverage": 0.5,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 233.7,
+      "latency_ms": 209.2,
       "n_hunks": 2
     },
     {
@@ -2899,12 +3302,24 @@
       "session": "Fix extract_zipped_paths infinite loop when provided invalid",
       "corpus": "requests",
       "sha": "d8829f9f24",
+      "strategy": "semble",
+      "tokens": 2184,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 1,
+      "latency_ms": 579.3,
+      "n_hunks": 2
+    },
+    {
+      "session": "Fix extract_zipped_paths infinite loop when provided invalid",
+      "corpus": "requests",
+      "sha": "d8829f9f24",
       "strategy": "slicegrep",
       "tokens": 1840,
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 157.6,
+      "latency_ms": 157.4,
       "n_hunks": 2
     },
     {
@@ -2916,7 +3331,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 37.4,
+      "latency_ms": 35.1,
       "n_hunks": 4
     },
     {
@@ -2928,7 +3343,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 20,
-      "latency_ms": 44.2,
+      "latency_ms": 37.9,
       "n_hunks": 4
     },
     {
@@ -2940,7 +3355,7 @@
       "coverage": 0.25,
       "hit": false,
       "tool_calls": 23,
-      "latency_ms": 43.1,
+      "latency_ms": 38.0,
       "n_hunks": 4
     },
     {
@@ -2952,7 +3367,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 3,
-      "latency_ms": 42.6,
+      "latency_ms": 36.7,
       "n_hunks": 4
     },
     {
@@ -2964,7 +3379,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 348.3,
+      "latency_ms": 263.0,
       "n_hunks": 4
     },
     {
@@ -2976,7 +3391,19 @@
       "coverage": 0.25,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 79.0,
+      "latency_ms": 68.5,
+      "n_hunks": 4
+    },
+    {
+      "session": "Make sure proxies have their scheme attached.",
+      "corpus": "requests",
+      "sha": "641f4611b2",
+      "strategy": "semble",
+      "tokens": 2067,
+      "coverage": 0.25,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1159.3,
       "n_hunks": 4
     },
     {
@@ -2988,7 +3415,7 @@
       "coverage": 0.25,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 297.0,
+      "latency_ms": 281.2,
       "n_hunks": 4
     },
     {
@@ -3000,7 +3427,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 58.6,
+      "latency_ms": 45.6,
       "n_hunks": 2
     },
     {
@@ -3012,7 +3439,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 13,
-      "latency_ms": 58.2,
+      "latency_ms": 49.1,
       "n_hunks": 2
     },
     {
@@ -3024,7 +3451,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 16,
-      "latency_ms": 54.6,
+      "latency_ms": 47.7,
       "n_hunks": 2
     },
     {
@@ -3036,7 +3463,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 5,
-      "latency_ms": 59.9,
+      "latency_ms": 47.2,
       "n_hunks": 2
     },
     {
@@ -3048,7 +3475,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 138.9,
+      "latency_ms": 97.3,
       "n_hunks": 2
     },
     {
@@ -3060,7 +3487,19 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 81.8,
+      "latency_ms": 74.1,
+      "n_hunks": 2
+    },
+    {
+      "session": "docstring for fit kwarg in RenderGroup and render_group",
+      "corpus": "rich",
+      "sha": "c3f29f674c",
+      "strategy": "semble",
+      "tokens": 2056,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 1,
+      "latency_ms": 1242.7,
       "n_hunks": 2
     },
     {
@@ -3072,7 +3511,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 331.3,
+      "latency_ms": 256.7,
       "n_hunks": 2
     },
     {
@@ -3084,7 +3523,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 47.2,
+      "latency_ms": 39.5,
       "n_hunks": 5
     },
     {
@@ -3096,7 +3535,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 17,
-      "latency_ms": 48.8,
+      "latency_ms": 40.2,
       "n_hunks": 5
     },
     {
@@ -3108,7 +3547,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 21,
-      "latency_ms": 46.5,
+      "latency_ms": 36.6,
       "n_hunks": 5
     },
     {
@@ -3120,7 +3559,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 3,
-      "latency_ms": 44.5,
+      "latency_ms": 36.5,
       "n_hunks": 5
     },
     {
@@ -3132,7 +3571,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 163.9,
+      "latency_ms": 126.4,
       "n_hunks": 5
     },
     {
@@ -3144,7 +3583,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 108.8,
+      "latency_ms": 85.9,
+      "n_hunks": 5
+    },
+    {
+      "session": "Clean up, support all redirects, fix potential endless 401 l",
+      "corpus": "requests",
+      "sha": "6ff6f756c0",
+      "strategy": "semble",
+      "tokens": 2300,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1567.7,
       "n_hunks": 5
     },
     {
@@ -3156,7 +3607,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 321.4,
+      "latency_ms": 251.6,
       "n_hunks": 5
     },
     {
@@ -3168,7 +3619,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 39.1,
+      "latency_ms": 39.7,
       "n_hunks": 14
     },
     {
@@ -3180,7 +3631,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 44,
-      "latency_ms": 36.3,
+      "latency_ms": 38.5,
       "n_hunks": 14
     },
     {
@@ -3192,7 +3643,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 61,
-      "latency_ms": 40.9,
+      "latency_ms": 38.6,
       "n_hunks": 14
     },
     {
@@ -3204,7 +3655,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 3,
-      "latency_ms": 37.0,
+      "latency_ms": 35.5,
       "n_hunks": 14
     },
     {
@@ -3216,7 +3667,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1086.4,
+      "latency_ms": 1239.2,
       "n_hunks": 14
     },
     {
@@ -3228,7 +3679,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 83.3,
+      "latency_ms": 155.9,
+      "n_hunks": 14
+    },
+    {
+      "session": "fix tuple of one issue",
+      "corpus": "rich",
+      "sha": "0138b18950",
+      "strategy": "semble",
+      "tokens": 2071,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1509.3,
       "n_hunks": 14
     },
     {
@@ -3240,7 +3703,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 355.4,
+      "latency_ms": 334.3,
       "n_hunks": 14
     },
     {
@@ -3252,7 +3715,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 40.1,
+      "latency_ms": 43.8,
       "n_hunks": 4
     },
     {
@@ -3264,7 +3727,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 68,
-      "latency_ms": 41.4,
+      "latency_ms": 45.0,
       "n_hunks": 4
     },
     {
@@ -3276,7 +3739,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 75,
-      "latency_ms": 36.5,
+      "latency_ms": 38.9,
       "n_hunks": 4
     },
     {
@@ -3288,7 +3751,7 @@
       "coverage": 0.25,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 37.6,
+      "latency_ms": 49.0,
       "n_hunks": 4
     },
     {
@@ -3300,7 +3763,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1004.4,
+      "latency_ms": 1071.1,
       "n_hunks": 4
     },
     {
@@ -3312,7 +3775,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 101.1,
+      "latency_ms": 70.3,
+      "n_hunks": 4
+    },
+    {
+      "session": "invoke type casts default values",
+      "corpus": "click",
+      "sha": "662a30e4ee",
+      "strategy": "semble",
+      "tokens": 2063,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 949.8,
       "n_hunks": 4
     },
     {
@@ -3324,7 +3799,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1477.2,
+      "latency_ms": 1361.2,
       "n_hunks": 4
     },
     {
@@ -3336,7 +3811,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 46.5,
+      "latency_ms": 47.5,
       "n_hunks": 6
     },
     {
@@ -3348,7 +3823,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 59,
-      "latency_ms": 45.8,
+      "latency_ms": 40.9,
       "n_hunks": 6
     },
     {
@@ -3360,7 +3835,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 70,
-      "latency_ms": 42.2,
+      "latency_ms": 37.2,
       "n_hunks": 6
     },
     {
@@ -3372,7 +3847,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 3,
-      "latency_ms": 40.0,
+      "latency_ms": 41.3,
       "n_hunks": 6
     },
     {
@@ -3384,7 +3859,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 180.7,
+      "latency_ms": 186.3,
       "n_hunks": 6
     },
     {
@@ -3396,7 +3871,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 74.7,
+      "latency_ms": 75.2,
+      "n_hunks": 6
+    },
+    {
+      "session": "Record blueprint registration order.",
+      "corpus": "flask",
+      "sha": "c09a4317e4",
+      "strategy": "semble",
+      "tokens": 2030,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 956.3,
       "n_hunks": 6
     },
     {
@@ -3408,7 +3895,7 @@
       "coverage": 0.333,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 610.8,
+      "latency_ms": 564.3,
       "n_hunks": 6
     },
     {
@@ -3420,7 +3907,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 17.6,
+      "latency_ms": 20.0,
       "n_hunks": 1
     },
     {
@@ -3432,7 +3919,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 16,
-      "latency_ms": 16.6,
+      "latency_ms": 16.3,
       "n_hunks": 1
     },
     {
@@ -3444,7 +3931,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 18,
-      "latency_ms": 18.5,
+      "latency_ms": 15.2,
       "n_hunks": 1
     },
     {
@@ -3456,7 +3943,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 5,
-      "latency_ms": 16.0,
+      "latency_ms": 15.0,
       "n_hunks": 1
     },
     {
@@ -3468,7 +3955,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 40.0,
+      "latency_ms": 37.6,
       "n_hunks": 1
     },
     {
@@ -3480,7 +3967,19 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 33.3,
+      "latency_ms": 33.2,
+      "n_hunks": 1
+    },
+    {
+      "session": "added workaround for json on Google AppEngine",
+      "corpus": "flask",
+      "sha": "0198313a22",
+      "strategy": "semble",
+      "tokens": 2043,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 347.9,
       "n_hunks": 1
     },
     {
@@ -3492,7 +3991,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 189.5,
+      "latency_ms": 179.8,
       "n_hunks": 1
     },
     {
@@ -3504,7 +4003,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 100.0,
+      "latency_ms": 78.7,
       "n_hunks": 3
     },
     {
@@ -3516,7 +4015,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 200,
-      "latency_ms": 101.6,
+      "latency_ms": 87.6,
       "n_hunks": 3
     },
     {
@@ -3528,7 +4027,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 235,
-      "latency_ms": 93.1,
+      "latency_ms": 85.6,
       "n_hunks": 3
     },
     {
@@ -3540,7 +4039,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 3,
-      "latency_ms": 96.5,
+      "latency_ms": 83.8,
       "n_hunks": 3
     },
     {
@@ -3552,7 +4051,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 2083.8,
+      "latency_ms": 1856.1,
       "n_hunks": 3
     },
     {
@@ -3564,7 +4063,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 174.5,
+      "latency_ms": 164.6,
+      "n_hunks": 3
+    },
+    {
+      "session": "[highlighter] Extract more complex numbers pattern matching ",
+      "corpus": "rich",
+      "sha": "5e67e22ba4",
+      "strategy": "semble",
+      "tokens": 2097,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 2078.6,
       "n_hunks": 3
     },
     {
@@ -3576,7 +4087,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1129.2,
+      "latency_ms": 978.4,
       "n_hunks": 3
     },
     {
@@ -3588,7 +4099,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 92.2,
+      "latency_ms": 36.3,
       "n_hunks": 7
     },
     {
@@ -3600,7 +4111,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 16,
-      "latency_ms": 65.4,
+      "latency_ms": 37.3,
       "n_hunks": 7
     },
     {
@@ -3612,7 +4123,7 @@
       "coverage": 0.714,
       "hit": true,
       "tool_calls": 22,
-      "latency_ms": 66.8,
+      "latency_ms": 42.5,
       "n_hunks": 7
     },
     {
@@ -3624,7 +4135,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 6,
-      "latency_ms": 65.8,
+      "latency_ms": 43.4,
       "n_hunks": 7
     },
     {
@@ -3636,7 +4147,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 146.0,
+      "latency_ms": 101.0,
       "n_hunks": 7
     },
     {
@@ -3648,7 +4159,19 @@
       "coverage": 0.286,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 92.0,
+      "latency_ms": 90.9,
+      "n_hunks": 7
+    },
+    {
+      "session": "fix TypeError in inspect",
+      "corpus": "rich",
+      "sha": "f7c078313d",
+      "strategy": "semble",
+      "tokens": 2156,
+      "coverage": 0.143,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1512.1,
       "n_hunks": 7
     },
     {
@@ -3660,7 +4183,7 @@
       "coverage": 0.143,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 338.0,
+      "latency_ms": 349.3,
       "n_hunks": 7
     },
     {
@@ -3672,7 +4195,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 47.5,
+      "latency_ms": 41.4,
       "n_hunks": 4
     },
     {
@@ -3684,7 +4207,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 74,
-      "latency_ms": 49.8,
+      "latency_ms": 39.3,
       "n_hunks": 4
     },
     {
@@ -3696,7 +4219,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 99,
-      "latency_ms": 47.3,
+      "latency_ms": 39.8,
       "n_hunks": 4
     },
     {
@@ -3708,7 +4231,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 3,
-      "latency_ms": 40.7,
+      "latency_ms": 44.2,
       "n_hunks": 4
     },
     {
@@ -3720,7 +4243,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1712.8,
+      "latency_ms": 1525.5,
       "n_hunks": 4
     },
     {
@@ -3732,7 +4255,19 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 82.8,
+      "latency_ms": 79.5,
+      "n_hunks": 4
+    },
+    {
+      "session": "use config fixture, get plugin via unregister",
+      "corpus": "flask",
+      "sha": "604cc758fb",
+      "strategy": "semble",
+      "tokens": 2094,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 1,
+      "latency_ms": 935.2,
       "n_hunks": 4
     },
     {
@@ -3744,7 +4279,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 790.7,
+      "latency_ms": 608.8,
       "n_hunks": 4
     },
     {
@@ -3756,7 +4291,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 31.7,
+      "latency_ms": 27.5,
       "n_hunks": 1
     },
     {
@@ -3768,7 +4303,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 21,
-      "latency_ms": 37.1,
+      "latency_ms": 24.5,
       "n_hunks": 1
     },
     {
@@ -3780,7 +4315,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 31,
-      "latency_ms": 38.6,
+      "latency_ms": 28.4,
       "n_hunks": 1
     },
     {
@@ -3792,7 +4327,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 36.6,
+      "latency_ms": 29.5,
       "n_hunks": 1
     },
     {
@@ -3804,7 +4339,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 310.9,
+      "latency_ms": 245.1,
       "n_hunks": 1
     },
     {
@@ -3816,7 +4351,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 75.9,
+      "latency_ms": 55.3,
+      "n_hunks": 1
+    },
+    {
+      "session": "remove app engine detection",
+      "corpus": "click",
+      "sha": "daca3cfce4",
+      "strategy": "semble",
+      "tokens": 2139,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 1,
+      "latency_ms": 863.8,
       "n_hunks": 1
     },
     {
@@ -3828,7 +4375,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 273.6,
+      "latency_ms": 202.9,
       "n_hunks": 1
     },
     {
@@ -3840,7 +4387,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 40.3,
+      "latency_ms": 30.3,
       "n_hunks": 2
     },
     {
@@ -3852,7 +4399,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 4,
-      "latency_ms": 33.6,
+      "latency_ms": 29.8,
       "n_hunks": 2
     },
     {
@@ -3864,7 +4411,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 4,
-      "latency_ms": 30.4,
+      "latency_ms": 29.8,
       "n_hunks": 2
     },
     {
@@ -3876,7 +4423,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 35.8,
+      "latency_ms": 33.2,
       "n_hunks": 2
     },
     {
@@ -3888,7 +4435,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 72.4,
+      "latency_ms": 68.5,
       "n_hunks": 2
     },
     {
@@ -3900,7 +4447,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 91.1,
+      "latency_ms": 96.0,
+      "n_hunks": 2
+    },
+    {
+      "session": "Revert \"fix failing test \"test_prepare_unicode_url\"\"",
+      "corpus": "requests",
+      "sha": "8e69c9f0a1",
+      "strategy": "semble",
+      "tokens": 2088,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1261.9,
       "n_hunks": 2
     },
     {
@@ -3912,7 +4471,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 223.2,
+      "latency_ms": 183.2,
       "n_hunks": 2
     },
     {
@@ -3924,7 +4483,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 31.2,
+      "latency_ms": 32.0,
       "n_hunks": 3
     },
     {
@@ -3936,7 +4495,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 80,
-      "latency_ms": 37.0,
+      "latency_ms": 29.0,
       "n_hunks": 3
     },
     {
@@ -3948,7 +4507,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 97,
-      "latency_ms": 29.7,
+      "latency_ms": 30.0,
       "n_hunks": 3
     },
     {
@@ -3960,7 +4519,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 4,
-      "latency_ms": 40.8,
+      "latency_ms": 31.0,
       "n_hunks": 3
     },
     {
@@ -3972,7 +4531,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 125.9,
+      "latency_ms": 107.1,
       "n_hunks": 3
     },
     {
@@ -3984,7 +4543,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 91.8,
+      "latency_ms": 87.2,
+      "n_hunks": 3
+    },
+    {
+      "session": "Support bytestring URLs on Python 3.x",
+      "corpus": "requests",
+      "sha": "a68d1b4517",
+      "strategy": "semble",
+      "tokens": 2009,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1238.2,
       "n_hunks": 3
     },
     {
@@ -3996,7 +4567,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 351.3,
+      "latency_ms": 305.5,
       "n_hunks": 3
     },
     {
@@ -4008,7 +4579,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 54.8,
+      "latency_ms": 50.0,
       "n_hunks": 20
     },
     {
@@ -4020,7 +4591,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 36,
-      "latency_ms": 53.2,
+      "latency_ms": 48.9,
       "n_hunks": 20
     },
     {
@@ -4032,7 +4603,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 45,
-      "latency_ms": 49.3,
+      "latency_ms": 51.1,
       "n_hunks": 20
     },
     {
@@ -4044,7 +4615,7 @@
       "coverage": 0.45,
       "hit": false,
       "tool_calls": 3,
-      "latency_ms": 60.9,
+      "latency_ms": 46.8,
       "n_hunks": 20
     },
     {
@@ -4056,7 +4627,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 84.2,
+      "latency_ms": 73.9,
       "n_hunks": 20
     },
     {
@@ -4068,7 +4639,19 @@
       "coverage": 0.45,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 89.0,
+      "latency_ms": 93.1,
+      "n_hunks": 20
+    },
+    {
+      "session": "deprecate passing script_info to factory",
+      "corpus": "flask",
+      "sha": "fcac7f11cf",
+      "strategy": "semble",
+      "tokens": 2050,
+      "coverage": 0.15,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 940.9,
       "n_hunks": 20
     },
     {
@@ -4080,7 +4663,7 @@
       "coverage": 0.4,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 452.3,
+      "latency_ms": 361.1,
       "n_hunks": 20
     },
     {
@@ -4092,7 +4675,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 160.7,
+      "latency_ms": 155.2,
       "n_hunks": 3
     },
     {
@@ -4104,7 +4687,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 122,
-      "latency_ms": 151.6,
+      "latency_ms": 152.4,
       "n_hunks": 3
     },
     {
@@ -4116,7 +4699,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 151,
-      "latency_ms": 162.0,
+      "latency_ms": 150.3,
       "n_hunks": 3
     },
     {
@@ -4128,7 +4711,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 165.9,
+      "latency_ms": 134.5,
       "n_hunks": 3
     },
     {
@@ -4140,7 +4723,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 126.4,
+      "latency_ms": 111.3,
       "n_hunks": 3
     },
     {
@@ -4152,7 +4735,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 222.5,
+      "latency_ms": 207.1,
+      "n_hunks": 3
+    },
+    {
+      "session": "fixup! Update HTML format (reverse pre and code tags)",
+      "corpus": "rich",
+      "sha": "b20c233faa",
+      "strategy": "semble",
+      "tokens": 2018,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 2153.2,
       "n_hunks": 3
     },
     {
@@ -4164,7 +4759,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1303.1,
+      "latency_ms": 1142.7,
       "n_hunks": 3
     },
     {
@@ -4176,7 +4771,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 69.3,
+      "latency_ms": 66.6,
       "n_hunks": 5
     },
     {
@@ -4188,7 +4783,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 53,
-      "latency_ms": 72.6,
+      "latency_ms": 69.9,
       "n_hunks": 5
     },
     {
@@ -4200,7 +4795,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 70,
-      "latency_ms": 70.8,
+      "latency_ms": 66.9,
       "n_hunks": 5
     },
     {
@@ -4212,7 +4807,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 73.4,
+      "latency_ms": 61.0,
       "n_hunks": 5
     },
     {
@@ -4224,7 +4819,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 96.7,
+      "latency_ms": 85.2,
       "n_hunks": 5
     },
     {
@@ -4236,7 +4831,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 97.8,
+      "latency_ms": 88.9,
+      "n_hunks": 5
+    },
+    {
+      "session": "use tb_offset to correctly format stack trace",
+      "corpus": "rich",
+      "sha": "1d08a76c2e",
+      "strategy": "semble",
+      "tokens": 2146,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1490.6,
       "n_hunks": 5
     },
     {
@@ -4248,7 +4855,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 520.2,
+      "latency_ms": 493.3,
       "n_hunks": 5
     },
     {
@@ -4260,7 +4867,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 10.5,
+      "latency_ms": 12.5,
       "n_hunks": 1
     },
     {
@@ -4272,7 +4879,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 17,
-      "latency_ms": 12.8,
+      "latency_ms": 13.2,
       "n_hunks": 1
     },
     {
@@ -4284,7 +4891,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 20,
-      "latency_ms": 14.6,
+      "latency_ms": 13.5,
       "n_hunks": 1
     },
     {
@@ -4296,7 +4903,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 4,
-      "latency_ms": 15.4,
+      "latency_ms": 12.1,
       "n_hunks": 1
     },
     {
@@ -4308,7 +4915,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 43.7,
+      "latency_ms": 39.8,
       "n_hunks": 1
     },
     {
@@ -4320,7 +4927,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 18.9,
+      "latency_ms": 21.1,
+      "n_hunks": 1
+    },
+    {
+      "session": "Facilitate proxy configuration by environment variables",
+      "corpus": "requests",
+      "sha": "21c2146be4",
+      "strategy": "semble",
+      "tokens": 2319,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 390.0,
       "n_hunks": 1
     },
     {
@@ -4332,7 +4951,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 135.4,
+      "latency_ms": 109.0,
       "n_hunks": 1
     },
     {
@@ -4344,7 +4963,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 101.1,
+      "latency_ms": 95.7,
       "n_hunks": 1
     },
     {
@@ -4356,7 +4975,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 97,
-      "latency_ms": 108.6,
+      "latency_ms": 95.4,
       "n_hunks": 1
     },
     {
@@ -4368,7 +4987,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 128,
-      "latency_ms": 107.9,
+      "latency_ms": 94.1,
       "n_hunks": 1
     },
     {
@@ -4380,7 +4999,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 3,
-      "latency_ms": 108.0,
+      "latency_ms": 89.6,
       "n_hunks": 1
     },
     {
@@ -4392,7 +5011,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 489.7,
+      "latency_ms": 464.1,
       "n_hunks": 1
     },
     {
@@ -4404,7 +5023,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 180.3,
+      "latency_ms": 181.9,
+      "n_hunks": 1
+    },
+    {
+      "session": "remove attribute error",
+      "corpus": "rich",
+      "sha": "1aa9061644",
+      "strategy": "semble",
+      "tokens": 2069,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 2022.3,
       "n_hunks": 1
     },
     {
@@ -4416,7 +5047,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 985.7,
+      "latency_ms": 817.9,
       "n_hunks": 1
     },
     {
@@ -4428,7 +5059,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 48.0,
+      "latency_ms": 37.5,
       "n_hunks": 1
     },
     {
@@ -4440,7 +5071,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 90,
-      "latency_ms": 42.6,
+      "latency_ms": 47.2,
       "n_hunks": 1
     },
     {
@@ -4452,7 +5083,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 101,
-      "latency_ms": 53.5,
+      "latency_ms": 45.1,
       "n_hunks": 1
     },
     {
@@ -4464,7 +5095,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 3,
-      "latency_ms": 48.7,
+      "latency_ms": 40.4,
       "n_hunks": 1
     },
     {
@@ -4476,7 +5107,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 67.9,
+      "latency_ms": 64.0,
       "n_hunks": 1
     },
     {
@@ -4488,7 +5119,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 91.6,
+      "latency_ms": 98.5,
+      "n_hunks": 1
+    },
+    {
+      "session": "Clarify the per-host proxy code",
+      "corpus": "requests",
+      "sha": "22075f02d0",
+      "strategy": "semble",
+      "tokens": 2146,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1334.7,
       "n_hunks": 1
     },
     {
@@ -4500,7 +5143,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 828.3,
+      "latency_ms": 793.2,
       "n_hunks": 1
     },
     {
@@ -4512,7 +5155,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 13.3,
+      "latency_ms": 13.7,
       "n_hunks": 4
     },
     {
@@ -4524,7 +5167,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 43,
-      "latency_ms": 13.9,
+      "latency_ms": 14.4,
       "n_hunks": 4
     },
     {
@@ -4536,7 +5179,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 50,
-      "latency_ms": 16.6,
+      "latency_ms": 13.8,
       "n_hunks": 4
     },
     {
@@ -4548,7 +5191,7 @@
       "coverage": 0.75,
       "hit": true,
       "tool_calls": 3,
-      "latency_ms": 15.0,
+      "latency_ms": 12.7,
       "n_hunks": 4
     },
     {
@@ -4560,7 +5203,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 466.8,
+      "latency_ms": 307.7,
       "n_hunks": 4
     },
     {
@@ -4572,7 +5215,19 @@
       "coverage": 0.25,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 26.4,
+      "latency_ms": 26.1,
+      "n_hunks": 4
+    },
+    {
+      "session": "If there is no content in a response don't throw an error th",
+      "corpus": "requests",
+      "sha": "b92feb3f0a",
+      "strategy": "semble",
+      "tokens": 2163,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 379.5,
       "n_hunks": 4
     },
     {
@@ -4584,7 +5239,7 @@
       "coverage": 0.25,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 482.8,
+      "latency_ms": 376.2,
       "n_hunks": 4
     },
     {
@@ -4596,7 +5251,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 33.4,
+      "latency_ms": 27.7,
       "n_hunks": 8
     },
     {
@@ -4608,7 +5263,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 31,
-      "latency_ms": 32.7,
+      "latency_ms": 27.3,
       "n_hunks": 8
     },
     {
@@ -4620,7 +5275,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 40,
-      "latency_ms": 27.9,
+      "latency_ms": 25.2,
       "n_hunks": 8
     },
     {
@@ -4632,7 +5287,7 @@
       "coverage": 0.125,
       "hit": false,
       "tool_calls": 4,
-      "latency_ms": 31.9,
+      "latency_ms": 26.3,
       "n_hunks": 8
     },
     {
@@ -4644,7 +5299,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1448.4,
+      "latency_ms": 492.1,
       "n_hunks": 8
     },
     {
@@ -4656,7 +5311,19 @@
       "coverage": 0.125,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 74.6,
+      "latency_ms": 46.1,
+      "n_hunks": 8
+    },
+    {
+      "session": "add open intervals to FloatRange",
+      "corpus": "click",
+      "sha": "75b708a157",
+      "strategy": "semble",
+      "tokens": 2118,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 707.5,
       "n_hunks": 8
     },
     {
@@ -4668,7 +5335,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 305.5,
+      "latency_ms": 230.3,
       "n_hunks": 8
     },
     {
@@ -4680,7 +5347,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 53.8,
+      "latency_ms": 43.9,
       "n_hunks": 12
     },
     {
@@ -4692,7 +5359,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 57,
-      "latency_ms": 65.4,
+      "latency_ms": 44.7,
       "n_hunks": 12
     },
     {
@@ -4704,7 +5371,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 76,
-      "latency_ms": 53.7,
+      "latency_ms": 40.2,
       "n_hunks": 12
     },
     {
@@ -4716,7 +5383,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 3,
-      "latency_ms": 51.3,
+      "latency_ms": 40.3,
       "n_hunks": 12
     },
     {
@@ -4728,7 +5395,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 96.4,
+      "latency_ms": 74.0,
       "n_hunks": 12
     },
     {
@@ -4740,7 +5407,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 86.1,
+      "latency_ms": 77.9,
+      "n_hunks": 12
+    },
+    {
+      "session": "deprecate app session methods in favor of session_interface ",
+      "corpus": "flask",
+      "sha": "b9c8c9bad1",
+      "strategy": "semble",
+      "tokens": 2105,
+      "coverage": 0.25,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 947.3,
       "n_hunks": 12
     },
     {
@@ -4752,7 +5431,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 770.9,
+      "latency_ms": 1497.2,
       "n_hunks": 12
     },
     {
@@ -4764,7 +5443,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 29.8,
+      "latency_ms": 25.9,
       "n_hunks": 13
     },
     {
@@ -4776,7 +5455,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 52,
-      "latency_ms": 24.6,
+      "latency_ms": 25.6,
       "n_hunks": 13
     },
     {
@@ -4788,7 +5467,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 61,
-      "latency_ms": 21.2,
+      "latency_ms": 22.9,
       "n_hunks": 13
     },
     {
@@ -4800,7 +5479,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 26.2,
+      "latency_ms": 24.0,
       "n_hunks": 13
     },
     {
@@ -4812,7 +5491,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 484.8,
+      "latency_ms": 394.5,
       "n_hunks": 13
     },
     {
@@ -4824,7 +5503,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 47.3,
+      "latency_ms": 45.9,
+      "n_hunks": 13
+    },
+    {
+      "session": "Replace 'module' with 'blueprint' in docstrings.",
+      "corpus": "flask",
+      "sha": "3d6e3e48ad",
+      "strategy": "semble",
+      "tokens": 2039,
+      "coverage": 0.077,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 484.2,
       "n_hunks": 13
     },
     {
@@ -4836,7 +5527,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 441.9,
+      "latency_ms": 383.8,
       "n_hunks": 13
     },
     {
@@ -4848,7 +5539,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 7.0,
+      "latency_ms": 7.9,
       "n_hunks": 2
     },
     {
@@ -4860,7 +5551,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 32,
-      "latency_ms": 10.8,
+      "latency_ms": 7.8,
       "n_hunks": 2
     },
     {
@@ -4872,7 +5563,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 36,
-      "latency_ms": 12.5,
+      "latency_ms": 7.3,
       "n_hunks": 2
     },
     {
@@ -4884,7 +5575,7 @@
       "coverage": 0.5,
       "hit": true,
       "tool_calls": 2,
-      "latency_ms": 14.2,
+      "latency_ms": 8.0,
       "n_hunks": 2
     },
     {
@@ -4896,7 +5587,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 34.9,
+      "latency_ms": 31.6,
       "n_hunks": 2
     },
     {
@@ -4908,7 +5599,19 @@
       "coverage": 0.5,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 18.9,
+      "latency_ms": 19.4,
+      "n_hunks": 2
+    },
+    {
+      "session": "Fixed late binding of url_prefix.  This fixes #29.",
+      "corpus": "flask",
+      "sha": "a921aef6c4",
+      "strategy": "semble",
+      "tokens": 2174,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 1,
+      "latency_ms": 239.5,
       "n_hunks": 2
     },
     {
@@ -4920,7 +5623,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 218.2,
+      "latency_ms": 180.2,
       "n_hunks": 2
     },
     {
@@ -4944,7 +5647,7 @@
       "coverage": 0.3,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 9.9,
+      "latency_ms": 7.1,
       "n_hunks": 20
     },
     {
@@ -4956,7 +5659,7 @@
       "coverage": 0.3,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 12.6,
+      "latency_ms": 9.3,
       "n_hunks": 20
     },
     {
@@ -4968,7 +5671,7 @@
       "coverage": 0.3,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 8.9,
+      "latency_ms": 7.2,
       "n_hunks": 20
     },
     {
@@ -4980,7 +5683,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 27.8,
+      "latency_ms": 33.5,
       "n_hunks": 20
     },
     {
@@ -4992,7 +5695,19 @@
       "coverage": 0.25,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 20.4,
+      "latency_ms": 17.9,
+      "n_hunks": 20
+    },
+    {
+      "session": "chaged fit to expand",
+      "corpus": "rich",
+      "sha": "89be28bb9c",
+      "strategy": "semble",
+      "tokens": 2161,
+      "coverage": 0.2,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 423.7,
       "n_hunks": 20
     },
     {
@@ -5004,7 +5719,7 @@
       "coverage": 0.25,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 46.6,
+      "latency_ms": 43.6,
       "n_hunks": 20
     },
     {
@@ -5016,7 +5731,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 28.6,
+      "latency_ms": 28.1,
       "n_hunks": 3
     },
     {
@@ -5028,7 +5743,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 24,
-      "latency_ms": 29.2,
+      "latency_ms": 28.0,
       "n_hunks": 3
     },
     {
@@ -5040,7 +5755,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 33,
-      "latency_ms": 26.9,
+      "latency_ms": 22.6,
       "n_hunks": 3
     },
     {
@@ -5052,7 +5767,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 26.0,
+      "latency_ms": 24.2,
       "n_hunks": 3
     },
     {
@@ -5064,7 +5779,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 349.0,
+      "latency_ms": 285.3,
       "n_hunks": 3
     },
     {
@@ -5076,7 +5791,19 @@
       "coverage": 0.667,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 87.2,
+      "latency_ms": 69.1,
+      "n_hunks": 3
+    },
+    {
+      "session": "provide_automatic_options as explicit arg",
+      "corpus": "flask",
+      "sha": "5505827a4b",
+      "strategy": "semble",
+      "tokens": 2063,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 878.2,
       "n_hunks": 3
     },
     {
@@ -5088,7 +5815,7 @@
       "coverage": 0.333,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 279.4,
+      "latency_ms": 250.0,
       "n_hunks": 3
     },
     {
@@ -5100,7 +5827,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 77.2,
+      "latency_ms": 54.7,
       "n_hunks": 3
     },
     {
@@ -5112,7 +5839,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 61,
-      "latency_ms": 85.3,
+      "latency_ms": 55.6,
       "n_hunks": 3
     },
     {
@@ -5124,7 +5851,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 78,
-      "latency_ms": 82.6,
+      "latency_ms": 51.1,
       "n_hunks": 3
     },
     {
@@ -5136,7 +5863,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 74.5,
+      "latency_ms": 50.4,
       "n_hunks": 3
     },
     {
@@ -5148,7 +5875,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 92.5,
+      "latency_ms": 69.7,
       "n_hunks": 3
     },
     {
@@ -5160,7 +5887,19 @@
       "coverage": 0.333,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 121.5,
+      "latency_ms": 82.8,
+      "n_hunks": 3
+    },
+    {
+      "session": "Stop change CWD to .env/.flaskenv location",
+      "corpus": "flask",
+      "sha": "84cbfc0698",
+      "strategy": "semble",
+      "tokens": 2468,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 919.5,
       "n_hunks": 3
     },
     {
@@ -5172,7 +5911,7 @@
       "coverage": 0.333,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 508.7,
+      "latency_ms": 423.6,
       "n_hunks": 3
     },
     {
@@ -5184,7 +5923,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 52.4,
+      "latency_ms": 46.2,
       "n_hunks": 3
     },
     {
@@ -5196,7 +5935,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 64,
-      "latency_ms": 47.9,
+      "latency_ms": 38.0,
       "n_hunks": 3
     },
     {
@@ -5208,7 +5947,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 88,
-      "latency_ms": 43.2,
+      "latency_ms": 42.0,
       "n_hunks": 3
     },
     {
@@ -5220,7 +5959,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 3,
-      "latency_ms": 46.7,
+      "latency_ms": 37.9,
       "n_hunks": 3
     },
     {
@@ -5232,7 +5971,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 333.1,
+      "latency_ms": 279.2,
       "n_hunks": 3
     },
     {
@@ -5244,7 +5983,19 @@
       "coverage": 0.333,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 93.8,
+      "latency_ms": 90.2,
+      "n_hunks": 3
+    },
+    {
+      "session": "lazy load app on reload only",
+      "corpus": "flask",
+      "sha": "240a11052b",
+      "strategy": "semble",
+      "tokens": 2009,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 942.4,
       "n_hunks": 3
     },
     {
@@ -5256,7 +6007,7 @@
       "coverage": 0.333,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 611.0,
+      "latency_ms": 530.3,
       "n_hunks": 3
     },
     {
@@ -5268,7 +6019,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 20.0,
+      "latency_ms": 17.4,
       "n_hunks": 3
     },
     {
@@ -5280,7 +6031,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 33,
-      "latency_ms": 17.7,
+      "latency_ms": 14.3,
       "n_hunks": 3
     },
     {
@@ -5292,7 +6043,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 39,
-      "latency_ms": 14.6,
+      "latency_ms": 15.8,
       "n_hunks": 3
     },
     {
@@ -5304,7 +6055,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 2,
-      "latency_ms": 15.6,
+      "latency_ms": 16.5,
       "n_hunks": 3
     },
     {
@@ -5316,7 +6067,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 48.1,
+      "latency_ms": 36.8,
       "n_hunks": 3
     },
     {
@@ -5328,7 +6079,19 @@
       "coverage": 0.667,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 30.4,
+      "latency_ms": 26.6,
+      "n_hunks": 3
+    },
+    {
+      "session": "Cleaned up context defaults and documented them.",
+      "corpus": "click",
+      "sha": "7d776de4eb",
+      "strategy": "semble",
+      "tokens": 2117,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 447.6,
       "n_hunks": 3
     },
     {
@@ -5340,7 +6103,7 @@
       "coverage": 0.667,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 242.8,
+      "latency_ms": 207.3,
       "n_hunks": 3
     },
     {
@@ -5352,7 +6115,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 45.3,
+      "latency_ms": 41.5,
       "n_hunks": 4
     },
     {
@@ -5364,7 +6127,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 79,
-      "latency_ms": 47.4,
+      "latency_ms": 41.0,
       "n_hunks": 4
     },
     {
@@ -5376,7 +6139,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 100,
-      "latency_ms": 44.8,
+      "latency_ms": 37.7,
       "n_hunks": 4
     },
     {
@@ -5388,7 +6151,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 51.2,
+      "latency_ms": 37.9,
       "n_hunks": 4
     },
     {
@@ -5400,7 +6163,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 83.5,
+      "latency_ms": 74.3,
       "n_hunks": 4
     },
     {
@@ -5412,7 +6175,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 83.3,
+      "latency_ms": 73.6,
+      "n_hunks": 4
+    },
+    {
+      "session": "rewrite cli docs reflects the current FLASK_APP detection",
+      "corpus": "flask",
+      "sha": "9bc329c0c9",
+      "strategy": "semble",
+      "tokens": 2073,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 956.4,
       "n_hunks": 4
     },
     {
@@ -5424,7 +6199,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 481.5,
+      "latency_ms": 436.8,
       "n_hunks": 4
     },
     {
@@ -5436,7 +6211,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 16.2,
+      "latency_ms": 20.4,
       "n_hunks": 4
     },
     {
@@ -5448,7 +6223,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 26,
-      "latency_ms": 20.6,
+      "latency_ms": 15.7,
       "n_hunks": 4
     },
     {
@@ -5460,7 +6235,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 33,
-      "latency_ms": 20.2,
+      "latency_ms": 16.3,
       "n_hunks": 4
     },
     {
@@ -5472,7 +6247,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 3,
-      "latency_ms": 16.4,
+      "latency_ms": 15.7,
       "n_hunks": 4
     },
     {
@@ -5484,7 +6259,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 60.1,
+      "latency_ms": 44.7,
       "n_hunks": 4
     },
     {
@@ -5496,7 +6271,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 40.9,
+      "latency_ms": 34.3,
+      "n_hunks": 4
+    },
+    {
+      "session": "Extracted bar formatting to own method",
+      "corpus": "click",
+      "sha": "a41415ce87",
+      "strategy": "semble",
+      "tokens": 2146,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 546.8,
       "n_hunks": 4
     },
     {
@@ -5508,7 +6295,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 187.4,
+      "latency_ms": 133.3,
       "n_hunks": 4
     },
     {
@@ -5520,7 +6307,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 46.2,
+      "latency_ms": 33.9,
       "n_hunks": 4
     },
     {
@@ -5532,7 +6319,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 85,
-      "latency_ms": 42.8,
+      "latency_ms": 34.7,
       "n_hunks": 4
     },
     {
@@ -5544,7 +6331,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 110,
-      "latency_ms": 42.4,
+      "latency_ms": 34.4,
       "n_hunks": 4
     },
     {
@@ -5556,7 +6343,7 @@
       "coverage": 0.25,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 42.3,
+      "latency_ms": 38.1,
       "n_hunks": 4
     },
     {
@@ -5568,7 +6355,7 @@
       "coverage": 0.5,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 735.7,
+      "latency_ms": 603.4,
       "n_hunks": 4
     },
     {
@@ -5580,7 +6367,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 103.1,
+      "latency_ms": 84.4,
+      "n_hunks": 4
+    },
+    {
+      "session": "add Response.max_cookie_size config",
+      "corpus": "flask",
+      "sha": "1ed756a523",
+      "strategy": "semble",
+      "tokens": 2074,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 898.7,
       "n_hunks": 4
     },
     {
@@ -5592,7 +6391,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 865.8,
+      "latency_ms": 767.0,
       "n_hunks": 4
     },
     {
@@ -5604,7 +6403,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 33.8,
+      "latency_ms": 25.7,
       "n_hunks": 4
     },
     {
@@ -5616,7 +6415,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 63,
-      "latency_ms": 31.7,
+      "latency_ms": 24.3,
       "n_hunks": 4
     },
     {
@@ -5628,7 +6427,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 67,
-      "latency_ms": 32.4,
+      "latency_ms": 24.7,
       "n_hunks": 4
     },
     {
@@ -5640,7 +6439,7 @@
       "coverage": 0.25,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 34.1,
+      "latency_ms": 25.1,
       "n_hunks": 4
     },
     {
@@ -5652,7 +6451,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 122.1,
+      "latency_ms": 106.9,
       "n_hunks": 4
     },
     {
@@ -5664,7 +6463,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 54.6,
+      "latency_ms": 49.5,
+      "n_hunks": 4
+    },
+    {
+      "session": "Don't only catch BadRequest key errors but all bad request e",
+      "corpus": "flask",
+      "sha": "acac64e36a",
+      "strategy": "semble",
+      "tokens": 2142,
+      "coverage": 0.75,
+      "hit": true,
+      "tool_calls": 1,
+      "latency_ms": 563.3,
       "n_hunks": 4
     },
     {
@@ -5676,7 +6487,7 @@
       "coverage": 0.25,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 803.0,
+      "latency_ms": 684.3,
       "n_hunks": 4
     },
     {
@@ -5688,7 +6499,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 35.8,
+      "latency_ms": 40.8,
       "n_hunks": 8
     },
     {
@@ -5700,7 +6511,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 25,
-      "latency_ms": 42.5,
+      "latency_ms": 36.0,
       "n_hunks": 8
     },
     {
@@ -5712,7 +6523,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 31,
-      "latency_ms": 55.5,
+      "latency_ms": 38.0,
       "n_hunks": 8
     },
     {
@@ -5724,7 +6535,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 45.8,
+      "latency_ms": 35.8,
       "n_hunks": 8
     },
     {
@@ -5736,7 +6547,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1656.5,
+      "latency_ms": 566.5,
       "n_hunks": 8
     },
     {
@@ -5748,7 +6559,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 77.2,
+      "latency_ms": 65.8,
+      "n_hunks": 8
+    },
+    {
+      "session": "Update types for typechecks",
+      "corpus": "rich",
+      "sha": "fdac216130",
+      "strategy": "semble",
+      "tokens": 2078,
+      "coverage": 0.125,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1149.8,
       "n_hunks": 8
     },
     {
@@ -5760,7 +6583,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 323.9,
+      "latency_ms": 281.7,
       "n_hunks": 8
     },
     {
@@ -5772,7 +6595,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 97.2,
+      "latency_ms": 81.7,
       "n_hunks": 3
     },
     {
@@ -5784,7 +6607,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 198,
-      "latency_ms": 80.7,
+      "latency_ms": 68.3,
       "n_hunks": 3
     },
     {
@@ -5796,7 +6619,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 213,
-      "latency_ms": 90.0,
+      "latency_ms": 68.2,
       "n_hunks": 3
     },
     {
@@ -5808,7 +6631,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 81.9,
+      "latency_ms": 73.6,
       "n_hunks": 3
     },
     {
@@ -5820,7 +6643,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 683.5,
+      "latency_ms": 1615.1,
       "n_hunks": 3
     },
     {
@@ -5832,7 +6655,19 @@
       "coverage": 0.333,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 151.2,
+      "latency_ms": 139.7,
+      "n_hunks": 3
+    },
+    {
+      "session": "Use Windows Console API to write text",
+      "corpus": "rich",
+      "sha": "ceef724ecd",
+      "strategy": "semble",
+      "tokens": 2104,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1809.9,
       "n_hunks": 3
     },
     {
@@ -5844,7 +6679,7 @@
       "coverage": 0.333,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 5652.4,
+      "latency_ms": 2985.7,
       "n_hunks": 3
     },
     {
@@ -5856,7 +6691,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 56.4,
+      "latency_ms": 44.9,
       "n_hunks": 4
     },
     {
@@ -5868,7 +6703,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 106,
-      "latency_ms": 51.1,
+      "latency_ms": 41.2,
       "n_hunks": 4
     },
     {
@@ -5880,7 +6715,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 125,
-      "latency_ms": 50.9,
+      "latency_ms": 42.5,
       "n_hunks": 4
     },
     {
@@ -5892,7 +6727,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 53.6,
+      "latency_ms": 45.4,
       "n_hunks": 4
     },
     {
@@ -5904,7 +6739,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 70.0,
+      "latency_ms": 58.5,
       "n_hunks": 4
     },
     {
@@ -5916,7 +6751,19 @@
       "coverage": 0.25,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 90.4,
+      "latency_ms": 75.2,
+      "n_hunks": 4
+    },
+    {
+      "session": "Use non-shadowed help option name in error hint",
+      "corpus": "click",
+      "sha": "1241abaed4",
+      "strategy": "semble",
+      "tokens": 2200,
+      "coverage": 0.75,
+      "hit": true,
+      "tool_calls": 1,
+      "latency_ms": 1067.8,
       "n_hunks": 4
     },
     {
@@ -5928,7 +6775,7 @@
       "coverage": 0.25,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 2212.3,
+      "latency_ms": 1788.3,
       "n_hunks": 4
     },
     {
@@ -5940,7 +6787,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 24.7,
+      "latency_ms": 21.4,
       "n_hunks": 3
     },
     {
@@ -5952,7 +6799,7 @@
       "coverage": 0.333,
       "hit": false,
       "tool_calls": 6,
-      "latency_ms": 22.8,
+      "latency_ms": 19.4,
       "n_hunks": 3
     },
     {
@@ -5964,7 +6811,7 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 8,
-      "latency_ms": 24.8,
+      "latency_ms": 18.3,
       "n_hunks": 3
     },
     {
@@ -5976,7 +6823,7 @@
       "coverage": 0.333,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 25.0,
+      "latency_ms": 19.6,
       "n_hunks": 3
     },
     {
@@ -5988,7 +6835,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 56.3,
+      "latency_ms": 47.7,
       "n_hunks": 3
     },
     {
@@ -6000,7 +6847,19 @@
       "coverage": 0.667,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 38.8,
+      "latency_ms": 31.7,
+      "n_hunks": 3
+    },
+    {
+      "session": "More defensive for scope depth management",
+      "corpus": "click",
+      "sha": "fe2f525e72",
+      "strategy": "semble",
+      "tokens": 2082,
+      "coverage": 0.667,
+      "hit": true,
+      "tool_calls": 1,
+      "latency_ms": 519.6,
       "n_hunks": 3
     },
     {
@@ -6012,7 +6871,7 @@
       "coverage": 0.667,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 147.6,
+      "latency_ms": 120.5,
       "n_hunks": 3
     },
     {
@@ -6024,7 +6883,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 56.3,
+      "latency_ms": 51.2,
       "n_hunks": 3
     },
     {
@@ -6036,7 +6895,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 112,
-      "latency_ms": 58.6,
+      "latency_ms": 47.1,
       "n_hunks": 3
     },
     {
@@ -6048,7 +6907,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 132,
-      "latency_ms": 55.4,
+      "latency_ms": 51.8,
       "n_hunks": 3
     },
     {
@@ -6060,7 +6919,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 4,
-      "latency_ms": 53.7,
+      "latency_ms": 46.7,
       "n_hunks": 3
     },
     {
@@ -6072,7 +6931,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 264.1,
+      "latency_ms": 217.1,
       "n_hunks": 3
     },
     {
@@ -6084,7 +6943,19 @@
       "coverage": 0.667,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 87.1,
+      "latency_ms": 73.3,
+      "n_hunks": 3
+    },
+    {
+      "session": "remove unhelpful difflib print",
+      "corpus": "rich",
+      "sha": "bdbd05e46b",
+      "strategy": "semble",
+      "tokens": 2026,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1290.2,
       "n_hunks": 3
     },
     {
@@ -6096,7 +6967,7 @@
       "coverage": 0.667,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 686.4,
+      "latency_ms": 584.9,
       "n_hunks": 3
     },
     {
@@ -6108,7 +6979,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 44.1,
+      "latency_ms": 41.6,
       "n_hunks": 2
     },
     {
@@ -6120,7 +6991,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 24,
-      "latency_ms": 44.9,
+      "latency_ms": 38.3,
       "n_hunks": 2
     },
     {
@@ -6132,7 +7003,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 29,
-      "latency_ms": 51.6,
+      "latency_ms": 35.7,
       "n_hunks": 2
     },
     {
@@ -6144,7 +7015,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 44.3,
+      "latency_ms": 37.1,
       "n_hunks": 2
     },
     {
@@ -6156,7 +7027,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 72.5,
+      "latency_ms": 54.6,
       "n_hunks": 2
     },
     {
@@ -6168,7 +7039,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 84.4,
+      "latency_ms": 78.8,
+      "n_hunks": 2
+    },
+    {
+      "session": "Don't parameterize tests using non-Collection iterables",
+      "corpus": "click",
+      "sha": "30749b45c5",
+      "strategy": "semble",
+      "tokens": 2009,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1227.0,
       "n_hunks": 2
     },
     {
@@ -6180,7 +7063,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 262.6,
+      "latency_ms": 215.7,
       "n_hunks": 2
     },
     {
@@ -6192,7 +7075,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 40.3,
+      "latency_ms": 32.7,
       "n_hunks": 1
     },
     {
@@ -6204,7 +7087,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 60,
-      "latency_ms": 40.9,
+      "latency_ms": 32.5,
       "n_hunks": 1
     },
     {
@@ -6216,7 +7099,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 88,
-      "latency_ms": 35.9,
+      "latency_ms": 33.4,
       "n_hunks": 1
     },
     {
@@ -6228,7 +7111,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 38.9,
+      "latency_ms": 30.9,
       "n_hunks": 1
     },
     {
@@ -6240,7 +7123,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 214.0,
+      "latency_ms": 174.9,
       "n_hunks": 1
     },
     {
@@ -6252,7 +7135,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 65.7,
+      "latency_ms": 60.2,
+      "n_hunks": 1
+    },
+    {
+      "session": "Added a testcase for some more routing things between bluepr",
+      "corpus": "flask",
+      "sha": "e17024e85a",
+      "strategy": "semble",
+      "tokens": 2128,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 805.9,
       "n_hunks": 1
     },
     {
@@ -6264,7 +7159,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 438.1,
+      "latency_ms": 349.5,
       "n_hunks": 1
     },
     {
@@ -6276,7 +7171,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 28.5,
+      "latency_ms": 22.7,
       "n_hunks": 2
     },
     {
@@ -6288,7 +7183,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 30,
-      "latency_ms": 24.7,
+      "latency_ms": 21.0,
       "n_hunks": 2
     },
     {
@@ -6300,7 +7195,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 40,
-      "latency_ms": 29.1,
+      "latency_ms": 24.5,
       "n_hunks": 2
     },
     {
@@ -6312,7 +7207,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 27.4,
+      "latency_ms": 24.7,
       "n_hunks": 2
     },
     {
@@ -6324,7 +7219,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 659.9,
+      "latency_ms": 524.1,
       "n_hunks": 2
     },
     {
@@ -6336,7 +7231,19 @@
       "coverage": 0.5,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 44.3,
+      "latency_ms": 39.9,
+      "n_hunks": 2
+    },
+    {
+      "session": "Send only one Host header in chunked request",
+      "corpus": "requests",
+      "sha": "6fbfca90b6",
+      "strategy": "semble",
+      "tokens": 2140,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 1,
+      "latency_ms": 543.6,
       "n_hunks": 2
     },
     {
@@ -6348,7 +7255,7 @@
       "coverage": 0.5,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 731.8,
+      "latency_ms": 694.3,
       "n_hunks": 2
     },
     {
@@ -6360,7 +7267,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 43.4,
+      "latency_ms": 38.9,
       "n_hunks": 4
     },
     {
@@ -6372,7 +7279,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 54,
-      "latency_ms": 46.6,
+      "latency_ms": 36.1,
       "n_hunks": 4
     },
     {
@@ -6384,7 +7291,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 70,
-      "latency_ms": 111.7,
+      "latency_ms": 35.0,
       "n_hunks": 4
     },
     {
@@ -6396,7 +7303,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 200.4,
+      "latency_ms": 38.8,
       "n_hunks": 4
     },
     {
@@ -6408,7 +7315,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 492.9,
+      "latency_ms": 109.6,
       "n_hunks": 4
     },
     {
@@ -6420,7 +7327,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 640.8,
+      "latency_ms": 60.5,
+      "n_hunks": 4
+    },
+    {
+      "session": "Clear exceptions when pushing a context",
+      "corpus": "flask",
+      "sha": "a3a2f521f1",
+      "strategy": "semble",
+      "tokens": 2116,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 838.3,
       "n_hunks": 4
     },
     {
@@ -6432,7 +7351,7 @@
       "coverage": 0.25,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1397.4,
+      "latency_ms": 557.7,
       "n_hunks": 4
     },
     {
@@ -6444,7 +7363,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 24.3,
+      "latency_ms": 10.7,
       "n_hunks": 4
     },
     {
@@ -6456,7 +7375,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 26,
-      "latency_ms": 52.5,
+      "latency_ms": 9.2,
       "n_hunks": 4
     },
     {
@@ -6468,7 +7387,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 30,
-      "latency_ms": 65.6,
+      "latency_ms": 10.2,
       "n_hunks": 4
     },
     {
@@ -6480,7 +7399,7 @@
       "coverage": 0.75,
       "hit": true,
       "tool_calls": 2,
-      "latency_ms": 31.1,
+      "latency_ms": 9.4,
       "n_hunks": 4
     },
     {
@@ -6492,7 +7411,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 225.5,
+      "latency_ms": 22.7,
       "n_hunks": 4
     },
     {
@@ -6504,7 +7423,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 144.5,
+      "latency_ms": 18.6,
+      "n_hunks": 4
+    },
+    {
+      "session": "Added missing decorators for module wide context processors.",
+      "corpus": "flask",
+      "sha": "745638e774",
+      "strategy": "semble",
+      "tokens": 2074,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 248.8,
       "n_hunks": 4
     },
     {
@@ -6516,7 +7447,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 1105.1,
+      "latency_ms": 147.9,
       "n_hunks": 4
     },
     {
@@ -6528,7 +7459,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 48.2,
+      "latency_ms": 31.8,
       "n_hunks": 2
     },
     {
@@ -6540,7 +7471,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 14,
-      "latency_ms": 48.6,
+      "latency_ms": 32.9,
       "n_hunks": 2
     },
     {
@@ -6552,7 +7483,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 23,
-      "latency_ms": 54.3,
+      "latency_ms": 29.7,
       "n_hunks": 2
     },
     {
@@ -6564,7 +7495,7 @@
       "coverage": 0.5,
       "hit": true,
       "tool_calls": 3,
-      "latency_ms": 47.9,
+      "latency_ms": 31.1,
       "n_hunks": 2
     },
     {
@@ -6576,7 +7507,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 138.4,
+      "latency_ms": 75.8,
       "n_hunks": 2
     },
     {
@@ -6588,7 +7519,19 @@
       "coverage": 1.0,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 245.1,
+      "latency_ms": 78.0,
+      "n_hunks": 2
+    },
+    {
+      "session": "Changed ConnectionError to InvalidURL",
+      "corpus": "requests",
+      "sha": "3246b1fe17",
+      "strategy": "semble",
+      "tokens": 2064,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 1,
+      "latency_ms": 1192.3,
       "n_hunks": 2
     },
     {
@@ -6600,7 +7543,7 @@
       "coverage": 0.5,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 460.6,
+      "latency_ms": 218.8,
       "n_hunks": 2
     },
     {
@@ -6612,7 +7555,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 29.6,
+      "latency_ms": 19.1,
       "n_hunks": 9
     },
     {
@@ -6624,7 +7567,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 43,
-      "latency_ms": 29.8,
+      "latency_ms": 17.7,
       "n_hunks": 9
     },
     {
@@ -6636,7 +7579,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 56,
-      "latency_ms": 29.4,
+      "latency_ms": 17.8,
       "n_hunks": 9
     },
     {
@@ -6648,7 +7591,7 @@
       "coverage": 0.778,
       "hit": true,
       "tool_calls": 2,
-      "latency_ms": 26.2,
+      "latency_ms": 20.8,
       "n_hunks": 9
     },
     {
@@ -6660,7 +7603,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 72.1,
+      "latency_ms": 48.1,
       "n_hunks": 9
     },
     {
@@ -6672,7 +7615,19 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 75.9,
+      "latency_ms": 60.2,
+      "n_hunks": 9
+    },
+    {
+      "session": "add an ExitStack to the context",
+      "corpus": "click",
+      "sha": "89349070ae",
+      "strategy": "semble",
+      "tokens": 2018,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 700.5,
       "n_hunks": 9
     },
     {
@@ -6684,7 +7639,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 670.2,
+      "latency_ms": 276.9,
       "n_hunks": 9
     },
     {
@@ -6696,7 +7651,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 32.3,
+      "latency_ms": 21.8,
       "n_hunks": 4
     },
     {
@@ -6708,7 +7663,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 43,
-      "latency_ms": 26.2,
+      "latency_ms": 17.4,
       "n_hunks": 4
     },
     {
@@ -6720,7 +7675,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 53,
-      "latency_ms": 26.4,
+      "latency_ms": 18.6,
       "n_hunks": 4
     },
     {
@@ -6732,7 +7687,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 2,
-      "latency_ms": 23.3,
+      "latency_ms": 36.7,
       "n_hunks": 4
     },
     {
@@ -6744,7 +7699,7 @@
       "coverage": 0.0,
       "hit": false,
       "tool_calls": 1,
-      "latency_ms": 828.6,
+      "latency_ms": 649.1,
       "n_hunks": 4
     },
     {
@@ -6756,7 +7711,19 @@
       "coverage": 0.5,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 89.5,
+      "latency_ms": 38.6,
+      "n_hunks": 4
+    },
+    {
+      "session": "Fix bug with multiple args after star arg",
+      "corpus": "click",
+      "sha": "0f20511f41",
+      "strategy": "semble",
+      "tokens": 2155,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 1,
+      "latency_ms": 589.8,
       "n_hunks": 4
     },
     {
@@ -6768,7 +7735,7 @@
       "coverage": 0.5,
       "hit": true,
       "tool_calls": 1,
-      "latency_ms": 849.7,
+      "latency_ms": 353.8,
       "n_hunks": 4
     }
   ]

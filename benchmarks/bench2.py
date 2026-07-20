@@ -71,6 +71,11 @@ try:
 except ImportError:  # pragma: no cover
     jedi = None
 
+try:
+    from semble import SembleIndex
+except ImportError:  # pragma: no cover
+    SembleIndex = None
+
 CONTEXT_CAP = 8000
 WINDOW = 60
 BUDGET = 2000
@@ -485,6 +490,37 @@ def strat_tfidf(cache, query):
     return "\n".join(parts), 1
 
 
+_SEMBLE_CACHE: Dict[str, object] = {}
+
+
+def strat_semble(cache, query):
+    """MinishLab semble: static embeddings (Model2Vec) + BM25 + RRF over
+    tree-sitter chunks. Index is built once per corpus root and cached,
+    mirroring how it runs as a long-lived MCP server. Query is de-regexed
+    ('a|b' -> 'a b') since semble takes natural-language/code queries."""
+    if SembleIndex is None:
+        return "", 1
+    idx = _SEMBLE_CACHE.get(str(cache.root))
+    if idx is None:
+        try:
+            idx = SembleIndex.from_path(str(cache.root))
+        except Exception:
+            return "", 1
+        _SEMBLE_CACHE[str(cache.root)] = idx
+    q = query.replace("\\", "").replace("|", " ")
+    parts, used = [], 0
+    try:
+        for r in idx.search(q, top_k=50):
+            text = r.chunk.content
+            parts.append(text)
+            used += estimate_tokens(text)
+            if used >= BUDGET:
+                break
+    except Exception:
+        return "", 1
+    return "\n".join(parts), 1
+
+
 def strat_slicegrep(cache, query):
     result = focused_read(str(cache.root), query, budget=BUDGET)
     return result.render(), 1
@@ -497,6 +533,7 @@ STRATEGIES = [
     ("rg+rank", strat_rg_rank),
     ("lsp(jedi)", strat_lsp_jedi),
     ("tfidf-vec", strat_tfidf),
+    ("semble", strat_semble),
     ("slicegrep", strat_slicegrep),
 ]
 

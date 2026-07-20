@@ -75,6 +75,7 @@ of those regions retrieved under an 8k-token cap.
 | grep + file ranking | 8,000 | 20.0% | 20.8% | 2 |
 | lsp (jedi) | 0 | 2.5% | 1.2% | 1 |
 | **tf-idf vector retriever** | 2,240 | **22.5%** | 20.4% | 1 |
+| semble (embeddings+BM25) | 2,090 | 20.0% | 17.6% | 1 |
 | slicegrep 0.2 | 2,115 | 16.2% | 18.8% | 1 |
 | **slicegrep 0.3 (hybrid recall)** | 2,104 | 21.2% | **22.6%** | 1 |
 
@@ -111,7 +112,16 @@ context, under the same 8k cap.
 | grep + file ranking | 8,000 | 43.2% | 2 |
 | lsp (jedi symbol search) | 0 | 6.6% | 1 |
 | tf-idf vector retriever | 2,209 | 56.8% | 1 |
+| semble (embeddings+BM25) | 2,085 | 38.3% | 1 |
 | **slicegrep 0.3** | **2,024** | **63.9%** | **1** |
+
+Note on semble ([MinishLab/semble](https://github.com/MinishLab/semble),
+static embeddings + BM25 + RRF): a genuinely fast, well-built retriever, added
+as a baseline by community request. Two fairness caveats cut in its favor:
+this suite's queries are keyword-shaped (semble is built for natural-language
+queries), and its deliberate noise-penalty on test files tanks the test+impl
+family (2.5%) that our task set explicitly rewards. Its per-family results are
+in [RESULTS_V2.md](benchmarks/RESULTS_V2.md).
 
 This suite drove the v0.2 release (retrieval objectives, diversity-aware
 packing, semantic rerank: overall 60.8% → 63.9%, test+impl 30.0% → 47.5%). Per-

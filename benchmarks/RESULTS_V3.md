@@ -6,13 +6,14 @@
 
 | strategy | tokens → model | session hit | mean coverage | tool calls | latency/task |
 |---|---|---|---|---|---|
-| raw-rg | 5,535 | 0.0% | 0.0% | 1 | 43.8 ms |
-| whole-file | 8,000 | 6.2% | 6.8% | 37 | 44.4 ms |
-| rg+windows | 8,000 | 7.5% | 8.8% | 47 | 43.9 ms |
-| rg+rank | 8,000 | 20.0% | 20.8% | 2 | 40.8 ms |
-| lsp(jedi) | 0 | 2.5% | 1.2% | 1 | 219.8 ms |
-| tfidf-vec | 2,240 | 22.5% | 20.4% | 1 | 87.5 ms |
-| slicegrep | 2,104 | 21.2% | 22.6% | 1 | 494.1 ms |
+| raw-rg | 5,535 | 0.0% | 0.0% | 1 | 33.3 ms |
+| whole-file | 8,000 | 6.2% | 6.8% | 37 | 32.7 ms |
+| rg+windows | 8,000 | 7.5% | 8.8% | 47 | 31.5 ms |
+| rg+rank | 8,000 | 20.0% | 20.8% | 2 | 32.4 ms |
+| lsp(jedi) | 0 | 2.5% | 1.2% | 1 | 108.3 ms |
+| tfidf-vec | 2,240 | 22.5% | 20.4% | 1 | 72.1 ms |
+| semble | 2,090 | 20.0% | 17.6% | 1 | 956.3 ms |
+| slicegrep | 2,104 | 21.2% | 22.6% | 1 | 341.8 ms |
 
 ## Notes
 
