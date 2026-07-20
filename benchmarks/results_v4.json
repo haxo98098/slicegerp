@@ -1,0 +1,6570 @@
+{
+  "summary": {
+    "raw-rg": {
+      "median_tokens": 8000,
+      "session_hit_rate": 0.0,
+      "mean_coverage": 0.0,
+      "median_tool_calls": 2,
+      "median_latency_ms": 108.7
+    },
+    "whole-file": {
+      "median_tokens": 8000,
+      "session_hit_rate": 10.0,
+      "mean_coverage": 8.9,
+      "median_tool_calls": 87,
+      "median_latency_ms": 118.8
+    },
+    "rg+windows": {
+      "median_tokens": 8000,
+      "session_hit_rate": 10.0,
+      "mean_coverage": 10.3,
+      "median_tool_calls": 103,
+      "median_latency_ms": 125.5
+    },
+    "rg+rank": {
+      "median_tokens": 8000,
+      "session_hit_rate": 23.3,
+      "mean_coverage": 22.4,
+      "median_tool_calls": 5,
+      "median_latency_ms": 125.9
+    },
+    "lsp(jedi)": {
+      "median_tokens": 0,
+      "session_hit_rate": 3.3,
+      "mean_coverage": 1.7,
+      "median_tool_calls": 1,
+      "median_latency_ms": 126.7
+    },
+    "tfidf-vec": {
+      "median_tokens": 4521,
+      "session_hit_rate": 20.0,
+      "mean_coverage": 22.1,
+      "median_tool_calls": 2,
+      "median_latency_ms": 111.2
+    },
+    "bm25": {
+      "median_tokens": 4492,
+      "session_hit_rate": 26.7,
+      "mean_coverage": 24.3,
+      "median_tool_calls": 2,
+      "median_latency_ms": 151.8
+    },
+    "dense-emb": {
+      "median_tokens": 4475,
+      "session_hit_rate": 26.7,
+      "mean_coverage": 23.8,
+      "median_tool_calls": 2,
+      "median_latency_ms": 481.0
+    },
+    "ast-tfidf": {
+      "median_tokens": 4581,
+      "session_hit_rate": 28.3,
+      "mean_coverage": 23.9,
+      "median_tool_calls": 2,
+      "median_latency_ms": 382.0
+    },
+    "repomap": {
+      "median_tokens": 4192,
+      "session_hit_rate": 5.0,
+      "mean_coverage": 4.7,
+      "median_tool_calls": 2,
+      "median_latency_ms": 230.2
+    },
+    "semble": {
+      "median_tokens": 4189,
+      "session_hit_rate": 20.0,
+      "mean_coverage": 20.3,
+      "median_tool_calls": 2,
+      "median_latency_ms": 1378.5
+    },
+    "slicegrep": {
+      "median_tokens": 4214,
+      "session_hit_rate": 28.3,
+      "mean_coverage": 27.3,
+      "median_tool_calls": 2,
+      "median_latency_ms": 1953.2
+    }
+  },
+  "cells": [
+    {
+      "session": "lazy load app on reload only",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 155.4
+    },
+    {
+      "session": "lazy load app on reload only",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 150,
+      "latency_ms": 166.0
+    },
+    {
+      "session": "lazy load app on reload only",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 202,
+      "latency_ms": 178.0
+    },
+    {
+      "session": "lazy load app on reload only",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 6,
+      "latency_ms": 177.6
+    },
+    {
+      "session": "lazy load app on reload only",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1250.8
+    },
+    {
+      "session": "lazy load app on reload only",
+      "strategy": "tfidf-vec",
+      "tokens": 4681,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 144.1
+    },
+    {
+      "session": "lazy load app on reload only",
+      "strategy": "bm25",
+      "tokens": 4475,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 179.3
+    },
+    {
+      "session": "lazy load app on reload only",
+      "strategy": "dense-emb",
+      "tokens": 4563,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 1860.0
+    },
+    {
+      "session": "lazy load app on reload only",
+      "strategy": "ast-tfidf",
+      "tokens": 7376,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 420.2
+    },
+    {
+      "session": "lazy load app on reload only",
+      "strategy": "repomap",
+      "tokens": 4182,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 282.4
+    },
+    {
+      "session": "lazy load app on reload only",
+      "strategy": "semble",
+      "tokens": 4058,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2033.3
+    },
+    {
+      "session": "lazy load app on reload only",
+      "strategy": "slicegrep",
+      "tokens": 3970,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 3026.1
+    },
+    {
+      "session": "docstring for fit kwarg in RenderGroup and render_group",
+      "strategy": "raw-rg",
+      "tokens": 2706,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 155.3
+    },
+    {
+      "session": "docstring for fit kwarg in RenderGroup and render_group",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 78,
+      "latency_ms": 152.3
+    },
+    {
+      "session": "docstring for fit kwarg in RenderGroup and render_group",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 56,
+      "latency_ms": 165.2
+    },
+    {
+      "session": "docstring for fit kwarg in RenderGroup and render_group",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 7,
+      "latency_ms": 161.1
+    },
+    {
+      "session": "docstring for fit kwarg in RenderGroup and render_group",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 135.9
+    },
+    {
+      "session": "docstring for fit kwarg in RenderGroup and render_group",
+      "strategy": "tfidf-vec",
+      "tokens": 4578,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 103.2
+    },
+    {
+      "session": "docstring for fit kwarg in RenderGroup and render_group",
+      "strategy": "bm25",
+      "tokens": 4647,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 138.4
+    },
+    {
+      "session": "docstring for fit kwarg in RenderGroup and render_group",
+      "strategy": "dense-emb",
+      "tokens": 4330,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 518.5
+    },
+    {
+      "session": "docstring for fit kwarg in RenderGroup and render_group",
+      "strategy": "ast-tfidf",
+      "tokens": 4301,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 504.3
+    },
+    {
+      "session": "docstring for fit kwarg in RenderGroup and render_group",
+      "strategy": "repomap",
+      "tokens": 4129,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 353.9
+    },
+    {
+      "session": "docstring for fit kwarg in RenderGroup and render_group",
+      "strategy": "semble",
+      "tokens": 4157,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 1702.1
+    },
+    {
+      "session": "docstring for fit kwarg in RenderGroup and render_group",
+      "strategy": "slicegrep",
+      "tokens": 4540,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 1997.4
+    },
+    {
+      "session": "Fix bug with multiple args after star arg",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 75.9
+    },
+    {
+      "session": "Fix bug with multiple args after star arg",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 89,
+      "latency_ms": 72.5
+    },
+    {
+      "session": "Fix bug with multiple args after star arg",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 105,
+      "latency_ms": 73.5
+    },
+    {
+      "session": "Fix bug with multiple args after star arg",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 79.4
+    },
+    {
+      "session": "Fix bug with multiple args after star arg",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 426.6
+    },
+    {
+      "session": "Fix bug with multiple args after star arg",
+      "strategy": "tfidf-vec",
+      "tokens": 4123,
+      "coverage": 0.75,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 65.8
+    },
+    {
+      "session": "Fix bug with multiple args after star arg",
+      "strategy": "bm25",
+      "tokens": 5099,
+      "coverage": 0.75,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 82.6
+    },
+    {
+      "session": "Fix bug with multiple args after star arg",
+      "strategy": "dense-emb",
+      "tokens": 4651,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 283.1
+    },
+    {
+      "session": "Fix bug with multiple args after star arg",
+      "strategy": "ast-tfidf",
+      "tokens": 4348,
+      "coverage": 0.75,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 220.7
+    },
+    {
+      "session": "Fix bug with multiple args after star arg",
+      "strategy": "repomap",
+      "tokens": 4197,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 89.0
+    },
+    {
+      "session": "Fix bug with multiple args after star arg",
+      "strategy": "semble",
+      "tokens": 4217,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 776.5
+    },
+    {
+      "session": "Fix bug with multiple args after star arg",
+      "strategy": "slicegrep",
+      "tokens": 4132,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 1684.0
+    },
+    {
+      "session": "Enhance documentation for clarity.",
+      "strategy": "raw-rg",
+      "tokens": 2294,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 125.6
+    },
+    {
+      "session": "Enhance documentation for clarity.",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 39,
+      "latency_ms": 139.8
+    },
+    {
+      "session": "Enhance documentation for clarity.",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 55,
+      "latency_ms": 138.6
+    },
+    {
+      "session": "Enhance documentation for clarity.",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 6,
+      "latency_ms": 176.3
+    },
+    {
+      "session": "Enhance documentation for clarity.",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 98.1
+    },
+    {
+      "session": "Enhance documentation for clarity.",
+      "strategy": "tfidf-vec",
+      "tokens": 4515,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 171.3
+    },
+    {
+      "session": "Enhance documentation for clarity.",
+      "strategy": "bm25",
+      "tokens": 4591,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 212.5
+    },
+    {
+      "session": "Enhance documentation for clarity.",
+      "strategy": "dense-emb",
+      "tokens": 4383,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 479.9
+    },
+    {
+      "session": "Enhance documentation for clarity.",
+      "strategy": "ast-tfidf",
+      "tokens": 4098,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 973.3
+    },
+    {
+      "session": "Enhance documentation for clarity.",
+      "strategy": "repomap",
+      "tokens": 4151,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 343.1
+    },
+    {
+      "session": "Enhance documentation for clarity.",
+      "strategy": "semble",
+      "tokens": 4206,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1822.2
+    },
+    {
+      "session": "Enhance documentation for clarity.",
+      "strategy": "slicegrep",
+      "tokens": 4368,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1505.6
+    },
+    {
+      "session": "Replace 'module' with 'blueprint' in docstrings.",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 77.5
+    },
+    {
+      "session": "Replace 'module' with 'blueprint' in docstrings.",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 111,
+      "latency_ms": 96.2
+    },
+    {
+      "session": "Replace 'module' with 'blueprint' in docstrings.",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 130,
+      "latency_ms": 84.3
+    },
+    {
+      "session": "Replace 'module' with 'blueprint' in docstrings.",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 105.4
+    },
+    {
+      "session": "Replace 'module' with 'blueprint' in docstrings.",
+      "strategy": "lsp(jedi)",
+      "tokens": 787,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 740.2
+    },
+    {
+      "session": "Replace 'module' with 'blueprint' in docstrings.",
+      "strategy": "tfidf-vec",
+      "tokens": 4184,
+      "coverage": 0.231,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 74.8
+    },
+    {
+      "session": "Replace 'module' with 'blueprint' in docstrings.",
+      "strategy": "bm25",
+      "tokens": 4375,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 96.7
+    },
+    {
+      "session": "Replace 'module' with 'blueprint' in docstrings.",
+      "strategy": "dense-emb",
+      "tokens": 4461,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 333.5
+    },
+    {
+      "session": "Replace 'module' with 'blueprint' in docstrings.",
+      "strategy": "ast-tfidf",
+      "tokens": 6378,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 104.5
+    },
+    {
+      "session": "Replace 'module' with 'blueprint' in docstrings.",
+      "strategy": "repomap",
+      "tokens": 4061,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 48.3
+    },
+    {
+      "session": "Replace 'module' with 'blueprint' in docstrings.",
+      "strategy": "semble",
+      "tokens": 4167,
+      "coverage": 0.077,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 709.6
+    },
+    {
+      "session": "Replace 'module' with 'blueprint' in docstrings.",
+      "strategy": "slicegrep",
+      "tokens": 4224,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1868.2
+    },
+    {
+      "session": "Use Windows Console API to write text",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 264.5
+    },
+    {
+      "session": "Use Windows Console API to write text",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 411,
+      "latency_ms": 243.5
+    },
+    {
+      "session": "Use Windows Console API to write text",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 440,
+      "latency_ms": 271.2
+    },
+    {
+      "session": "Use Windows Console API to write text",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 273.4
+    },
+    {
+      "session": "Use Windows Console API to write text",
+      "strategy": "lsp(jedi)",
+      "tokens": 230,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1143.1
+    },
+    {
+      "session": "Use Windows Console API to write text",
+      "strategy": "tfidf-vec",
+      "tokens": 4455,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 236.5
+    },
+    {
+      "session": "Use Windows Console API to write text",
+      "strategy": "bm25",
+      "tokens": 4534,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 260.0
+    },
+    {
+      "session": "Use Windows Console API to write text",
+      "strategy": "dense-emb",
+      "tokens": 4151,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 949.7
+    },
+    {
+      "session": "Use Windows Console API to write text",
+      "strategy": "ast-tfidf",
+      "tokens": 4822,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 741.1
+    },
+    {
+      "session": "Use Windows Console API to write text",
+      "strategy": "repomap",
+      "tokens": 4161,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 795.7
+    },
+    {
+      "session": "Use Windows Console API to write text",
+      "strategy": "semble",
+      "tokens": 4272,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2542.9
+    },
+    {
+      "session": "Use Windows Console API to write text",
+      "strategy": "slicegrep",
+      "tokens": 4173,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 12047.8
+    },
+    {
+      "session": "Fix extract_zipped_paths infinite loop when provided invalid",
+      "strategy": "raw-rg",
+      "tokens": 2102,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 86.4
+    },
+    {
+      "session": "Fix extract_zipped_paths infinite loop when provided invalid",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 37,
+      "latency_ms": 108.1
+    },
+    {
+      "session": "Fix extract_zipped_paths infinite loop when provided invalid",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 54,
+      "latency_ms": 86.3
+    },
+    {
+      "session": "Fix extract_zipped_paths infinite loop when provided invalid",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 84.6
+    },
+    {
+      "session": "Fix extract_zipped_paths infinite loop when provided invalid",
+      "strategy": "lsp(jedi)",
+      "tokens": 516,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 491.1
+    },
+    {
+      "session": "Fix extract_zipped_paths infinite loop when provided invalid",
+      "strategy": "tfidf-vec",
+      "tokens": 4554,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 53.2
+    },
+    {
+      "session": "Fix extract_zipped_paths infinite loop when provided invalid",
+      "strategy": "bm25",
+      "tokens": 4256,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 96.7
+    },
+    {
+      "session": "Fix extract_zipped_paths infinite loop when provided invalid",
+      "strategy": "dense-emb",
+      "tokens": 4060,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 296.5
+    },
+    {
+      "session": "Fix extract_zipped_paths infinite loop when provided invalid",
+      "strategy": "ast-tfidf",
+      "tokens": 6298,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 233.7
+    },
+    {
+      "session": "Fix extract_zipped_paths infinite loop when provided invalid",
+      "strategy": "repomap",
+      "tokens": 4733,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 99.7
+    },
+    {
+      "session": "Fix extract_zipped_paths infinite loop when provided invalid",
+      "strategy": "semble",
+      "tokens": 4235,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 784.8
+    },
+    {
+      "session": "Fix extract_zipped_paths infinite loop when provided invalid",
+      "strategy": "slicegrep",
+      "tokens": 4202,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 923.2
+    },
+    {
+      "session": "rename footer -> subtitle",
+      "strategy": "raw-rg",
+      "tokens": 4047,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 245.4
+    },
+    {
+      "session": "rename footer -> subtitle",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 79,
+      "latency_ms": 294.7
+    },
+    {
+      "session": "rename footer -> subtitle",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 192,
+      "latency_ms": 274.3
+    },
+    {
+      "session": "rename footer -> subtitle",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 276.6
+    },
+    {
+      "session": "rename footer -> subtitle",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 131.5
+    },
+    {
+      "session": "rename footer -> subtitle",
+      "strategy": "tfidf-vec",
+      "tokens": 4064,
+      "coverage": 0.909,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 189.1
+    },
+    {
+      "session": "rename footer -> subtitle",
+      "strategy": "bm25",
+      "tokens": 4881,
+      "coverage": 0.545,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 263.2
+    },
+    {
+      "session": "rename footer -> subtitle",
+      "strategy": "dense-emb",
+      "tokens": 4101,
+      "coverage": 0.909,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 929.5
+    },
+    {
+      "session": "rename footer -> subtitle",
+      "strategy": "ast-tfidf",
+      "tokens": 5248,
+      "coverage": 0.909,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 639.9
+    },
+    {
+      "session": "rename footer -> subtitle",
+      "strategy": "repomap",
+      "tokens": 4211,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 663.6
+    },
+    {
+      "session": "rename footer -> subtitle",
+      "strategy": "semble",
+      "tokens": 4222,
+      "coverage": 0.273,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2378.9
+    },
+    {
+      "session": "rename footer -> subtitle",
+      "strategy": "slicegrep",
+      "tokens": 4301,
+      "coverage": 0.727,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 2775.9
+    },
+    {
+      "session": "fix TypeError in inspect",
+      "strategy": "raw-rg",
+      "tokens": 5478,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 151.0
+    },
+    {
+      "session": "fix TypeError in inspect",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 67,
+      "latency_ms": 179.9
+    },
+    {
+      "session": "fix TypeError in inspect",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.714,
+      "hit": true,
+      "tool_calls": 113,
+      "latency_ms": 156.6
+    },
+    {
+      "session": "fix TypeError in inspect",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 8,
+      "latency_ms": 157.9
+    },
+    {
+      "session": "fix TypeError in inspect",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 107.0
+    },
+    {
+      "session": "fix TypeError in inspect",
+      "strategy": "tfidf-vec",
+      "tokens": 4480,
+      "coverage": 0.286,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 140.7
+    },
+    {
+      "session": "fix TypeError in inspect",
+      "strategy": "bm25",
+      "tokens": 4368,
+      "coverage": 0.571,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 190.8
+    },
+    {
+      "session": "fix TypeError in inspect",
+      "strategy": "dense-emb",
+      "tokens": 4124,
+      "coverage": 0.429,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 641.7
+    },
+    {
+      "session": "fix TypeError in inspect",
+      "strategy": "ast-tfidf",
+      "tokens": 5500,
+      "coverage": 0.714,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 820.8
+    },
+    {
+      "session": "fix TypeError in inspect",
+      "strategy": "repomap",
+      "tokens": 4078,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 458.2
+    },
+    {
+      "session": "fix TypeError in inspect",
+      "strategy": "semble",
+      "tokens": 4171,
+      "coverage": 0.143,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2439.4
+    },
+    {
+      "session": "fix TypeError in inspect",
+      "strategy": "slicegrep",
+      "tokens": 4377,
+      "coverage": 0.143,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2194.7
+    },
+    {
+      "session": "keep-alive as config option only",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 34.4
+    },
+    {
+      "session": "keep-alive as config option only",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 44,
+      "latency_ms": 28.7
+    },
+    {
+      "session": "keep-alive as config option only",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.3,
+      "hit": false,
+      "tool_calls": 53,
+      "latency_ms": 22.9
+    },
+    {
+      "session": "keep-alive as config option only",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.7,
+      "hit": true,
+      "tool_calls": 9,
+      "latency_ms": 37.0
+    },
+    {
+      "session": "keep-alive as config option only",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 90.9
+    },
+    {
+      "session": "keep-alive as config option only",
+      "strategy": "tfidf-vec",
+      "tokens": 4142,
+      "coverage": 0.2,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 21.8
+    },
+    {
+      "session": "keep-alive as config option only",
+      "strategy": "bm25",
+      "tokens": 4263,
+      "coverage": 0.2,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 30.2
+    },
+    {
+      "session": "keep-alive as config option only",
+      "strategy": "dense-emb",
+      "tokens": 4472,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 121.8
+    },
+    {
+      "session": "keep-alive as config option only",
+      "strategy": "ast-tfidf",
+      "tokens": 6162,
+      "coverage": 0.7,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 65.0
+    },
+    {
+      "session": "keep-alive as config option only",
+      "strategy": "repomap",
+      "tokens": 4089,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 18.5
+    },
+    {
+      "session": "keep-alive as config option only",
+      "strategy": "semble",
+      "tokens": 4166,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 346.6
+    },
+    {
+      "session": "keep-alive as config option only",
+      "strategy": "slicegrep",
+      "tokens": 4419,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 546.7
+    },
+    {
+      "session": "test: restore Python 3.2 compatibility",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 96.1
+    },
+    {
+      "session": "test: restore Python 3.2 compatibility",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 172,
+      "latency_ms": 113.5
+    },
+    {
+      "session": "test: restore Python 3.2 compatibility",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 190,
+      "latency_ms": 124.5
+    },
+    {
+      "session": "test: restore Python 3.2 compatibility",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 7,
+      "latency_ms": 108.3
+    },
+    {
+      "session": "test: restore Python 3.2 compatibility",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 85.3
+    },
+    {
+      "session": "test: restore Python 3.2 compatibility",
+      "strategy": "tfidf-vec",
+      "tokens": 4675,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 165.3
+    },
+    {
+      "session": "test: restore Python 3.2 compatibility",
+      "strategy": "bm25",
+      "tokens": 4535,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 191.1
+    },
+    {
+      "session": "test: restore Python 3.2 compatibility",
+      "strategy": "dense-emb",
+      "tokens": 4720,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 423.5
+    },
+    {
+      "session": "test: restore Python 3.2 compatibility",
+      "strategy": "ast-tfidf",
+      "tokens": 4417,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 651.2
+    },
+    {
+      "session": "test: restore Python 3.2 compatibility",
+      "strategy": "repomap",
+      "tokens": 4135,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 233.7
+    },
+    {
+      "session": "test: restore Python 3.2 compatibility",
+      "strategy": "semble",
+      "tokens": 4236,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1947.9
+    },
+    {
+      "session": "test: restore Python 3.2 compatibility",
+      "strategy": "slicegrep",
+      "tokens": 4288,
+      "coverage": 0.286,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1921.6
+    },
+    {
+      "session": "chaged fit to expand",
+      "strategy": "raw-rg",
+      "tokens": 3580,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 52.6
+    },
+    {
+      "session": "chaged fit to expand",
+      "strategy": "whole-file",
+      "tokens": 5927,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 6,
+      "latency_ms": 41.1
+    },
+    {
+      "session": "chaged fit to expand",
+      "strategy": "rg+windows",
+      "tokens": 2990,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 6,
+      "latency_ms": 33.3
+    },
+    {
+      "session": "chaged fit to expand",
+      "strategy": "rg+rank",
+      "tokens": 5927,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 6,
+      "latency_ms": 33.1
+    },
+    {
+      "session": "chaged fit to expand",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 37.0
+    },
+    {
+      "session": "chaged fit to expand",
+      "strategy": "tfidf-vec",
+      "tokens": 2849,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 28.6
+    },
+    {
+      "session": "chaged fit to expand",
+      "strategy": "bm25",
+      "tokens": 2844,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 44.6
+    },
+    {
+      "session": "chaged fit to expand",
+      "strategy": "dense-emb",
+      "tokens": 4310,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 154.3
+    },
+    {
+      "session": "chaged fit to expand",
+      "strategy": "ast-tfidf",
+      "tokens": 2810,
+      "coverage": 0.35,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 141.4
+    },
+    {
+      "session": "chaged fit to expand",
+      "strategy": "repomap",
+      "tokens": 4044,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 42.5
+    },
+    {
+      "session": "chaged fit to expand",
+      "strategy": "semble",
+      "tokens": 4191,
+      "coverage": 0.3,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 628.7
+    },
+    {
+      "session": "chaged fit to expand",
+      "strategy": "slicegrep",
+      "tokens": 2743,
+      "coverage": 0.4,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 407.4
+    },
+    {
+      "session": "fix tuple of one issue",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 147.1
+    },
+    {
+      "session": "fix tuple of one issue",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 113,
+      "latency_ms": 170.0
+    },
+    {
+      "session": "fix tuple of one issue",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 149,
+      "latency_ms": 204.3
+    },
+    {
+      "session": "fix tuple of one issue",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 6,
+      "latency_ms": 150.1
+    },
+    {
+      "session": "fix tuple of one issue",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1069.2
+    },
+    {
+      "session": "fix tuple of one issue",
+      "strategy": "tfidf-vec",
+      "tokens": 4543,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 124.7
+    },
+    {
+      "session": "fix tuple of one issue",
+      "strategy": "bm25",
+      "tokens": 4349,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 174.6
+    },
+    {
+      "session": "fix tuple of one issue",
+      "strategy": "dense-emb",
+      "tokens": 4225,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 603.5
+    },
+    {
+      "session": "fix tuple of one issue",
+      "strategy": "ast-tfidf",
+      "tokens": 4284,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 546.9
+    },
+    {
+      "session": "fix tuple of one issue",
+      "strategy": "repomap",
+      "tokens": 4491,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 439.4
+    },
+    {
+      "session": "fix tuple of one issue",
+      "strategy": "semble",
+      "tokens": 4149,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2460.2
+    },
+    {
+      "session": "fix tuple of one issue",
+      "strategy": "slicegrep",
+      "tokens": 4463,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2299.6
+    },
+    {
+      "session": "Use formatter width and max command name width to autotrim s",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 76.9
+    },
+    {
+      "session": "Use formatter width and max command name width to autotrim s",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 168,
+      "latency_ms": 90.5
+    },
+    {
+      "session": "Use formatter width and max command name width to autotrim s",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 174,
+      "latency_ms": 88.0
+    },
+    {
+      "session": "Use formatter width and max command name width to autotrim s",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 101.0
+    },
+    {
+      "session": "Use formatter width and max command name width to autotrim s",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 237.9
+    },
+    {
+      "session": "Use formatter width and max command name width to autotrim s",
+      "strategy": "tfidf-vec",
+      "tokens": 4608,
+      "coverage": 0.2,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 89.1
+    },
+    {
+      "session": "Use formatter width and max command name width to autotrim s",
+      "strategy": "bm25",
+      "tokens": 4608,
+      "coverage": 0.2,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 100.1
+    },
+    {
+      "session": "Use formatter width and max command name width to autotrim s",
+      "strategy": "dense-emb",
+      "tokens": 4373,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 336.2
+    },
+    {
+      "session": "Use formatter width and max command name width to autotrim s",
+      "strategy": "ast-tfidf",
+      "tokens": 4521,
+      "coverage": 0.2,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 498.0
+    },
+    {
+      "session": "Use formatter width and max command name width to autotrim s",
+      "strategy": "repomap",
+      "tokens": 4224,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 143.2
+    },
+    {
+      "session": "Use formatter width and max command name width to autotrim s",
+      "strategy": "semble",
+      "tokens": 4449,
+      "coverage": 0.4,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 942.9
+    },
+    {
+      "session": "Use formatter width and max command name width to autotrim s",
+      "strategy": "slicegrep",
+      "tokens": 4167,
+      "coverage": 0.8,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 4210.5
+    },
+    {
+      "session": "Update types for typechecks",
+      "strategy": "raw-rg",
+      "tokens": 7687,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 143.7
+    },
+    {
+      "session": "Update types for typechecks",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 53,
+      "latency_ms": 139.3
+    },
+    {
+      "session": "Update types for typechecks",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 63,
+      "latency_ms": 155.7
+    },
+    {
+      "session": "Update types for typechecks",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 160.5
+    },
+    {
+      "session": "Update types for typechecks",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 904.4
+    },
+    {
+      "session": "Update types for typechecks",
+      "strategy": "tfidf-vec",
+      "tokens": 4179,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 100.3
+    },
+    {
+      "session": "Update types for typechecks",
+      "strategy": "bm25",
+      "tokens": 4218,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 156.5
+    },
+    {
+      "session": "Update types for typechecks",
+      "strategy": "dense-emb",
+      "tokens": 4618,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 490.3
+    },
+    {
+      "session": "Update types for typechecks",
+      "strategy": "ast-tfidf",
+      "tokens": 4437,
+      "coverage": 0.125,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 726.5
+    },
+    {
+      "session": "Update types for typechecks",
+      "strategy": "repomap",
+      "tokens": 4383,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 307.7
+    },
+    {
+      "session": "Update types for typechecks",
+      "strategy": "semble",
+      "tokens": 4101,
+      "coverage": 0.25,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1599.3
+    },
+    {
+      "session": "Update types for typechecks",
+      "strategy": "slicegrep",
+      "tokens": 4187,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1882.5
+    },
+    {
+      "session": "deprecate passing script_info to factory",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 183.8
+    },
+    {
+      "session": "deprecate passing script_info to factory",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 97,
+      "latency_ms": 176.4
+    },
+    {
+      "session": "deprecate passing script_info to factory",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 118,
+      "latency_ms": 202.5
+    },
+    {
+      "session": "deprecate passing script_info to factory",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.45,
+      "hit": false,
+      "tool_calls": 6,
+      "latency_ms": 191.5
+    },
+    {
+      "session": "deprecate passing script_info to factory",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 74.7
+    },
+    {
+      "session": "deprecate passing script_info to factory",
+      "strategy": "tfidf-vec",
+      "tokens": 4979,
+      "coverage": 0.45,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 146.3
+    },
+    {
+      "session": "deprecate passing script_info to factory",
+      "strategy": "bm25",
+      "tokens": 4604,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 174.0
+    },
+    {
+      "session": "deprecate passing script_info to factory",
+      "strategy": "dense-emb",
+      "tokens": 4660,
+      "coverage": 0.2,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 627.5
+    },
+    {
+      "session": "deprecate passing script_info to factory",
+      "strategy": "ast-tfidf",
+      "tokens": 4710,
+      "coverage": 0.35,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 345.2
+    },
+    {
+      "session": "deprecate passing script_info to factory",
+      "strategy": "repomap",
+      "tokens": 4158,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 255.0
+    },
+    {
+      "session": "deprecate passing script_info to factory",
+      "strategy": "semble",
+      "tokens": 4130,
+      "coverage": 0.35,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1383.2
+    },
+    {
+      "session": "deprecate passing script_info to factory",
+      "strategy": "slicegrep",
+      "tokens": 4234,
+      "coverage": 0.4,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2839.6
+    },
+    {
+      "session": "Mention register_error_handler in errorhandler doc",
+      "strategy": "raw-rg",
+      "tokens": 2366,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 105.8
+    },
+    {
+      "session": "Mention register_error_handler in errorhandler doc",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 106,
+      "latency_ms": 101.9
+    },
+    {
+      "session": "Mention register_error_handler in errorhandler doc",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 90,
+      "latency_ms": 115.4
+    },
+    {
+      "session": "Mention register_error_handler in errorhandler doc",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 5,
+      "latency_ms": 112.1
+    },
+    {
+      "session": "Mention register_error_handler in errorhandler doc",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 77.1
+    },
+    {
+      "session": "Mention register_error_handler in errorhandler doc",
+      "strategy": "tfidf-vec",
+      "tokens": 4616,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 113.7
+    },
+    {
+      "session": "Mention register_error_handler in errorhandler doc",
+      "strategy": "bm25",
+      "tokens": 4540,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 147.1
+    },
+    {
+      "session": "Mention register_error_handler in errorhandler doc",
+      "strategy": "dense-emb",
+      "tokens": 4946,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 482.1
+    },
+    {
+      "session": "Mention register_error_handler in errorhandler doc",
+      "strategy": "ast-tfidf",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 182.5
+    },
+    {
+      "session": "Mention register_error_handler in errorhandler doc",
+      "strategy": "repomap",
+      "tokens": 4344,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 164.8
+    },
+    {
+      "session": "Mention register_error_handler in errorhandler doc",
+      "strategy": "semble",
+      "tokens": 4149,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 1120.5
+    },
+    {
+      "session": "Mention register_error_handler in errorhandler doc",
+      "strategy": "slicegrep",
+      "tokens": 4247,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 1883.1
+    },
+    {
+      "session": "Don't parameterize tests using non-Collection iterables",
+      "strategy": "raw-rg",
+      "tokens": 4398,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 127.3
+    },
+    {
+      "session": "Don't parameterize tests using non-Collection iterables",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 72,
+      "latency_ms": 203.0
+    },
+    {
+      "session": "Don't parameterize tests using non-Collection iterables",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 77,
+      "latency_ms": 138.5
+    },
+    {
+      "session": "Don't parameterize tests using non-Collection iterables",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 177.3
+    },
+    {
+      "session": "Don't parameterize tests using non-Collection iterables",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 85.7
+    },
+    {
+      "session": "Don't parameterize tests using non-Collection iterables",
+      "strategy": "tfidf-vec",
+      "tokens": 4639,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 148.8
+    },
+    {
+      "session": "Don't parameterize tests using non-Collection iterables",
+      "strategy": "bm25",
+      "tokens": 4252,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 197.5
+    },
+    {
+      "session": "Don't parameterize tests using non-Collection iterables",
+      "strategy": "dense-emb",
+      "tokens": 4530,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 725.4
+    },
+    {
+      "session": "Don't parameterize tests using non-Collection iterables",
+      "strategy": "ast-tfidf",
+      "tokens": 5630,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 623.3
+    },
+    {
+      "session": "Don't parameterize tests using non-Collection iterables",
+      "strategy": "repomap",
+      "tokens": 4126,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 483.1
+    },
+    {
+      "session": "Don't parameterize tests using non-Collection iterables",
+      "strategy": "semble",
+      "tokens": 4022,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1858.9
+    },
+    {
+      "session": "Don't parameterize tests using non-Collection iterables",
+      "strategy": "slicegrep",
+      "tokens": 4131,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1984.7
+    },
+    {
+      "session": "Stop change CWD to .env/.flaskenv location",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 200.1
+    },
+    {
+      "session": "Stop change CWD to .env/.flaskenv location",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 142,
+      "latency_ms": 244.0
+    },
+    {
+      "session": "Stop change CWD to .env/.flaskenv location",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 183,
+      "latency_ms": 213.2
+    },
+    {
+      "session": "Stop change CWD to .env/.flaskenv location",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 219.9
+    },
+    {
+      "session": "Stop change CWD to .env/.flaskenv location",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 84.4
+    },
+    {
+      "session": "Stop change CWD to .env/.flaskenv location",
+      "strategy": "tfidf-vec",
+      "tokens": 4614,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 145.4
+    },
+    {
+      "session": "Stop change CWD to .env/.flaskenv location",
+      "strategy": "bm25",
+      "tokens": 4997,
+      "coverage": 0.667,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 229.1
+    },
+    {
+      "session": "Stop change CWD to .env/.flaskenv location",
+      "strategy": "dense-emb",
+      "tokens": 4634,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 715.6
+    },
+    {
+      "session": "Stop change CWD to .env/.flaskenv location",
+      "strategy": "ast-tfidf",
+      "tokens": 4482,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 461.7
+    },
+    {
+      "session": "Stop change CWD to .env/.flaskenv location",
+      "strategy": "repomap",
+      "tokens": 4158,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 324.7
+    },
+    {
+      "session": "Stop change CWD to .env/.flaskenv location",
+      "strategy": "semble",
+      "tokens": 4529,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1669.6
+    },
+    {
+      "session": "Stop change CWD to .env/.flaskenv location",
+      "strategy": "slicegrep",
+      "tokens": 4101,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2322.9
+    },
+    {
+      "session": "attempt at supporting emoji",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 112.9
+    },
+    {
+      "session": "attempt at supporting emoji",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 62,
+      "latency_ms": 138.5
+    },
+    {
+      "session": "attempt at supporting emoji",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 66,
+      "latency_ms": 130.3
+    },
+    {
+      "session": "attempt at supporting emoji",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 5,
+      "latency_ms": 140.4
+    },
+    {
+      "session": "attempt at supporting emoji",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 80.0
+    },
+    {
+      "session": "attempt at supporting emoji",
+      "strategy": "tfidf-vec",
+      "tokens": 4235,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 88.6
+    },
+    {
+      "session": "attempt at supporting emoji",
+      "strategy": "bm25",
+      "tokens": 4114,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 132.7
+    },
+    {
+      "session": "attempt at supporting emoji",
+      "strategy": "dense-emb",
+      "tokens": 4284,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 457.1
+    },
+    {
+      "session": "attempt at supporting emoji",
+      "strategy": "ast-tfidf",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 352.6
+    },
+    {
+      "session": "attempt at supporting emoji",
+      "strategy": "repomap",
+      "tokens": 4069,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 248.0
+    },
+    {
+      "session": "attempt at supporting emoji",
+      "strategy": "semble",
+      "tokens": 4267,
+      "coverage": 0.286,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1618.9
+    },
+    {
+      "session": "attempt at supporting emoji",
+      "strategy": "slicegrep",
+      "tokens": 4549,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1569.2
+    },
+    {
+      "session": "invoke type casts default values",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 125.9
+    },
+    {
+      "session": "invoke type casts default values",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 144,
+      "latency_ms": 138.6
+    },
+    {
+      "session": "invoke type casts default values",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 158,
+      "latency_ms": 141.5
+    },
+    {
+      "session": "invoke type casts default values",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.25,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 150.3
+    },
+    {
+      "session": "invoke type casts default values",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1831.2
+    },
+    {
+      "session": "invoke type casts default values",
+      "strategy": "tfidf-vec",
+      "tokens": 4856,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 204.3
+    },
+    {
+      "session": "invoke type casts default values",
+      "strategy": "bm25",
+      "tokens": 4353,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 201.9
+    },
+    {
+      "session": "invoke type casts default values",
+      "strategy": "dense-emb",
+      "tokens": 4872,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 671.3
+    },
+    {
+      "session": "invoke type casts default values",
+      "strategy": "ast-tfidf",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 947.0
+    },
+    {
+      "session": "invoke type casts default values",
+      "strategy": "repomap",
+      "tokens": 4070,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 279.4
+    },
+    {
+      "session": "invoke type casts default values",
+      "strategy": "semble",
+      "tokens": 4129,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1508.5
+    },
+    {
+      "session": "invoke type casts default values",
+      "strategy": "slicegrep",
+      "tokens": 4059,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 5621.8
+    },
+    {
+      "session": "Remove unused loggers.",
+      "strategy": "raw-rg",
+      "tokens": 1683,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 113.2
+    },
+    {
+      "session": "Remove unused loggers.",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 60,
+      "latency_ms": 121.5
+    },
+    {
+      "session": "Remove unused loggers.",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 34,
+      "latency_ms": 102.8
+    },
+    {
+      "session": "Remove unused loggers.",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 6,
+      "latency_ms": 123.2
+    },
+    {
+      "session": "Remove unused loggers.",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 243.9
+    },
+    {
+      "session": "Remove unused loggers.",
+      "strategy": "tfidf-vec",
+      "tokens": 4216,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 155.0
+    },
+    {
+      "session": "Remove unused loggers.",
+      "strategy": "bm25",
+      "tokens": 4416,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 171.9
+    },
+    {
+      "session": "Remove unused loggers.",
+      "strategy": "dense-emb",
+      "tokens": 4478,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 410.6
+    },
+    {
+      "session": "Remove unused loggers.",
+      "strategy": "ast-tfidf",
+      "tokens": 5495,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 533.2
+    },
+    {
+      "session": "Remove unused loggers.",
+      "strategy": "repomap",
+      "tokens": 4631,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 193.6
+    },
+    {
+      "session": "Remove unused loggers.",
+      "strategy": "semble",
+      "tokens": 4169,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1616.4
+    },
+    {
+      "session": "Remove unused loggers.",
+      "strategy": "slicegrep",
+      "tokens": 4150,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1495.0
+    },
+    {
+      "session": "If there is no content in a response don't throw an error th",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 51.7
+    },
+    {
+      "session": "If there is no content in a response don't throw an error th",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 87,
+      "latency_ms": 40.5
+    },
+    {
+      "session": "If there is no content in a response don't throw an error th",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 101,
+      "latency_ms": 45.5
+    },
+    {
+      "session": "If there is no content in a response don't throw an error th",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.75,
+      "hit": true,
+      "tool_calls": 6,
+      "latency_ms": 49.2
+    },
+    {
+      "session": "If there is no content in a response don't throw an error th",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 447.7
+    },
+    {
+      "session": "If there is no content in a response don't throw an error th",
+      "strategy": "tfidf-vec",
+      "tokens": 4475,
+      "coverage": 0.25,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 37.4
+    },
+    {
+      "session": "If there is no content in a response don't throw an error th",
+      "strategy": "bm25",
+      "tokens": 4477,
+      "coverage": 0.25,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 58.6
+    },
+    {
+      "session": "If there is no content in a response don't throw an error th",
+      "strategy": "dense-emb",
+      "tokens": 4299,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 173.3
+    },
+    {
+      "session": "If there is no content in a response don't throw an error th",
+      "strategy": "ast-tfidf",
+      "tokens": 4497,
+      "coverage": 0.75,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 144.5
+    },
+    {
+      "session": "If there is no content in a response don't throw an error th",
+      "strategy": "repomap",
+      "tokens": 4117,
+      "coverage": 0.75,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 69.4
+    },
+    {
+      "session": "If there is no content in a response don't throw an error th",
+      "strategy": "semble",
+      "tokens": 4329,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 774.1
+    },
+    {
+      "session": "If there is no content in a response don't throw an error th",
+      "strategy": "slicegrep",
+      "tokens": 4143,
+      "coverage": 0.25,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2534.4
+    },
+    {
+      "session": "remove unhelpful difflib print",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 316.8
+    },
+    {
+      "session": "remove unhelpful difflib print",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 229,
+      "latency_ms": 295.4
+    },
+    {
+      "session": "remove unhelpful difflib print",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 264,
+      "latency_ms": 357.0
+    },
+    {
+      "session": "remove unhelpful difflib print",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 6,
+      "latency_ms": 353.7
+    },
+    {
+      "session": "remove unhelpful difflib print",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 419.9
+    },
+    {
+      "session": "remove unhelpful difflib print",
+      "strategy": "tfidf-vec",
+      "tokens": 4528,
+      "coverage": 0.667,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 258.3
+    },
+    {
+      "session": "remove unhelpful difflib print",
+      "strategy": "bm25",
+      "tokens": 4639,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 251.7
+    },
+    {
+      "session": "remove unhelpful difflib print",
+      "strategy": "dense-emb",
+      "tokens": 4458,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1010.0
+    },
+    {
+      "session": "remove unhelpful difflib print",
+      "strategy": "ast-tfidf",
+      "tokens": 6163,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1303.3
+    },
+    {
+      "session": "remove unhelpful difflib print",
+      "strategy": "repomap",
+      "tokens": 4192,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 574.3
+    },
+    {
+      "session": "remove unhelpful difflib print",
+      "strategy": "semble",
+      "tokens": 4203,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2214.9
+    },
+    {
+      "session": "remove unhelpful difflib print",
+      "strategy": "slicegrep",
+      "tokens": 4367,
+      "coverage": 0.667,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 3678.1
+    },
+    {
+      "session": "tabs to space changes",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 521.0
+    },
+    {
+      "session": "tabs to space changes",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 163,
+      "latency_ms": 487.4
+    },
+    {
+      "session": "tabs to space changes",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 136,
+      "latency_ms": 617.3
+    },
+    {
+      "session": "tabs to space changes",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.857,
+      "hit": true,
+      "tool_calls": 4,
+      "latency_ms": 416.1
+    },
+    {
+      "session": "tabs to space changes",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 417.8
+    },
+    {
+      "session": "tabs to space changes",
+      "strategy": "tfidf-vec",
+      "tokens": 4896,
+      "coverage": 0.571,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 325.9
+    },
+    {
+      "session": "tabs to space changes",
+      "strategy": "bm25",
+      "tokens": 4769,
+      "coverage": 0.571,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 427.6
+    },
+    {
+      "session": "tabs to space changes",
+      "strategy": "dense-emb",
+      "tokens": 4967,
+      "coverage": 0.714,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 1246.3
+    },
+    {
+      "session": "tabs to space changes",
+      "strategy": "ast-tfidf",
+      "tokens": 4780,
+      "coverage": 0.571,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 914.5
+    },
+    {
+      "session": "tabs to space changes",
+      "strategy": "repomap",
+      "tokens": 4207,
+      "coverage": 0.143,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1145.6
+    },
+    {
+      "session": "tabs to space changes",
+      "strategy": "semble",
+      "tokens": 4153,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 3428.8
+    },
+    {
+      "session": "tabs to space changes",
+      "strategy": "slicegrep",
+      "tokens": 4349,
+      "coverage": 0.571,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 7051.2
+    },
+    {
+      "session": "deprecate app session methods in favor of session_interface ",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 250.6
+    },
+    {
+      "session": "deprecate app session methods in favor of session_interface ",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 119,
+      "latency_ms": 255.6
+    },
+    {
+      "session": "deprecate app session methods in favor of session_interface ",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 156,
+      "latency_ms": 193.9
+    },
+    {
+      "session": "deprecate app session methods in favor of session_interface ",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 5,
+      "latency_ms": 200.7
+    },
+    {
+      "session": "deprecate app session methods in favor of session_interface ",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 94.2
+    },
+    {
+      "session": "deprecate app session methods in favor of session_interface ",
+      "strategy": "tfidf-vec",
+      "tokens": 4410,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 146.5
+    },
+    {
+      "session": "deprecate app session methods in favor of session_interface ",
+      "strategy": "bm25",
+      "tokens": 4196,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 192.2
+    },
+    {
+      "session": "deprecate app session methods in favor of session_interface ",
+      "strategy": "dense-emb",
+      "tokens": 4749,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 679.8
+    },
+    {
+      "session": "deprecate app session methods in favor of session_interface ",
+      "strategy": "ast-tfidf",
+      "tokens": 5219,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 382.1
+    },
+    {
+      "session": "deprecate app session methods in favor of session_interface ",
+      "strategy": "repomap",
+      "tokens": 4241,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 279.5
+    },
+    {
+      "session": "deprecate app session methods in favor of session_interface ",
+      "strategy": "semble",
+      "tokens": 4193,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 1461.4
+    },
+    {
+      "session": "deprecate app session methods in favor of session_interface ",
+      "strategy": "slicegrep",
+      "tokens": 4100,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 3203.4
+    },
+    {
+      "session": "Clean up, support all redirects, fix potential endless 401 l",
+      "strategy": "raw-rg",
+      "tokens": 3337,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 141.9
+    },
+    {
+      "session": "Clean up, support all redirects, fix potential endless 401 l",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 65,
+      "latency_ms": 162.7
+    },
+    {
+      "session": "Clean up, support all redirects, fix potential endless 401 l",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 45,
+      "latency_ms": 157.6
+    },
+    {
+      "session": "Clean up, support all redirects, fix potential endless 401 l",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 6,
+      "latency_ms": 154.2
+    },
+    {
+      "session": "Clean up, support all redirects, fix potential endless 401 l",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 159.6
+    },
+    {
+      "session": "Clean up, support all redirects, fix potential endless 401 l",
+      "strategy": "tfidf-vec",
+      "tokens": 4232,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 186.8
+    },
+    {
+      "session": "Clean up, support all redirects, fix potential endless 401 l",
+      "strategy": "bm25",
+      "tokens": 4625,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 211.8
+    },
+    {
+      "session": "Clean up, support all redirects, fix potential endless 401 l",
+      "strategy": "dense-emb",
+      "tokens": 4717,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 515.4
+    },
+    {
+      "session": "Clean up, support all redirects, fix potential endless 401 l",
+      "strategy": "ast-tfidf",
+      "tokens": 4740,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 651.6
+    },
+    {
+      "session": "Clean up, support all redirects, fix potential endless 401 l",
+      "strategy": "repomap",
+      "tokens": 4119,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 244.6
+    },
+    {
+      "session": "Clean up, support all redirects, fix potential endless 401 l",
+      "strategy": "semble",
+      "tokens": 4483,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2364.8
+    },
+    {
+      "session": "Clean up, support all redirects, fix potential endless 401 l",
+      "strategy": "slicegrep",
+      "tokens": 4066,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2111.9
+    },
+    {
+      "session": "remove app engine detection",
+      "strategy": "raw-rg",
+      "tokens": 3388,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 100.4
+    },
+    {
+      "session": "remove app engine detection",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 70,
+      "latency_ms": 129.7
+    },
+    {
+      "session": "remove app engine detection",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 99,
+      "latency_ms": 126.4
+    },
+    {
+      "session": "remove app engine detection",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 128.7
+    },
+    {
+      "session": "remove app engine detection",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 797.0
+    },
+    {
+      "session": "remove app engine detection",
+      "strategy": "tfidf-vec",
+      "tokens": 4366,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 118.2
+    },
+    {
+      "session": "remove app engine detection",
+      "strategy": "bm25",
+      "tokens": 4647,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 158.3
+    },
+    {
+      "session": "remove app engine detection",
+      "strategy": "dense-emb",
+      "tokens": 4316,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 569.2
+    },
+    {
+      "session": "remove app engine detection",
+      "strategy": "ast-tfidf",
+      "tokens": 5329,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 403.2
+    },
+    {
+      "session": "remove app engine detection",
+      "strategy": "repomap",
+      "tokens": 4017,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 257.0
+    },
+    {
+      "session": "remove app engine detection",
+      "strategy": "semble",
+      "tokens": 4214,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 1052.4
+    },
+    {
+      "session": "remove app engine detection",
+      "strategy": "slicegrep",
+      "tokens": 3875,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 2366.8
+    },
+    {
+      "session": "add an ExitStack to the context",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 99.7
+    },
+    {
+      "session": "add an ExitStack to the context",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 88,
+      "latency_ms": 102.9
+    },
+    {
+      "session": "add an ExitStack to the context",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 116,
+      "latency_ms": 115.6
+    },
+    {
+      "session": "add an ExitStack to the context",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.778,
+      "hit": true,
+      "tool_calls": 4,
+      "latency_ms": 93.8
+    },
+    {
+      "session": "add an ExitStack to the context",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 80.1
+    },
+    {
+      "session": "add an ExitStack to the context",
+      "strategy": "tfidf-vec",
+      "tokens": 4915,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 132.5
+    },
+    {
+      "session": "add an ExitStack to the context",
+      "strategy": "bm25",
+      "tokens": 4599,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 178.5
+    },
+    {
+      "session": "add an ExitStack to the context",
+      "strategy": "dense-emb",
+      "tokens": 4745,
+      "coverage": 0.111,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 606.5
+    },
+    {
+      "session": "add an ExitStack to the context",
+      "strategy": "ast-tfidf",
+      "tokens": 6599,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 418.5
+    },
+    {
+      "session": "add an ExitStack to the context",
+      "strategy": "repomap",
+      "tokens": 4205,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 236.5
+    },
+    {
+      "session": "add an ExitStack to the context",
+      "strategy": "semble",
+      "tokens": 4176,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1546.1
+    },
+    {
+      "session": "add an ExitStack to the context",
+      "strategy": "slicegrep",
+      "tokens": 4144,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1596.7
+    },
+    {
+      "session": "Record blueprint registration order.",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 111.5
+    },
+    {
+      "session": "Record blueprint registration order.",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 135,
+      "latency_ms": 116.3
+    },
+    {
+      "session": "Record blueprint registration order.",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 200,
+      "latency_ms": 108.7
+    },
+    {
+      "session": "Record blueprint registration order.",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 5,
+      "latency_ms": 107.8
+    },
+    {
+      "session": "Record blueprint registration order.",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 158.2
+    },
+    {
+      "session": "Record blueprint registration order.",
+      "strategy": "tfidf-vec",
+      "tokens": 4371,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 95.7
+    },
+    {
+      "session": "Record blueprint registration order.",
+      "strategy": "bm25",
+      "tokens": 4610,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 115.1
+    },
+    {
+      "session": "Record blueprint registration order.",
+      "strategy": "dense-emb",
+      "tokens": 4480,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 427.7
+    },
+    {
+      "session": "Record blueprint registration order.",
+      "strategy": "ast-tfidf",
+      "tokens": 8000,
+      "coverage": 0.167,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 261.1
+    },
+    {
+      "session": "Record blueprint registration order.",
+      "strategy": "repomap",
+      "tokens": 4301,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 184.4
+    },
+    {
+      "session": "Record blueprint registration order.",
+      "strategy": "semble",
+      "tokens": 4148,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1019.4
+    },
+    {
+      "session": "Record blueprint registration order.",
+      "strategy": "slicegrep",
+      "tokens": 4405,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2403.2
+    },
+    {
+      "session": "ultra cookie compatibility",
+      "strategy": "raw-rg",
+      "tokens": 4458,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 32.1
+    },
+    {
+      "session": "ultra cookie compatibility",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 29,
+      "latency_ms": 29.7
+    },
+    {
+      "session": "ultra cookie compatibility",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 31,
+      "latency_ms": 33.9
+    },
+    {
+      "session": "ultra cookie compatibility",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 7,
+      "latency_ms": 44.8
+    },
+    {
+      "session": "ultra cookie compatibility",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 39.7
+    },
+    {
+      "session": "ultra cookie compatibility",
+      "strategy": "tfidf-vec",
+      "tokens": 4416,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 34.7
+    },
+    {
+      "session": "ultra cookie compatibility",
+      "strategy": "bm25",
+      "tokens": 4618,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 48.4
+    },
+    {
+      "session": "ultra cookie compatibility",
+      "strategy": "dense-emb",
+      "tokens": 4217,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 196.1
+    },
+    {
+      "session": "ultra cookie compatibility",
+      "strategy": "ast-tfidf",
+      "tokens": 4283,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 96.0
+    },
+    {
+      "session": "ultra cookie compatibility",
+      "strategy": "repomap",
+      "tokens": 4101,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 41.0
+    },
+    {
+      "session": "ultra cookie compatibility",
+      "strategy": "semble",
+      "tokens": 4179,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 598.7
+    },
+    {
+      "session": "ultra cookie compatibility",
+      "strategy": "slicegrep",
+      "tokens": 4321,
+      "coverage": 0.667,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 804.5
+    },
+    {
+      "session": "Unable unicode in basic http auth",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 241.5
+    },
+    {
+      "session": "Unable unicode in basic http auth",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 166,
+      "latency_ms": 441.0
+    },
+    {
+      "session": "Unable unicode in basic http auth",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 192,
+      "latency_ms": 316.2
+    },
+    {
+      "session": "Unable unicode in basic http auth",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 429.8
+    },
+    {
+      "session": "Unable unicode in basic http auth",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 363.5
+    },
+    {
+      "session": "Unable unicode in basic http auth",
+      "strategy": "tfidf-vec",
+      "tokens": 4191,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 379.3
+    },
+    {
+      "session": "Unable unicode in basic http auth",
+      "strategy": "bm25",
+      "tokens": 4328,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 327.1
+    },
+    {
+      "session": "Unable unicode in basic http auth",
+      "strategy": "dense-emb",
+      "tokens": 4375,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1122.8
+    },
+    {
+      "session": "Unable unicode in basic http auth",
+      "strategy": "ast-tfidf",
+      "tokens": 4538,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 876.4
+    },
+    {
+      "session": "Unable unicode in basic http auth",
+      "strategy": "repomap",
+      "tokens": 4319,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 487.3
+    },
+    {
+      "session": "Unable unicode in basic http auth",
+      "strategy": "semble",
+      "tokens": 4167,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2989.7
+    },
+    {
+      "session": "Unable unicode in basic http auth",
+      "strategy": "slicegrep",
+      "tokens": 4347,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 5086.0
+    },
+    {
+      "session": "Various pyflakes fixes",
+      "strategy": "raw-rg",
+      "tokens": 4448,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 84.0
+    },
+    {
+      "session": "Various pyflakes fixes",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 22,
+      "latency_ms": 101.4
+    },
+    {
+      "session": "Various pyflakes fixes",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 17,
+      "latency_ms": 76.6
+    },
+    {
+      "session": "Various pyflakes fixes",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 8,
+      "latency_ms": 82.0
+    },
+    {
+      "session": "Various pyflakes fixes",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 121.9
+    },
+    {
+      "session": "Various pyflakes fixes",
+      "strategy": "tfidf-vec",
+      "tokens": 4424,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 81.2
+    },
+    {
+      "session": "Various pyflakes fixes",
+      "strategy": "bm25",
+      "tokens": 4424,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 125.3
+    },
+    {
+      "session": "Various pyflakes fixes",
+      "strategy": "dense-emb",
+      "tokens": 4597,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 393.4
+    },
+    {
+      "session": "Various pyflakes fixes",
+      "strategy": "ast-tfidf",
+      "tokens": 6021,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 98.8
+    },
+    {
+      "session": "Various pyflakes fixes",
+      "strategy": "repomap",
+      "tokens": 4269,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 32.5
+    },
+    {
+      "session": "Various pyflakes fixes",
+      "strategy": "semble",
+      "tokens": 4215,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 666.7
+    },
+    {
+      "session": "Various pyflakes fixes",
+      "strategy": "slicegrep",
+      "tokens": 4248,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1234.3
+    },
+    {
+      "session": "[highlighter] Extract more complex numbers pattern matching ",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 449.1
+    },
+    {
+      "session": "[highlighter] Extract more complex numbers pattern matching ",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 426,
+      "latency_ms": 397.4
+    },
+    {
+      "session": "[highlighter] Extract more complex numbers pattern matching ",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 506,
+      "latency_ms": 407.2
+    },
+    {
+      "session": "[highlighter] Extract more complex numbers pattern matching ",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 5,
+      "latency_ms": 382.8
+    },
+    {
+      "session": "[highlighter] Extract more complex numbers pattern matching ",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 2837.8
+    },
+    {
+      "session": "[highlighter] Extract more complex numbers pattern matching ",
+      "strategy": "tfidf-vec",
+      "tokens": 4743,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 457.7
+    },
+    {
+      "session": "[highlighter] Extract more complex numbers pattern matching ",
+      "strategy": "bm25",
+      "tokens": 4848,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 468.7
+    },
+    {
+      "session": "[highlighter] Extract more complex numbers pattern matching ",
+      "strategy": "dense-emb",
+      "tokens": 4043,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1118.1
+    },
+    {
+      "session": "[highlighter] Extract more complex numbers pattern matching ",
+      "strategy": "ast-tfidf",
+      "tokens": 4122,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 581.3
+    },
+    {
+      "session": "[highlighter] Extract more complex numbers pattern matching ",
+      "strategy": "repomap",
+      "tokens": 4254,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 736.6
+    },
+    {
+      "session": "[highlighter] Extract more complex numbers pattern matching ",
+      "strategy": "semble",
+      "tokens": 4256,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2199.7
+    },
+    {
+      "session": "[highlighter] Extract more complex numbers pattern matching ",
+      "strategy": "slicegrep",
+      "tokens": 4339,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 5171.5
+    },
+    {
+      "session": "Resolves the parts of #1096 in requests proper.",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 87.6
+    },
+    {
+      "session": "Resolves the parts of #1096 in requests proper.",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 90,
+      "latency_ms": 121.3
+    },
+    {
+      "session": "Resolves the parts of #1096 in requests proper.",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 99,
+      "latency_ms": 147.0
+    },
+    {
+      "session": "Resolves the parts of #1096 in requests proper.",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 8,
+      "latency_ms": 158.8
+    },
+    {
+      "session": "Resolves the parts of #1096 in requests proper.",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 74.3
+    },
+    {
+      "session": "Resolves the parts of #1096 in requests proper.",
+      "strategy": "tfidf-vec",
+      "tokens": 4839,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 196.1
+    },
+    {
+      "session": "Resolves the parts of #1096 in requests proper.",
+      "strategy": "bm25",
+      "tokens": 4165,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 226.7
+    },
+    {
+      "session": "Resolves the parts of #1096 in requests proper.",
+      "strategy": "dense-emb",
+      "tokens": 4694,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 483.2
+    },
+    {
+      "session": "Resolves the parts of #1096 in requests proper.",
+      "strategy": "ast-tfidf",
+      "tokens": 4314,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1190.8
+    },
+    {
+      "session": "Resolves the parts of #1096 in requests proper.",
+      "strategy": "repomap",
+      "tokens": 4167,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 118.4
+    },
+    {
+      "session": "Resolves the parts of #1096 in requests proper.",
+      "strategy": "semble",
+      "tokens": 4311,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1742.3
+    },
+    {
+      "session": "Resolves the parts of #1096 in requests proper.",
+      "strategy": "slicegrep",
+      "tokens": 4205,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2653.6
+    },
+    {
+      "session": "add open intervals to FloatRange",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 127.0
+    },
+    {
+      "session": "add open intervals to FloatRange",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 66,
+      "latency_ms": 108.6
+    },
+    {
+      "session": "add open intervals to FloatRange",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 85,
+      "latency_ms": 145.1
+    },
+    {
+      "session": "add open intervals to FloatRange",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.125,
+      "hit": false,
+      "tool_calls": 8,
+      "latency_ms": 172.8
+    },
+    {
+      "session": "add open intervals to FloatRange",
+      "strategy": "lsp(jedi)",
+      "tokens": 48,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1114.8
+    },
+    {
+      "session": "add open intervals to FloatRange",
+      "strategy": "tfidf-vec",
+      "tokens": 4451,
+      "coverage": 0.125,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 131.3
+    },
+    {
+      "session": "add open intervals to FloatRange",
+      "strategy": "bm25",
+      "tokens": 4388,
+      "coverage": 0.125,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 201.6
+    },
+    {
+      "session": "add open intervals to FloatRange",
+      "strategy": "dense-emb",
+      "tokens": 4278,
+      "coverage": 0.75,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 773.7
+    },
+    {
+      "session": "add open intervals to FloatRange",
+      "strategy": "ast-tfidf",
+      "tokens": 4179,
+      "coverage": 0.75,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 464.0
+    },
+    {
+      "session": "add open intervals to FloatRange",
+      "strategy": "repomap",
+      "tokens": 4173,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 219.9
+    },
+    {
+      "session": "add open intervals to FloatRange",
+      "strategy": "semble",
+      "tokens": 4264,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1373.7
+    },
+    {
+      "session": "add open intervals to FloatRange",
+      "strategy": "slicegrep",
+      "tokens": 4295,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2159.8
+    },
+    {
+      "session": "Added missing decorators for module wide context processors.",
+      "strategy": "raw-rg",
+      "tokens": 7115,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 68.2
+    },
+    {
+      "session": "Added missing decorators for module wide context processors.",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 53,
+      "latency_ms": 58.3
+    },
+    {
+      "session": "Added missing decorators for module wide context processors.",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 61,
+      "latency_ms": 40.7
+    },
+    {
+      "session": "Added missing decorators for module wide context processors.",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.75,
+      "hit": true,
+      "tool_calls": 4,
+      "latency_ms": 38.1
+    },
+    {
+      "session": "Added missing decorators for module wide context processors.",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 27.7
+    },
+    {
+      "session": "Added missing decorators for module wide context processors.",
+      "strategy": "tfidf-vec",
+      "tokens": 4665,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 30.4
+    },
+    {
+      "session": "Added missing decorators for module wide context processors.",
+      "strategy": "bm25",
+      "tokens": 4681,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 53.7
+    },
+    {
+      "session": "Added missing decorators for module wide context processors.",
+      "strategy": "dense-emb",
+      "tokens": 4993,
+      "coverage": 0.75,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 180.0
+    },
+    {
+      "session": "Added missing decorators for module wide context processors.",
+      "strategy": "ast-tfidf",
+      "tokens": 4105,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 43.9
+    },
+    {
+      "session": "Added missing decorators for module wide context processors.",
+      "strategy": "repomap",
+      "tokens": 4198,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 13.7
+    },
+    {
+      "session": "Added missing decorators for module wide context processors.",
+      "strategy": "semble",
+      "tokens": 4237,
+      "coverage": 0.25,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 375.3
+    },
+    {
+      "session": "Added missing decorators for module wide context processors.",
+      "strategy": "slicegrep",
+      "tokens": 4130,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 855.6
+    },
+    {
+      "session": "Allow override of lexer in Syntax.from_path",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 330.4
+    },
+    {
+      "session": "Allow override of lexer in Syntax.from_path",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 133,
+      "latency_ms": 372.2
+    },
+    {
+      "session": "Allow override of lexer in Syntax.from_path",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 168,
+      "latency_ms": 317.0
+    },
+    {
+      "session": "Allow override of lexer in Syntax.from_path",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.625,
+      "hit": true,
+      "tool_calls": 6,
+      "latency_ms": 306.7
+    },
+    {
+      "session": "Allow override of lexer in Syntax.from_path",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 356.2
+    },
+    {
+      "session": "Allow override of lexer in Syntax.from_path",
+      "strategy": "tfidf-vec",
+      "tokens": 4327,
+      "coverage": 0.875,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 300.9
+    },
+    {
+      "session": "Allow override of lexer in Syntax.from_path",
+      "strategy": "bm25",
+      "tokens": 4639,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 472.3
+    },
+    {
+      "session": "Allow override of lexer in Syntax.from_path",
+      "strategy": "dense-emb",
+      "tokens": 4189,
+      "coverage": 0.375,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1475.5
+    },
+    {
+      "session": "Allow override of lexer in Syntax.from_path",
+      "strategy": "ast-tfidf",
+      "tokens": 8000,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 695.7
+    },
+    {
+      "session": "Allow override of lexer in Syntax.from_path",
+      "strategy": "repomap",
+      "tokens": 4197,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 947.6
+    },
+    {
+      "session": "Allow override of lexer in Syntax.from_path",
+      "strategy": "semble",
+      "tokens": 4261,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 3140.4
+    },
+    {
+      "session": "Allow override of lexer in Syntax.from_path",
+      "strategy": "slicegrep",
+      "tokens": 4242,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 4585.8
+    },
+    {
+      "session": "Revert \"fix failing test \"test_prepare_unicode_url\"\"",
+      "strategy": "raw-rg",
+      "tokens": 2261,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 212.0
+    },
+    {
+      "session": "Revert \"fix failing test \"test_prepare_unicode_url\"\"",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 12,
+      "latency_ms": 276.8
+    },
+    {
+      "session": "Revert \"fix failing test \"test_prepare_unicode_url\"\"",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 12,
+      "latency_ms": 187.1
+    },
+    {
+      "session": "Revert \"fix failing test \"test_prepare_unicode_url\"\"",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 213.3
+    },
+    {
+      "session": "Revert \"fix failing test \"test_prepare_unicode_url\"\"",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 114.1
+    },
+    {
+      "session": "Revert \"fix failing test \"test_prepare_unicode_url\"\"",
+      "strategy": "tfidf-vec",
+      "tokens": 3821,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 211.3
+    },
+    {
+      "session": "Revert \"fix failing test \"test_prepare_unicode_url\"\"",
+      "strategy": "bm25",
+      "tokens": 3821,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 261.6
+    },
+    {
+      "session": "Revert \"fix failing test \"test_prepare_unicode_url\"\"",
+      "strategy": "dense-emb",
+      "tokens": 4243,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 899.1
+    },
+    {
+      "session": "Revert \"fix failing test \"test_prepare_unicode_url\"\"",
+      "strategy": "ast-tfidf",
+      "tokens": 2854,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1663.2
+    },
+    {
+      "session": "Revert \"fix failing test \"test_prepare_unicode_url\"\"",
+      "strategy": "repomap",
+      "tokens": 4505,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 368.9
+    },
+    {
+      "session": "Revert \"fix failing test \"test_prepare_unicode_url\"\"",
+      "strategy": "semble",
+      "tokens": 4172,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2175.3
+    },
+    {
+      "session": "Revert \"fix failing test \"test_prepare_unicode_url\"\"",
+      "strategy": "slicegrep",
+      "tokens": 4137,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1766.0
+    },
+    {
+      "session": "use config fixture, get plugin via unregister",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 155.7
+    },
+    {
+      "session": "use config fixture, get plugin via unregister",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 155,
+      "latency_ms": 154.7
+    },
+    {
+      "session": "use config fixture, get plugin via unregister",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 232,
+      "latency_ms": 166.5
+    },
+    {
+      "session": "use config fixture, get plugin via unregister",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 6,
+      "latency_ms": 174.3
+    },
+    {
+      "session": "use config fixture, get plugin via unregister",
+      "strategy": "lsp(jedi)",
+      "tokens": 814,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2415.3
+    },
+    {
+      "session": "use config fixture, get plugin via unregister",
+      "strategy": "tfidf-vec",
+      "tokens": 4545,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 181.1
+    },
+    {
+      "session": "use config fixture, get plugin via unregister",
+      "strategy": "bm25",
+      "tokens": 4411,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 224.3
+    },
+    {
+      "session": "use config fixture, get plugin via unregister",
+      "strategy": "dense-emb",
+      "tokens": 4949,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 847.5
+    },
+    {
+      "session": "use config fixture, get plugin via unregister",
+      "strategy": "ast-tfidf",
+      "tokens": 4527,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 381.9
+    },
+    {
+      "session": "use config fixture, get plugin via unregister",
+      "strategy": "repomap",
+      "tokens": 4101,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 289.2
+    },
+    {
+      "session": "use config fixture, get plugin via unregister",
+      "strategy": "semble",
+      "tokens": 4173,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 1663.9
+    },
+    {
+      "session": "use config fixture, get plugin via unregister",
+      "strategy": "slicegrep",
+      "tokens": 4466,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 4464.9
+    },
+    {
+      "session": "Facilitate proxy configuration by environment variables",
+      "strategy": "raw-rg",
+      "tokens": 2428,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 44.8
+    },
+    {
+      "session": "Facilitate proxy configuration by environment variables",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 39,
+      "latency_ms": 57.4
+    },
+    {
+      "session": "Facilitate proxy configuration by environment variables",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 44,
+      "latency_ms": 51.6
+    },
+    {
+      "session": "Facilitate proxy configuration by environment variables",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 7,
+      "latency_ms": 60.0
+    },
+    {
+      "session": "Facilitate proxy configuration by environment variables",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 50.7
+    },
+    {
+      "session": "Facilitate proxy configuration by environment variables",
+      "strategy": "tfidf-vec",
+      "tokens": 4218,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 29.1
+    },
+    {
+      "session": "Facilitate proxy configuration by environment variables",
+      "strategy": "bm25",
+      "tokens": 4335,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 64.2
+    },
+    {
+      "session": "Facilitate proxy configuration by environment variables",
+      "strategy": "dense-emb",
+      "tokens": 4978,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 231.2
+    },
+    {
+      "session": "Facilitate proxy configuration by environment variables",
+      "strategy": "ast-tfidf",
+      "tokens": 4048,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 149.2
+    },
+    {
+      "session": "Facilitate proxy configuration by environment variables",
+      "strategy": "repomap",
+      "tokens": 4257,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 41.2
+    },
+    {
+      "session": "Facilitate proxy configuration by environment variables",
+      "strategy": "semble",
+      "tokens": 4330,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 619.4
+    },
+    {
+      "session": "Facilitate proxy configuration by environment variables",
+      "strategy": "slicegrep",
+      "tokens": 4196,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 638.4
+    },
+    {
+      "session": "Cleaned up context defaults and documented them.",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 70.0
+    },
+    {
+      "session": "Cleaned up context defaults and documented them.",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 68,
+      "latency_ms": 80.4
+    },
+    {
+      "session": "Cleaned up context defaults and documented them.",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 78,
+      "latency_ms": 76.2
+    },
+    {
+      "session": "Cleaned up context defaults and documented them.",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 4,
+      "latency_ms": 75.8
+    },
+    {
+      "session": "Cleaned up context defaults and documented them.",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 50.8
+    },
+    {
+      "session": "Cleaned up context defaults and documented them.",
+      "strategy": "tfidf-vec",
+      "tokens": 4910,
+      "coverage": 0.667,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 65.6
+    },
+    {
+      "session": "Cleaned up context defaults and documented them.",
+      "strategy": "bm25",
+      "tokens": 4606,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 96.3
+    },
+    {
+      "session": "Cleaned up context defaults and documented them.",
+      "strategy": "dense-emb",
+      "tokens": 4146,
+      "coverage": 0.667,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 281.1
+    },
+    {
+      "session": "Cleaned up context defaults and documented them.",
+      "strategy": "ast-tfidf",
+      "tokens": 5267,
+      "coverage": 0.667,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 209.6
+    },
+    {
+      "session": "Cleaned up context defaults and documented them.",
+      "strategy": "repomap",
+      "tokens": 4033,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 75.4
+    },
+    {
+      "session": "Cleaned up context defaults and documented them.",
+      "strategy": "semble",
+      "tokens": 4328,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 857.5
+    },
+    {
+      "session": "Cleaned up context defaults and documented them.",
+      "strategy": "slicegrep",
+      "tokens": 4334,
+      "coverage": 0.667,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 1108.5
+    },
+    {
+      "session": "Removed testing artifacts",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 205.8
+    },
+    {
+      "session": "Removed testing artifacts",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 33,
+      "latency_ms": 206.6
+    },
+    {
+      "session": "Removed testing artifacts",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 27,
+      "latency_ms": 287.9
+    },
+    {
+      "session": "Removed testing artifacts",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 5,
+      "latency_ms": 292.6
+    },
+    {
+      "session": "Removed testing artifacts",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 520.2
+    },
+    {
+      "session": "Removed testing artifacts",
+      "strategy": "tfidf-vec",
+      "tokens": 4534,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 316.7
+    },
+    {
+      "session": "Removed testing artifacts",
+      "strategy": "bm25",
+      "tokens": 4225,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 286.1
+    },
+    {
+      "session": "Removed testing artifacts",
+      "strategy": "dense-emb",
+      "tokens": 4729,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 780.6
+    },
+    {
+      "session": "Removed testing artifacts",
+      "strategy": "ast-tfidf",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 926.4
+    },
+    {
+      "session": "Removed testing artifacts",
+      "strategy": "repomap",
+      "tokens": 4562,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 226.8
+    },
+    {
+      "session": "Removed testing artifacts",
+      "strategy": "semble",
+      "tokens": 4289,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 2633.1
+    },
+    {
+      "session": "Removed testing artifacts",
+      "strategy": "slicegrep",
+      "tokens": 4279,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 1499.4
+    },
+    {
+      "session": "Clean up unicode handling",
+      "strategy": "raw-rg",
+      "tokens": 6083,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 11.6
+    },
+    {
+      "session": "Clean up unicode handling",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 31,
+      "latency_ms": 15.1
+    },
+    {
+      "session": "Clean up unicode handling",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 34,
+      "latency_ms": 13.6
+    },
+    {
+      "session": "Clean up unicode handling",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.25,
+      "hit": false,
+      "tool_calls": 9,
+      "latency_ms": 15.5
+    },
+    {
+      "session": "Clean up unicode handling",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 15.9
+    },
+    {
+      "session": "Clean up unicode handling",
+      "strategy": "tfidf-vec",
+      "tokens": 4594,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 11.3
+    },
+    {
+      "session": "Clean up unicode handling",
+      "strategy": "bm25",
+      "tokens": 4254,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 17.9
+    },
+    {
+      "session": "Clean up unicode handling",
+      "strategy": "dense-emb",
+      "tokens": 4347,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 62.9
+    },
+    {
+      "session": "Clean up unicode handling",
+      "strategy": "ast-tfidf",
+      "tokens": 4874,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 35.9
+    },
+    {
+      "session": "Clean up unicode handling",
+      "strategy": "repomap",
+      "tokens": 4304,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 6.7
+    },
+    {
+      "session": "Clean up unicode handling",
+      "strategy": "semble",
+      "tokens": 4314,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 157.5
+    },
+    {
+      "session": "Clean up unicode handling",
+      "strategy": "slicegrep",
+      "tokens": 4055,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 221.4
+    },
+    {
+      "session": "Docs: docstring fixes",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 16.4
+    },
+    {
+      "session": "Docs: docstring fixes",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 16,
+      "latency_ms": 18.2
+    },
+    {
+      "session": "Docs: docstring fixes",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 16,
+      "latency_ms": 17.5
+    },
+    {
+      "session": "Docs: docstring fixes",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 11,
+      "latency_ms": 16.1
+    },
+    {
+      "session": "Docs: docstring fixes",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 307.4
+    },
+    {
+      "session": "Docs: docstring fixes",
+      "strategy": "tfidf-vec",
+      "tokens": 4402,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 19.5
+    },
+    {
+      "session": "Docs: docstring fixes",
+      "strategy": "bm25",
+      "tokens": 4402,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 33.9
+    },
+    {
+      "session": "Docs: docstring fixes",
+      "strategy": "dense-emb",
+      "tokens": 4428,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 112.0
+    },
+    {
+      "session": "Docs: docstring fixes",
+      "strategy": "ast-tfidf",
+      "tokens": 4369,
+      "coverage": 0.222,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 73.4
+    },
+    {
+      "session": "Docs: docstring fixes",
+      "strategy": "repomap",
+      "tokens": 4192,
+      "coverage": 0.111,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 23.1
+    },
+    {
+      "session": "Docs: docstring fixes",
+      "strategy": "semble",
+      "tokens": 4258,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 266.8
+    },
+    {
+      "session": "Docs: docstring fixes",
+      "strategy": "slicegrep",
+      "tokens": 4290,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 288.5
+    },
+    {
+      "session": "add Response.max_cookie_size config",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 89.7
+    },
+    {
+      "session": "add Response.max_cookie_size config",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 232,
+      "latency_ms": 101.4
+    },
+    {
+      "session": "add Response.max_cookie_size config",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 263,
+      "latency_ms": 98.7
+    },
+    {
+      "session": "add Response.max_cookie_size config",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.25,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 103.3
+    },
+    {
+      "session": "add Response.max_cookie_size config",
+      "strategy": "lsp(jedi)",
+      "tokens": 388,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 1104.5
+    },
+    {
+      "session": "add Response.max_cookie_size config",
+      "strategy": "tfidf-vec",
+      "tokens": 4941,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 101.2
+    },
+    {
+      "session": "add Response.max_cookie_size config",
+      "strategy": "bm25",
+      "tokens": 4522,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 105.1
+    },
+    {
+      "session": "add Response.max_cookie_size config",
+      "strategy": "dense-emb",
+      "tokens": 4481,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 450.1
+    },
+    {
+      "session": "add Response.max_cookie_size config",
+      "strategy": "ast-tfidf",
+      "tokens": 4077,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 210.1
+    },
+    {
+      "session": "add Response.max_cookie_size config",
+      "strategy": "repomap",
+      "tokens": 4121,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 198.6
+    },
+    {
+      "session": "add Response.max_cookie_size config",
+      "strategy": "semble",
+      "tokens": 4145,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 839.6
+    },
+    {
+      "session": "add Response.max_cookie_size config",
+      "strategy": "slicegrep",
+      "tokens": 4196,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2469.6
+    },
+    {
+      "session": "[syntax] another round of PR feedback addressing for stylize",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 230.1
+    },
+    {
+      "session": "[syntax] another round of PR feedback addressing for stylize",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 418,
+      "latency_ms": 250.2
+    },
+    {
+      "session": "[syntax] another round of PR feedback addressing for stylize",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 488,
+      "latency_ms": 259.7
+    },
+    {
+      "session": "[syntax] another round of PR feedback addressing for stylize",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 5,
+      "latency_ms": 231.3
+    },
+    {
+      "session": "[syntax] another round of PR feedback addressing for stylize",
+      "strategy": "lsp(jedi)",
+      "tokens": 3025,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 924.5
+    },
+    {
+      "session": "[syntax] another round of PR feedback addressing for stylize",
+      "strategy": "tfidf-vec",
+      "tokens": 4328,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 268.8
+    },
+    {
+      "session": "[syntax] another round of PR feedback addressing for stylize",
+      "strategy": "bm25",
+      "tokens": 4576,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 376.6
+    },
+    {
+      "session": "[syntax] another round of PR feedback addressing for stylize",
+      "strategy": "dense-emb",
+      "tokens": 4704,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 912.2
+    },
+    {
+      "session": "[syntax] another round of PR feedback addressing for stylize",
+      "strategy": "ast-tfidf",
+      "tokens": 4587,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 486.8
+    },
+    {
+      "session": "[syntax] another round of PR feedback addressing for stylize",
+      "strategy": "repomap",
+      "tokens": 4066,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 708.8
+    },
+    {
+      "session": "[syntax] another round of PR feedback addressing for stylize",
+      "strategy": "semble",
+      "tokens": 4169,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1885.2
+    },
+    {
+      "session": "[syntax] another round of PR feedback addressing for stylize",
+      "strategy": "slicegrep",
+      "tokens": 4008,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 5160.0
+    },
+    {
+      "session": "typing issue for 3.8",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 326.6
+    },
+    {
+      "session": "typing issue for 3.8",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 301,
+      "latency_ms": 313.8
+    },
+    {
+      "session": "typing issue for 3.8",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 341,
+      "latency_ms": 303.4
+    },
+    {
+      "session": "typing issue for 3.8",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 291.9
+    },
+    {
+      "session": "typing issue for 3.8",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1295.5
+    },
+    {
+      "session": "typing issue for 3.8",
+      "strategy": "tfidf-vec",
+      "tokens": 4129,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 243.8
+    },
+    {
+      "session": "typing issue for 3.8",
+      "strategy": "bm25",
+      "tokens": 4134,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 291.0
+    },
+    {
+      "session": "typing issue for 3.8",
+      "strategy": "dense-emb",
+      "tokens": 4647,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1199.5
+    },
+    {
+      "session": "typing issue for 3.8",
+      "strategy": "ast-tfidf",
+      "tokens": 4210,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 740.9
+    },
+    {
+      "session": "typing issue for 3.8",
+      "strategy": "repomap",
+      "tokens": 4221,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 949.1
+    },
+    {
+      "session": "typing issue for 3.8",
+      "strategy": "semble",
+      "tokens": 4172,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2496.1
+    },
+    {
+      "session": "typing issue for 3.8",
+      "strategy": "slicegrep",
+      "tokens": 4270,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 3161.0
+    },
+    {
+      "session": "remove attribute error",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 172.6
+    },
+    {
+      "session": "remove attribute error",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 240,
+      "latency_ms": 222.2
+    },
+    {
+      "session": "remove attribute error",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 258,
+      "latency_ms": 226.6
+    },
+    {
+      "session": "remove attribute error",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 6,
+      "latency_ms": 178.8
+    },
+    {
+      "session": "remove attribute error",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 376.4
+    },
+    {
+      "session": "remove attribute error",
+      "strategy": "tfidf-vec",
+      "tokens": 4422,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 170.2
+    },
+    {
+      "session": "remove attribute error",
+      "strategy": "bm25",
+      "tokens": 4388,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 226.4
+    },
+    {
+      "session": "remove attribute error",
+      "strategy": "dense-emb",
+      "tokens": 4359,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 869.6
+    },
+    {
+      "session": "remove attribute error",
+      "strategy": "ast-tfidf",
+      "tokens": 4576,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 846.6
+    },
+    {
+      "session": "remove attribute error",
+      "strategy": "repomap",
+      "tokens": 4137,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 879.1
+    },
+    {
+      "session": "remove attribute error",
+      "strategy": "semble",
+      "tokens": 4232,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2065.7
+    },
+    {
+      "session": "remove attribute error",
+      "strategy": "slicegrep",
+      "tokens": 4261,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2907.6
+    },
+    {
+      "session": "Check for warning exception with idiomatic context manager",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 119.2
+    },
+    {
+      "session": "Check for warning exception with idiomatic context manager",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 130,
+      "latency_ms": 126.6
+    },
+    {
+      "session": "Check for warning exception with idiomatic context manager",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 225,
+      "latency_ms": 133.7
+    },
+    {
+      "session": "Check for warning exception with idiomatic context manager",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 135.4
+    },
+    {
+      "session": "Check for warning exception with idiomatic context manager",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 1585.3
+    },
+    {
+      "session": "Check for warning exception with idiomatic context manager",
+      "strategy": "tfidf-vec",
+      "tokens": 4195,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 97.3
+    },
+    {
+      "session": "Check for warning exception with idiomatic context manager",
+      "strategy": "bm25",
+      "tokens": 4851,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 122.3
+    },
+    {
+      "session": "Check for warning exception with idiomatic context manager",
+      "strategy": "dense-emb",
+      "tokens": 4592,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 500.8
+    },
+    {
+      "session": "Check for warning exception with idiomatic context manager",
+      "strategy": "ast-tfidf",
+      "tokens": 4536,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 344.3
+    },
+    {
+      "session": "Check for warning exception with idiomatic context manager",
+      "strategy": "repomap",
+      "tokens": 4176,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 338.4
+    },
+    {
+      "session": "Check for warning exception with idiomatic context manager",
+      "strategy": "semble",
+      "tokens": 4083,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1183.6
+    },
+    {
+      "session": "Check for warning exception with idiomatic context manager",
+      "strategy": "slicegrep",
+      "tokens": 4084,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2062.3
+    },
+    {
+      "session": "Support bytestring URLs on Python 3.x",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 66.2
+    },
+    {
+      "session": "Support bytestring URLs on Python 3.x",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 164,
+      "latency_ms": 71.4
+    },
+    {
+      "session": "Support bytestring URLs on Python 3.x",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 197,
+      "latency_ms": 80.8
+    },
+    {
+      "session": "Support bytestring URLs on Python 3.x",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 8,
+      "latency_ms": 91.1
+    },
+    {
+      "session": "Support bytestring URLs on Python 3.x",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 94.2
+    },
+    {
+      "session": "Support bytestring URLs on Python 3.x",
+      "strategy": "tfidf-vec",
+      "tokens": 4724,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 108.6
+    },
+    {
+      "session": "Support bytestring URLs on Python 3.x",
+      "strategy": "bm25",
+      "tokens": 4671,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 119.5
+    },
+    {
+      "session": "Support bytestring URLs on Python 3.x",
+      "strategy": "dense-emb",
+      "tokens": 4556,
+      "coverage": 0.667,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 310.1
+    },
+    {
+      "session": "Support bytestring URLs on Python 3.x",
+      "strategy": "ast-tfidf",
+      "tokens": 4341,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 349.5
+    },
+    {
+      "session": "Support bytestring URLs on Python 3.x",
+      "strategy": "repomap",
+      "tokens": 4119,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 171.7
+    },
+    {
+      "session": "Support bytestring URLs on Python 3.x",
+      "strategy": "semble",
+      "tokens": 4108,
+      "coverage": 0.333,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1146.2
+    },
+    {
+      "session": "Support bytestring URLs on Python 3.x",
+      "strategy": "slicegrep",
+      "tokens": 4068,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1157.2
+    },
+    {
+      "session": "Test and perfection for cookie handling.",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 57.6
+    },
+    {
+      "session": "Test and perfection for cookie handling.",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 36,
+      "latency_ms": 62.5
+    },
+    {
+      "session": "Test and perfection for cookie handling.",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 43,
+      "latency_ms": 68.0
+    },
+    {
+      "session": "Test and perfection for cookie handling.",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.556,
+      "hit": true,
+      "tool_calls": 8,
+      "latency_ms": 63.3
+    },
+    {
+      "session": "Test and perfection for cookie handling.",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 47.3
+    },
+    {
+      "session": "Test and perfection for cookie handling.",
+      "strategy": "tfidf-vec",
+      "tokens": 5055,
+      "coverage": 0.222,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 83.7
+    },
+    {
+      "session": "Test and perfection for cookie handling.",
+      "strategy": "bm25",
+      "tokens": 4256,
+      "coverage": 0.778,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 102.2
+    },
+    {
+      "session": "Test and perfection for cookie handling.",
+      "strategy": "dense-emb",
+      "tokens": 4453,
+      "coverage": 0.222,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 242.3
+    },
+    {
+      "session": "Test and perfection for cookie handling.",
+      "strategy": "ast-tfidf",
+      "tokens": 4234,
+      "coverage": 0.222,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 294.0
+    },
+    {
+      "session": "Test and perfection for cookie handling.",
+      "strategy": "repomap",
+      "tokens": 4087,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 96.5
+    },
+    {
+      "session": "Test and perfection for cookie handling.",
+      "strategy": "semble",
+      "tokens": 4115,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 981.2
+    },
+    {
+      "session": "Test and perfection for cookie handling.",
+      "strategy": "slicegrep",
+      "tokens": 4125,
+      "coverage": 0.222,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1015.2
+    },
+    {
+      "session": "Don't suggest to run application under Python 2",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 42.3
+    },
+    {
+      "session": "Don't suggest to run application under Python 2",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 78,
+      "latency_ms": 42.4
+    },
+    {
+      "session": "Don't suggest to run application under Python 2",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 93,
+      "latency_ms": 45.2
+    },
+    {
+      "session": "Don't suggest to run application under Python 2",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 12,
+      "latency_ms": 47.6
+    },
+    {
+      "session": "Don't suggest to run application under Python 2",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 35.1
+    },
+    {
+      "session": "Don't suggest to run application under Python 2",
+      "strategy": "tfidf-vec",
+      "tokens": 4849,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 42.5
+    },
+    {
+      "session": "Don't suggest to run application under Python 2",
+      "strategy": "bm25",
+      "tokens": 4508,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 60.5
+    },
+    {
+      "session": "Don't suggest to run application under Python 2",
+      "strategy": "dense-emb",
+      "tokens": 4414,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 217.9
+    },
+    {
+      "session": "Don't suggest to run application under Python 2",
+      "strategy": "ast-tfidf",
+      "tokens": 4247,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 140.0
+    },
+    {
+      "session": "Don't suggest to run application under Python 2",
+      "strategy": "repomap",
+      "tokens": 4292,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 85.8
+    },
+    {
+      "session": "Don't suggest to run application under Python 2",
+      "strategy": "semble",
+      "tokens": 4263,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 549.7
+    },
+    {
+      "session": "Don't suggest to run application under Python 2",
+      "strategy": "slicegrep",
+      "tokens": 4231,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 734.9
+    },
+    {
+      "session": "rewrite cli docs reflects the current FLASK_APP detection",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 86.6
+    },
+    {
+      "session": "rewrite cli docs reflects the current FLASK_APP detection",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 163,
+      "latency_ms": 103.6
+    },
+    {
+      "session": "rewrite cli docs reflects the current FLASK_APP detection",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 206,
+      "latency_ms": 101.9
+    },
+    {
+      "session": "rewrite cli docs reflects the current FLASK_APP detection",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 111.0
+    },
+    {
+      "session": "rewrite cli docs reflects the current FLASK_APP detection",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 54.2
+    },
+    {
+      "session": "rewrite cli docs reflects the current FLASK_APP detection",
+      "strategy": "tfidf-vec",
+      "tokens": 4631,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 90.9
+    },
+    {
+      "session": "rewrite cli docs reflects the current FLASK_APP detection",
+      "strategy": "bm25",
+      "tokens": 4351,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 105.6
+    },
+    {
+      "session": "rewrite cli docs reflects the current FLASK_APP detection",
+      "strategy": "dense-emb",
+      "tokens": 4484,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 434.0
+    },
+    {
+      "session": "rewrite cli docs reflects the current FLASK_APP detection",
+      "strategy": "ast-tfidf",
+      "tokens": 4322,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 208.3
+    },
+    {
+      "session": "rewrite cli docs reflects the current FLASK_APP detection",
+      "strategy": "repomap",
+      "tokens": 4240,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 194.9
+    },
+    {
+      "session": "rewrite cli docs reflects the current FLASK_APP detection",
+      "strategy": "semble",
+      "tokens": 4084,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 887.9
+    },
+    {
+      "session": "rewrite cli docs reflects the current FLASK_APP detection",
+      "strategy": "slicegrep",
+      "tokens": 4481,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1398.1
+    },
+    {
+      "session": "Don't only catch BadRequest key errors but all bad request e",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 60.3
+    },
+    {
+      "session": "Don't only catch BadRequest key errors but all bad request e",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 150,
+      "latency_ms": 64.1
+    },
+    {
+      "session": "Don't only catch BadRequest key errors but all bad request e",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 157,
+      "latency_ms": 68.0
+    },
+    {
+      "session": "Don't only catch BadRequest key errors but all bad request e",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.25,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 69.0
+    },
+    {
+      "session": "Don't only catch BadRequest key errors but all bad request e",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 92.6
+    },
+    {
+      "session": "Don't only catch BadRequest key errors but all bad request e",
+      "strategy": "tfidf-vec",
+      "tokens": 5180,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 60.8
+    },
+    {
+      "session": "Don't only catch BadRequest key errors but all bad request e",
+      "strategy": "bm25",
+      "tokens": 5116,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 82.4
+    },
+    {
+      "session": "Don't only catch BadRequest key errors but all bad request e",
+      "strategy": "dense-emb",
+      "tokens": 4587,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 269.6
+    },
+    {
+      "session": "Don't only catch BadRequest key errors but all bad request e",
+      "strategy": "ast-tfidf",
+      "tokens": 4939,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 75.3
+    },
+    {
+      "session": "Don't only catch BadRequest key errors but all bad request e",
+      "strategy": "repomap",
+      "tokens": 4287,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 53.7
+    },
+    {
+      "session": "Don't only catch BadRequest key errors but all bad request e",
+      "strategy": "semble",
+      "tokens": 4171,
+      "coverage": 0.75,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 585.0
+    },
+    {
+      "session": "Don't only catch BadRequest key errors but all bad request e",
+      "strategy": "slicegrep",
+      "tokens": 3968,
+      "coverage": 0.25,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 2569.3
+    },
+    {
+      "session": "added workaround for json on Google AppEngine",
+      "strategy": "raw-rg",
+      "tokens": 4687,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 39.4
+    },
+    {
+      "session": "added workaround for json on Google AppEngine",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 57,
+      "latency_ms": 41.4
+    },
+    {
+      "session": "added workaround for json on Google AppEngine",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 66,
+      "latency_ms": 43.9
+    },
+    {
+      "session": "added workaround for json on Google AppEngine",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 10,
+      "latency_ms": 40.4
+    },
+    {
+      "session": "added workaround for json on Google AppEngine",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 24.9
+    },
+    {
+      "session": "added workaround for json on Google AppEngine",
+      "strategy": "tfidf-vec",
+      "tokens": 4448,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 36.4
+    },
+    {
+      "session": "added workaround for json on Google AppEngine",
+      "strategy": "bm25",
+      "tokens": 4056,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 47.0
+    },
+    {
+      "session": "added workaround for json on Google AppEngine",
+      "strategy": "dense-emb",
+      "tokens": 4456,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 167.9
+    },
+    {
+      "session": "added workaround for json on Google AppEngine",
+      "strategy": "ast-tfidf",
+      "tokens": 4458,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 42.3
+    },
+    {
+      "session": "added workaround for json on Google AppEngine",
+      "strategy": "repomap",
+      "tokens": 4293,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 17.3
+    },
+    {
+      "session": "added workaround for json on Google AppEngine",
+      "strategy": "semble",
+      "tokens": 4188,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 307.7
+    },
+    {
+      "session": "added workaround for json on Google AppEngine",
+      "strategy": "slicegrep",
+      "tokens": 4394,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 578.7
+    },
+    {
+      "session": "setting a default for arguments now implicitly makes it non ",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 41.4
+    },
+    {
+      "session": "setting a default for arguments now implicitly makes it non ",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 77,
+      "latency_ms": 36.7
+    },
+    {
+      "session": "setting a default for arguments now implicitly makes it non ",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 89,
+      "latency_ms": 38.8
+    },
+    {
+      "session": "setting a default for arguments now implicitly makes it non ",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 36.8
+    },
+    {
+      "session": "setting a default for arguments now implicitly makes it non ",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 29.3
+    },
+    {
+      "session": "setting a default for arguments now implicitly makes it non ",
+      "strategy": "tfidf-vec",
+      "tokens": 4164,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 30.8
+    },
+    {
+      "session": "setting a default for arguments now implicitly makes it non ",
+      "strategy": "bm25",
+      "tokens": 4869,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 39.6
+    },
+    {
+      "session": "setting a default for arguments now implicitly makes it non ",
+      "strategy": "dense-emb",
+      "tokens": 4203,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 148.4
+    },
+    {
+      "session": "setting a default for arguments now implicitly makes it non ",
+      "strategy": "ast-tfidf",
+      "tokens": 4455,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 98.2
+    },
+    {
+      "session": "setting a default for arguments now implicitly makes it non ",
+      "strategy": "repomap",
+      "tokens": 4160,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 40.8
+    },
+    {
+      "session": "setting a default for arguments now implicitly makes it non ",
+      "strategy": "semble",
+      "tokens": 4074,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 391.6
+    },
+    {
+      "session": "setting a default for arguments now implicitly makes it non ",
+      "strategy": "slicegrep",
+      "tokens": 4143,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 895.7
+    },
+    {
+      "session": "Clear exceptions when pushing a context",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 84.0
+    },
+    {
+      "session": "Clear exceptions when pushing a context",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 114,
+      "latency_ms": 88.3
+    },
+    {
+      "session": "Clear exceptions when pushing a context",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 143,
+      "latency_ms": 95.3
+    },
+    {
+      "session": "Clear exceptions when pushing a context",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 96.0
+    },
+    {
+      "session": "Clear exceptions when pushing a context",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 96.9
+    },
+    {
+      "session": "Clear exceptions when pushing a context",
+      "strategy": "tfidf-vec",
+      "tokens": 4578,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 82.4
+    },
+    {
+      "session": "Clear exceptions when pushing a context",
+      "strategy": "bm25",
+      "tokens": 4251,
+      "coverage": 0.25,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 110.4
+    },
+    {
+      "session": "Clear exceptions when pushing a context",
+      "strategy": "dense-emb",
+      "tokens": 4337,
+      "coverage": 0.5,
+      "hit": true,
+      "tool_calls": 2,
+      "latency_ms": 368.6
+    },
+    {
+      "session": "Clear exceptions when pushing a context",
+      "strategy": "ast-tfidf",
+      "tokens": 5272,
+      "coverage": 0.25,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 188.2
+    },
+    {
+      "session": "Clear exceptions when pushing a context",
+      "strategy": "repomap",
+      "tokens": 4225,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 140.0
+    },
+    {
+      "session": "Clear exceptions when pushing a context",
+      "strategy": "semble",
+      "tokens": 4267,
+      "coverage": 0.25,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 821.5
+    },
+    {
+      "session": "Clear exceptions when pushing a context",
+      "strategy": "slicegrep",
+      "tokens": 4110,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 1809.7
+    },
+    {
+      "session": "Extracted bar formatting to own method",
+      "strategy": "raw-rg",
+      "tokens": 3796,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 37.7
+    },
+    {
+      "session": "Extracted bar formatting to own method",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 1.0,
+      "hit": true,
+      "tool_calls": 57,
+      "latency_ms": 46.0
+    },
+    {
+      "session": "Extracted bar formatting to own method",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 79,
+      "latency_ms": 44.3
+    },
+    {
+      "session": "Extracted bar formatting to own method",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 5,
+      "latency_ms": 46.4
+    },
+    {
+      "session": "Extracted bar formatting to own method",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 35.1
+    },
+    {
+      "session": "Extracted bar formatting to own method",
+      "strategy": "tfidf-vec",
+      "tokens": 4689,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 39.1
+    },
+    {
+      "session": "Extracted bar formatting to own method",
+      "strategy": "bm25",
+      "tokens": 4675,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 55.6
+    },
+    {
+      "session": "Extracted bar formatting to own method",
+      "strategy": "dense-emb",
+      "tokens": 4648,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 206.3
+    },
+    {
+      "session": "Extracted bar formatting to own method",
+      "strategy": "ast-tfidf",
+      "tokens": 5032,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 131.8
+    },
+    {
+      "session": "Extracted bar formatting to own method",
+      "strategy": "repomap",
+      "tokens": 4312,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 75.0
+    },
+    {
+      "session": "Extracted bar formatting to own method",
+      "strategy": "semble",
+      "tokens": 4219,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 519.9
+    },
+    {
+      "session": "Extracted bar formatting to own method",
+      "strategy": "slicegrep",
+      "tokens": 4203,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 538.8
+    },
+    {
+      "session": "Add explanation for the casting",
+      "strategy": "raw-rg",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 62.7
+    },
+    {
+      "session": "Add explanation for the casting",
+      "strategy": "whole-file",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 22,
+      "latency_ms": 73.3
+    },
+    {
+      "session": "Add explanation for the casting",
+      "strategy": "rg+windows",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 26,
+      "latency_ms": 75.0
+    },
+    {
+      "session": "Add explanation for the casting",
+      "strategy": "rg+rank",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 4,
+      "latency_ms": 75.1
+    },
+    {
+      "session": "Add explanation for the casting",
+      "strategy": "lsp(jedi)",
+      "tokens": 0,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 1,
+      "latency_ms": 46.3
+    },
+    {
+      "session": "Add explanation for the casting",
+      "strategy": "tfidf-vec",
+      "tokens": 4905,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 81.5
+    },
+    {
+      "session": "Add explanation for the casting",
+      "strategy": "bm25",
+      "tokens": 4674,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 98.2
+    },
+    {
+      "session": "Add explanation for the casting",
+      "strategy": "dense-emb",
+      "tokens": 4927,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 403.4
+    },
+    {
+      "session": "Add explanation for the casting",
+      "strategy": "ast-tfidf",
+      "tokens": 8000,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 284.7
+    },
+    {
+      "session": "Add explanation for the casting",
+      "strategy": "repomap",
+      "tokens": 4261,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 248.9
+    },
+    {
+      "session": "Add explanation for the casting",
+      "strategy": "semble",
+      "tokens": 4115,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 968.8
+    },
+    {
+      "session": "Add explanation for the casting",
+      "strategy": "slicegrep",
+      "tokens": 4283,
+      "coverage": 0.0,
+      "hit": false,
+      "tool_calls": 2,
+      "latency_ms": 918.6
+    }
+  ]
+}

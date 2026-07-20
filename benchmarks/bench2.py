@@ -490,6 +490,224 @@ def strat_tfidf(cache, query):
     return "\n".join(parts), 1
 
 
+def _windows_of(cache) -> list:
+    """Shared 60-line/40-stride windows, cached per corpus."""
+    if getattr(cache, "_win", None) is None:
+        wins = []
+        for rel, lines in cache.files:
+            for lo in range(0, max(1, len(lines)), 40):
+                hi = min(len(lines), lo + 60)
+                wins.append((rel, lo, hi, "\n".join(lines[lo:hi])))
+                if hi >= len(lines):
+                    break
+        cache._win = wins
+    return cache._win
+
+
+def _pack_windows(scored, budget) -> str:
+    parts, used = [], 0
+    for _s, text in scored:
+        parts.append(text)
+        used += estimate_tokens(text)
+        if used >= budget:
+            break
+    return "\n".join(parts)
+
+
+try:
+    import bm25s
+except ImportError:  # pragma: no cover
+    bm25s = None
+
+_BM25_CACHE: Dict[str, object] = {}
+
+
+def strat_bm25(cache, query):
+    """BM25 (bm25s) over the shared 60-line windows."""
+    if bm25s is None:
+        return "", 1
+    key = str(cache.root)
+    entry = _BM25_CACHE.get(key)
+    wins = _windows_of(cache)
+    if entry is None:
+        corpus = [re.findall(r"[a-z0-9_]{2,}", w[3].lower()) for w in wins]
+        idx = bm25s.BM25()
+        idx.index(corpus)
+        _BM25_CACHE[key] = idx
+        entry = idx
+    q = re.findall(r"[a-z0-9_]{2,}", query.replace("\\", "").replace("|", " ").lower())
+    if not q:
+        return "", 1
+    try:
+        docs, scores = entry.retrieve([q], k=min(50, len(wins)))
+    except Exception:
+        return "", 1
+    scored = [(scores[0][i], wins[int(docs[0][i])][3])
+              for i in range(len(docs[0])) if scores[0][i] > 0]
+    return _pack_windows(scored, BUDGET), 1
+
+
+try:
+    from model2vec import StaticModel as _StaticModel
+except ImportError:  # pragma: no cover
+    _StaticModel = None
+
+_DENSE_MODEL = None
+_DENSE_CACHE: Dict[str, object] = {}
+
+
+def strat_dense(cache, query):
+    """Dense retrieval: potion-code-16M static embeddings (the same model
+    semble uses) over the shared windows, plain cosine — no BM25 fusion."""
+    global _DENSE_MODEL
+    if _StaticModel is None:
+        return "", 1
+    import numpy as np
+    if _DENSE_MODEL is None:
+        try:
+            _DENSE_MODEL = _StaticModel.from_pretrained("minishlab/potion-code-16M-v2")
+        except Exception:
+            return "", 1
+    wins = _windows_of(cache)
+    key = str(cache.root)
+    embs = _DENSE_CACHE.get(key)
+    if embs is None:
+        embs = _DENSE_MODEL.encode([w[3] for w in wins])
+        embs = embs / (np.linalg.norm(embs, axis=1, keepdims=True) + 1e-9)
+        _DENSE_CACHE[key] = embs
+    qv = _DENSE_MODEL.encode([query.replace("\\", "").replace("|", " ")])[0]
+    qv = qv / (np.linalg.norm(qv) + 1e-9)
+    sims = embs @ qv
+    order = sims.argsort()[::-1][:50]
+    scored = [(float(sims[i]), wins[int(i)][3]) for i in order if sims[i] > 0]
+    return _pack_windows(scored, BUDGET), 1
+
+
+def _ast_chunks_of(cache) -> list:
+    """Syntax-aware chunks: one per top-level function/class (Python ast),
+    whole-file fallback for non-Python. Answers the tree-sitter question."""
+    if getattr(cache, "_astc", None) is None:
+        import ast as _ast
+        chunks = []
+        for rel, lines in cache.files:
+            if rel.endswith(".py"):
+                try:
+                    tree = _ast.parse("\n".join(lines))
+                    spans = [(n.lineno - 1, getattr(n, "end_lineno", n.lineno))
+                             for n in _ast.walk(tree)
+                             if isinstance(n, (_ast.FunctionDef,
+                                               _ast.AsyncFunctionDef,
+                                               _ast.ClassDef))]
+                except SyntaxError:
+                    spans = []
+                if spans:
+                    for lo, hi in spans:
+                        chunks.append((rel, lo, hi, "\n".join(lines[lo:hi])))
+                    continue
+            chunks.append((rel, 0, len(lines), "\n".join(lines[:120])))
+        cache._astc = chunks
+    return cache._astc
+
+
+def strat_ast_tfidf(cache, query):
+    """TF-IDF cosine over syntax-aware (ast) chunks instead of fixed windows."""
+    chunks = _ast_chunks_of(cache)
+    q = Counter(re.findall(r"[a-z0-9_]{3,}", query.lower()))
+    if not q:
+        return "", 1
+    df = Counter()
+    toks_list = []
+    for _rel, _lo, _hi, text in chunks:
+        toks = Counter(re.findall(r"[a-z0-9_]{3,}", text.lower()))
+        toks_list.append(toks)
+        df.update(toks.keys())
+    n = max(1, len(chunks))
+    idf = {t: math.log(n / (1 + c)) for t, c in df.items()}
+    qvec = {t: c * idf.get(t, 0.0) for t, c in q.items()}
+    qnorm = math.sqrt(sum(v * v for v in qvec.values())) or 1.0
+    scored = []
+    for (rel, lo, hi, text), toks in zip(chunks, toks_list):
+        dot = sum(qvec.get(t, 0.0) * c * idf.get(t, 0.0) for t, c in toks.items())
+        if dot <= 0:
+            continue
+        dn = math.sqrt(sum((c * idf.get(t, 0.0)) ** 2 for t, c in toks.items())) or 1.0
+        scored.append((dot / (qnorm * dn), text))
+    scored.sort(reverse=True)
+    return _pack_windows(scored, BUDGET), 1
+
+
+_REPOMAP_CACHE: Dict[str, tuple] = {}
+
+
+def strat_repomap(cache, query):
+    """Aider-style repo map: PageRank over the def/ref file graph,
+    personalized by files matching the query; emits top definition sites."""
+    key = str(cache.root)
+    entry = _REPOMAP_CACHE.get(key)
+    if entry is None:
+        defs = {}          # symbol -> (rel, lineno)
+        for rel, lines in cache.files:
+            if not rel.endswith(".py"):
+                continue
+            for i, line in enumerate(lines):
+                m = re.match(r"^\s*(?:def|class)\s+([A-Za-z_]\w{2,})", line)
+                if m and m.group(1) not in defs:
+                    defs[m.group(1)] = (rel, i)
+        edges: Dict[str, Counter] = {}
+        for rel, lines in cache.files:
+            if not rel.endswith(".py"):
+                continue
+            refs = Counter()
+            text = "\n".join(lines)
+            for sym, (drel, _l) in defs.items():
+                if drel != rel and sym in text:
+                    refs[drel] += 1
+            if refs:
+                edges[rel] = refs
+        _REPOMAP_CACHE[key] = (defs, edges)
+        entry = (defs, edges)
+    defs, edges = entry
+    files = sorted({rel for rel, _ in cache.files if rel.endswith(".py")})
+    if not files:
+        return "", 1
+    fidx = {f: i for i, f in enumerate(files)}
+    qtok = set(re.findall(r"[a-z0-9_]{3,}",
+                          query.replace("\\", "").replace("|", " ").lower()))
+    # personalization: files containing any query token
+    pers = [1.0 if any(t in "\n".join(cache.lines(f)).lower() for t in qtok)
+            else 0.05 for f in files]
+    tot = sum(pers) or 1.0
+    pers = [p / tot for p in pers]
+    rank = list(pers)
+    for _ in range(15):
+        new = [0.15 * p for p in pers]
+        for src, refs in edges.items():
+            if src not in fidx:
+                continue
+            w = sum(refs.values())
+            if not w:
+                continue
+            share = 0.85 * rank[fidx[src]]
+            for dst, c in refs.items():
+                if dst in fidx:
+                    new[fidx[dst]] += share * (c / w)
+        rank = new
+    ranked_files = sorted(files, key=lambda f: rank[fidx[f]], reverse=True)
+    # emit definition sites from top files; query-matching symbols first
+    parts, used, calls = [], 0, 1
+    for f in ranked_files[:12]:
+        lines = cache.lines(f)
+        syms = [(s, l) for s, (r, l) in defs.items() if r == f]
+        syms.sort(key=lambda sl: (0 if any(t in sl[0].lower() for t in qtok) else 1, sl[1]))
+        for _s, l in syms[:6]:
+            text = "\n".join(lines[l: min(len(lines), l + 20)])
+            parts.append(text)
+            used += estimate_tokens(text)
+            if used >= BUDGET:
+                return "\n".join(parts), calls
+    return "\n".join(parts), calls
+
+
 _SEMBLE_CACHE: Dict[str, object] = {}
 
 
@@ -533,6 +751,10 @@ STRATEGIES = [
     ("rg+rank", strat_rg_rank),
     ("lsp(jedi)", strat_lsp_jedi),
     ("tfidf-vec", strat_tfidf),
+    ("bm25", strat_bm25),
+    ("dense-emb", strat_dense),
+    ("ast-tfidf", strat_ast_tfidf),
+    ("repomap", strat_repomap),
     ("semble", strat_semble),
     ("slicegrep", strat_slicegrep),
 ]
@@ -572,6 +794,8 @@ def main() -> int:
     ap.add_argument("--corpora-dir", help="dir containing pre-cloned corpora "
                     "(subdirs click/ flask/ requests/ rich/)")
     ap.add_argument("--clone", action="store_true")
+    ap.add_argument("--seed", type=int, default=SEED,
+                    help="task sampling seed (fresh seed = held-out run)")
     ap.add_argument("--scale", type=int, default=240,
                     help="total tasks (split across 6 families; default 240)")
     ap.add_argument("--md", help="write markdown report here")
@@ -605,7 +829,7 @@ def main() -> int:
         print("WARNING: jedi not installed — lsp(jedi) will score 0. "
               "pip install jedi")
 
-    rng = random.Random(SEED)
+    rng = random.Random(args.seed)
     per_family = -(-args.scale // len(FAMILIES))
     per_corpus = -(-per_family // len(caches))
     tasks = []   # (family, name, query, cache, gt)

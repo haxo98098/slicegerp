@@ -56,73 +56,73 @@ Multiply that by every file an agent reads per task.
 
 ## Benchmarks
 
-Three suites, all seeded and reproducible from this repo. Scores measure
-retrieval quality (the required code landing in the delivered context under an
-8k-token cap), not end-to-end task completion.
+Evaluated under a three-tier protocol: tuning and validation seeds are burned
+during development; published numbers come from CONFIRMATION runs on virgin
+data (every previously-touched session excluded) against the frozen engine,
+run once. Two router defects were caught by confirmation runs and fixed; the
+seeds they consumed are documented in the CHANGELOG.
 
-### v3: retrieval for real changes (primary)
+### Real-change retrieval (v3, primary) — confirmation, n=286 virgin sessions
 
-80 commits mined from the git history of click, flask, requests, and rich.
-Setup per task: repo reconstructed at the parent commit; query built from the
-commit message only; ground truth = the pre-image regions the commit modified
-(diff hunks ±2 lines). Session hit = ≥50% of those regions retrieved.
+Real commits mined from click/flask/requests/rich history; repo reconstructed
+at the parent commit (git worktree, ancestor-only history — no future
+leakage); query from the commit message only; ground truth = the regions the
+real fix touched. Session hit = ≥50% of those regions retrieved under an
+8k-token cap.
 
-| strategy | tokens → model | session hit | mean coverage | tool calls |
-|---|---|---|---|---|
-| raw ripgrep output | 5,535 | 0.0% | 0.0% | 1 |
-| whole-file reads | 8,000 | 6.2% | 6.8% | 37 |
-| grep + window reads | 8,000 | 7.5% | 8.8% | 47 |
-| grep + file ranking | 8,000 | 20.0% | 20.8% | 2 |
-| lsp (jedi) | 0 | 2.5% | 1.2% | 1 |
-| tf-idf vector retriever | 2,240 | 22.5% | 20.4% | 1 |
-| semble (embeddings+BM25) | 2,090 | 20.0% | 17.6% | 1 |
-| **slicegrep 0.4** | 2,110 | **23.8%** | **23.8%** | 1 |
+| strategy | hit rate | 95% CI | mean coverage |
+|---|---|---|---|
+| dense embeddings (potion-code) | 28.3% | [23.1, 33.5] | 25.0% |
+| **slicegrep 0.5** | **26.6%** | [21.5, 31.7] | 24.2% |
+| tf-idf windows | 23.4% | [18.5, 28.3] | 21.6% |
+| grep + file ranking | 23.4% | [18.5, 28.3] | 21.6% |
+| ast-chunk tf-idf | 22.0% | [17.2, 26.8] | 20.5% |
+| bm25 windows | 21.7% | [16.9, 26.5] | 20.2% |
 
-Notes:
+Statistical tie for first with the dense-only retriever; both clear of the
+rest. slicegrep is the only method in the top cluster that also returns
+line-attributed slices, negative evidence, and objective-guaranteed context
+(definition + caller + test), and the only one that wins the suite below.
 
-- Low absolute scores are inherent to the task: predicting the regions a fix
-  will touch from the commit message alone. No tested method exceeds 23.8%.
-- Margins over tf-idf are a few points on an 80-session sample.
-- Earlier slicegrep versions scored 16.2% (0.2) and 21.2% (0.3) here; the
-  changes between versions were driven by these results. See CHANGELOG.
-- Reproduce: full clones + `python benchmarks/bench3.py --corpora-dir <dir>`.
+### Controlled retrieval suite (v2) — confirmation, fresh seed, 240 tasks
 
-### v2: controlled retrieval suite
-
-240 seeded tasks, six families (symbol lookup, docstring-concept queries,
-cross-file call-chain, bug localization from error strings, config/data-flow,
-test+implementation). Multi-span families require all spans in context.
+Six task families (symbol, docstring-concept, cross-file call-chain, bug
+localization from error strings, config/data-flow, test+implementation),
+twelve strategies, 8k cap.
 
 | strategy | tokens → model | hit rate | tool calls |
 |---|---|---|---|
-| raw ripgrep output | 271 | 0.0% | 1 |
-| whole-file reads | 8,000 | 36.6% | 6 |
-| grep + window reads | 6,345 | 57.3% | 7 |
-| grep + file ranking | 8,000 | 43.2% | 2 |
-| lsp (jedi symbol search) | 0 | 6.6% | 1 |
-| tf-idf vector retriever | 2,209 | 56.8% | 1 |
-| semble (embeddings+BM25) | 2,085 | 38.3% | 1 |
-| **slicegrep 0.4** | 2,089 | **62.6%** | 1 |
+| **slicegrep 0.5** | 2,304 | **71.4%** | 1 |
+| bm25 windows | 2,213 | 66.1% | 1 |
+| ast-chunk tf-idf | 2,296 | 58.6% | 1 |
+| grep + window reads | 5,693 | 60.4% | 7 |
+| dense embeddings | 2,262 | 35.2% | 1 |
+| semble (embeddings+BM25) | 2,094 | 44.5% | 1 |
 
-Notes:
+First by 5.3 points at ~2.3k tokens and one call. Warm latency ~35-60ms
+(in-process corpus cache).
 
-- Per-family results in [RESULTS_V2.md](benchmarks/RESULTS_V2.md). slicegrep
-  loses two families: cross-file call-chain (grep+windows 57.5% vs 37.5%) and
-  docstring-concept queries (tf-idf 75.0% vs 62.5%).
-- semble caveats, both in its favor: these queries are keyword-shaped (semble
-  targets natural-language queries), and its test-file down-ranking floors the
-  test+impl family (2.5%) that this suite rewards.
-- slicegrep 0.3 scored 63.9% here; 0.4 traded 1.3 points for the v3 gains.
-- Reproduce: `pip install jedi && python benchmarks/bench2.py --clone --scale 240`.
+### How: a query-shape router
 
-### v1: definition lookups
+Precise queries (identifiers, error strings, 1-2 terms) run the lexical
+pipeline — BM25-scored definition-aligned blocks, objective guarantees,
+diversity packing; dense is fully gated out (it measurably dilutes precise
+packing). Vague queries (3+ plain words) keep the guarantees, then fill the
+budget by fused dense+BM25 ranking. Optional extras: `model2vec` for the
+dense stage; git history priors (temporally safe, ablation-switchable) —
+both off gracefully when unavailable, keeping the stdlib-only core.
 
-300 generated definition lookups, three strategies. slicegrep 84.7% hit at
-1,586 median tokens / 1 call, vs grep+windows 76.0% (2,384 / 3) and whole-file
-54.3% (8,000 / 3). This suite exposed a v0.1 ranking bug (definition signal
-inactive in default mode; 71.7% before the fix). Details:
-[RESULTS_SCALED.md](benchmarks/RESULTS_SCALED.md); reproduce with
-`python benchmarks/bench.py --clone --scale 300`.
+### Other suites (earlier engines; see RESULTS files)
+
+- **Cross-language (v5):** zod (TS) 77.5% vs next-best 60.0; serde (Rust)
+  67.5% vs 50.0; django at ~2,800 files: 60.0% holding first.
+- **Multi-turn (v4):** with one mechanical refinement round for every
+  strategy, slicegrep led on coverage (27.3%) and tied the best hit rate.
+- **End-to-end (v6, real Claude calls):** best mean file recall (66.7%)
+  among the three strategies tested; answer-correct within noise of the
+  leader at n=15.
+- **Historical (v1):** definition lookups, 84.7% vs 76.0 (grep+windows);
+  this suite caught the v0.1 ranking bug (71.7% before the fix).
 
 ---
 

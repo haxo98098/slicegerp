@@ -174,13 +174,18 @@ def query_from_message(subject: str, body: str) -> Optional[str]:
 # --------------------------------------------------------------------------- #
 
 def snapshot(repo: Path, sha: str, dest: Path) -> None:
-    dest.mkdir(parents=True, exist_ok=True)
-    tar = dest / "_snap.tar"
-    with open(tar, "wb") as fh:
-        subprocess.run(["git", "-C", str(repo), "archive", f"{sha}^"],
-                       stdout=fh, check=True)
-    subprocess.run(["tar", "-xf", str(tar), "-C", str(dest)], check=True)
-    tar.unlink()
+    """Snapshot via git worktree: a real checkout of the PARENT commit with
+    a working .git link. `git log` inside sees only ancestors of the parent,
+    so history-aware strategies get exactly the history a developer had at
+    that moment — and nothing from the future."""
+    subprocess.run(["git", "-C", str(repo), "worktree", "add", "--detach",
+                    "--quiet", str(dest), f"{sha}^"], check=True,
+                   capture_output=True)
+
+
+def drop_snapshot(repo: Path, dest: Path) -> None:
+    subprocess.run(["git", "-C", str(repo), "worktree", "remove", "--force",
+                    str(dest)], capture_output=True)
 
 
 def gt_from_hunks(cache: RepoCache, hunks) -> Optional[GT]:
@@ -214,12 +219,22 @@ def main() -> int:
                     help="dir with FULL clones: click/ flask/ requests/ rich/")
     ap.add_argument("--sessions", type=int, default=80,
                     help="total sessions across repos (default 80)")
+    ap.add_argument("--seed", type=int, default=SEED,
+                    help="sampling seed (use a fresh one for held-out runs)")
+    ap.add_argument("--strategies", default=None,
+                    help="comma list to run (default: all)")
+    ap.add_argument("--exclude-shas", default=None,
+                    help="JSON results file whose sessions must be EXCLUDED "
+                         "(held-out evaluation: never test on tuned-on data)")
     ap.add_argument("--md", help="write markdown report here")
     ap.add_argument("--json", help="write raw results here")
     args = ap.parse_args()
 
+    strategies = (STRATEGIES if not args.strategies else
+                  [(n, f) for n, f in STRATEGIES
+                   if n in args.strategies.split(",")])
     base = Path(args.corpora_dir)
-    rng = random.Random(SEED)
+    rng = random.Random(args.seed)
     per_repo = -(-args.sessions // len(REPOS))
 
     print("mining real sessions from git history ...")
@@ -247,11 +262,12 @@ def main() -> int:
             cache = RepoCache(snap, s["label"])
             gt = gt_from_hunks(cache, s["hunks"])
             if gt is None:
+                drop_snapshot(s["repo"], snap)
                 shutil.rmtree(snap, ignore_errors=True)
                 continue
             if idx % 10 == 0:
                 print(f"  ... {idx}/{len(sessions)}")
-            for sname, fn in STRATEGIES:
+            for sname, fn in strategies:
                 t0 = time.perf_counter()
                 try:
                     context, calls = fn(cache, s["query"])
@@ -268,16 +284,17 @@ def main() -> int:
                     "hit": cov >= 0.5, "tool_calls": calls,
                     "latency_ms": round(lat, 1), "n_hunks": len(gt.spans),
                 })
+            drop_snapshot(s["repo"], snap)
             shutil.rmtree(snap, ignore_errors=True)
     finally:
         shutil.rmtree(workdir, ignore_errors=True)
 
-    n_sessions = len(cells) // len(STRATEGIES)
+    n_sessions = len(cells) // max(1, len(strategies))
     print(f"\n=== SUMMARY over {n_sessions} real sessions ===")
     print(f"{'strategy':12s} {'tokens':>7s} {'hit%':>6s} {'coverage':>9s} "
           f"{'calls':>6s} {'lat/task':>9s}")
     summary = {}
-    for sname, _ in STRATEGIES:
+    for sname, _ in strategies:
         sub = [c for c in cells if c["strategy"] == sname]
         if not sub:
             continue
@@ -310,7 +327,7 @@ def main() -> int:
         out.append("| strategy | tokens → model | session hit | mean coverage "
                    "| tool calls | latency/task |")
         out.append("|---|---|---|---|---|---|")
-        for sname, _ in STRATEGIES:
+        for sname, _ in strategies:
             if sname not in summary:
                 continue
             r = summary[sname]

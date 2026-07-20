@@ -6,6 +6,51 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-07-20
+
+### Added
+- **BM25 term-saturation scoring** in the semantic recall pass (k1=1.2,
+  b=0.75) over **definition-aligned block chunks** (was: raw TF-IDF over
+  fixed 60-line windows) with an inverted index for candidate selection.
+- **In-process corpus cache** (mtime-validated os.scandir signature): warm
+  directory calls dropped from ~880ms to ~35-60ms; match-window merging
+  removed the O(n^2) dedupe hot path.
+- **Temporally-safe history stack** (novel; ancestor-only git history, no
+  future leakage): recency-decayed line-weighted churn
+  (w = log(1+lines)/sqrt(files_in_commit)), significance-adjusted (lift)
+  file co-change over softmax-weighted textual anchors, a symbol-level
+  co-change graph mined from git hunk headers, and history-conditioned
+  query expansion (coupled symbols become new retrieval objectives).
+  Ablation switches: SLICEGREP_HISTORY=full|off|churn-only|cochange-only|
+  shuffled. Measured effect at file granularity: neutral (kept for the
+  mechanism + ablation infrastructure; region-level is the roadmap).
+- **Optional dense stage** (`model2vec` potion-code-16M, extra
+  `slicegrep[fast]`-style guarded import): dense cosine fused into recall
+  scoring. Stdlib-only behaviour unchanged when absent.
+- **Query-shape router**: 3+ plain lowercase words = vague -> objective
+  guarantees first, then fused dense+BM25 fill; anything with identifiers,
+  case, escapes, or 1-2 terms = precise -> lexical pipeline, dense fully
+  gated out (it measurably dilutes precise packing).
+
+### Evaluation protocol (three tiers, enforced after two caught mistakes)
+- Tuning -> validation (seed 777) -> confirmation on virgin sessions with
+  every previously-touched commit excluded (809 burned SHAs at final run).
+  Confirmation ran ONCE against the frozen engine.
+- Confirmation run 1 caught a router defect (result-score routing broke
+  config/test+impl families: v2 44.5%); fixed to query-shape routing;
+  run 2 caught dense dilution of the precise path (router-off ablation);
+  fixed by gating dense to the vague route. Each fix cost its seeds.
+
+### Confirmed results (virgin data, single runs)
+- v2 controlled suite (seed 667): slicegrep 71.4% - first, +5.3 over BM25
+  (66.1), 12 strategies.
+- v3 real sessions (seeds 3331-3333, n=286): dense-only 28.3 [23.1,33.5],
+  slicegrep 26.6 [21.5,31.7] - statistical tie for first; all other
+  methods 21.7-23.4.
+- Rejected variants recorded: multiplicative history priors, adaptive
+  budget split, diverse semantic fill, RRF packing, subwords in the
+  precision rerank, result-score routing.
+
 ## [0.4.0] - 2026-07-19
 
 ### Added
